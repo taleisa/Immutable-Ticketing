@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>createAccount</title>
+</head>
+<body>
+    <button class="enableEthereumButton">Connect</button>
+    <form method="POST" action="" id = "sugnupform"> 
+      {% csrf_token %}
+        {{form}}
+        <button type="submit" id = 'submitButton'>Create Account</button>
+    </form>
+</body>
+
+<script>
+  const ethereumButton = document.querySelector('.enableEthereumButton');
+
+ethereumButton.addEventListener('click', () => {
+  //Will Start the metamask extension
+  ethereum.request({ method: 'eth_requestAccounts' });
+});
+
+
+ let signupButton = document.getElementById("submitButton");
+ signupButton.addEventListener('click', () => {
+    document.getElementById("id_wallet_address").value = ethereum.selectedAddress;
+  });
+
+
+  
+
+  </script>
+</html>

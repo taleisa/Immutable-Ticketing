@@ -1,0 +1,21 @@
+<h2>Log In</h2>
+<button class="enableEthereumButton">Enable Ethereum</button>
+
+<button id = "createAccount">createAccount</button>
+
+<form method="post">
+  {% csrf_token %}
+  {{ form }}
+  <button type="submit">Log In</button>
+</form>
+
+
+
+<script>
+  const ethereumButton = document.querySelector('.enableEthereumButton');
+
+ethereumButton.addEventListener('click', () => {
+  //Will Start the metamask extension
+  ethereum.request({ method: 'eth_requestAccounts' });
+});
+</script>
