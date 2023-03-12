@@ -3,13 +3,11 @@
 
 <button id = "createAccount">createAccount</button>
 
-<form method="post">
+<form method="POST" action = "">
   {% csrf_token %}
-  {{ form }}
-  <button type="submit">Log In</button>
+    {{ form }}
+  <button type="submit" id = 'submitButton'>Log In</button>
 </form>
-
-
 
 <script>
   const ethereumButton = document.querySelector('.enableEthereumButton');
@@ -17,5 +15,10 @@
 ethereumButton.addEventListener('click', () => {
   //Will Start the metamask extension
   ethereum.request({ method: 'eth_requestAccounts' });
+  document.getElementById("id_wallet_address").value = ethereum.selectedAddress;
 });
+let submitButton = document.getElementById("submitButton");
+submitButton.addEventListener('click', () => {
+   document.getElementById("id_wallet_address").value = ethereum.selectedAddress;
+ });
 </script>

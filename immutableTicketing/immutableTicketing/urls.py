@@ -15,10 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
+from web3auth import urls as web3auth_urls
 from django.contrib import admin
-from django.urls import path
-from django.urls import path, include
+from django.urls import path, include, re_path
 
 urlpatterns = [
     path("admin/", admin.site.urls),
