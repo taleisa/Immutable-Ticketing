@@ -1,0 +1,417 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>National Single Sign-On</title>
+    <style>
+        html {
+            font-family: Tajawal, sans-serif;
+            /* font-size: 16px; */
+            line-height: 1.5;
+        }
+
+        .c_navbar__brand {
+            margin: 15px;
+            margin-right: 30px
+        }
+
+        .c_navbar {
+            display: flex;
+        }
+
+        .c-navbar {
+            background: #fafafa;
+            box-shadow: 0 5px 10px 0 rgba(29, 29, 31, .09);
+            align-items: center;
+            display: flex;
+        }
+
+        .u-mb-large {
+            margin-bottom: 50px !important;
+        }
+
+        .c-navbar {
+            padding: 15px 0;
+        }
+
+        .container {
+            max-width: 540px;
+        }
+
+        .c-footer nav {
+            margin-top: 10px;
+        }
+
+        .c-footer {
+            display: block;
+        }
+
+        .container-fluid {
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .u-p-zero {
+            padding: 0 !important;
+        }
+
+        .collapsible {
+            border-radius: 5px;
+            font-weight: bold;
+            background-color: #11998e;
+            color: white;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 15px;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        .row {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .c-field__label {
+            display: block;
+            -ms-flex-preferred-size: 100%;
+            flex-basis: 100%;
+            margin: 0 0 0.3125rem;
+            color: #586673;
+            font-size: .875rem;
+            font-weight: 400;
+        }
+
+        .c-input {
+            display: block;
+            width: 100%;
+            margin: 0;
+            padding: 0.625rem 0.9375rem;
+            transition: all .3s;
+            border: 1px solid #99a5bd;
+            border-radius: 5px;
+            background-color: #fafafa;
+            color: #343d46;
+            font-size: .75rem;
+            font-weight: 400;
+            resize: none;
+        }
+
+        .u-mb-medium {
+            margin-bottom: 30px !important;
+        }
+
+        .c-btn--fullwidth {
+            width: 100%;
+        }
+
+        .c-btn {
+            display: inline-block;
+            position: relative;
+            max-width: 100%;
+            margin: 0;
+            padding: 0.625rem 1.25rem;
+            transition: all .15s ease-in-out;
+            border: 0;
+            border-radius: 5px;
+            background-color: #11998e;
+            color: #fafafa;
+            font-size: .875rem;
+            font-weight: 400;
+            line-height: 1.5;
+            text-align: center;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            box-shadow: 0 5px 10px 0 rgba(29, 29, 31, .09);
+            cursor: pointer;
+            vertical-align: middle;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .u-text-center {
+            text-align: center !important;
+        }
+
+        .c-btn--secondary.c-btn--outline {
+            background-color: transparent;
+            color: #586673;
+        }
+
+        .c-btn--outline {
+            border: 1px solid;
+        }
+
+        .c-btn--small {
+            padding: 0.25rem 1.125rem;
+            font-size: .75rem;
+        }
+
+        .u-justify-between {
+            -ms-flex-pack: justify !important;
+            justify-content: space-between !important;
+        }
+
+        .u-flex {
+            display: -ms-flexbox !important;
+            display: flex !important;
+        }
+
+        form {
+            display: block;
+            margin-top: 0em;
+            margin-block-end: 1em;
+        }
+
+        .col-md-6,
+        .col-md-5,
+        .col-md-8,
+        .col-12 {
+            position: relative;
+            width: 100%;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        div {
+            display: block;
+        }
+
+        p {
+            margin: 0 0 10px;
+        }
+
+        p {
+            font-size: .875rem;
+        }
+
+        p {
+            display: block;
+            margin-block-start: 1em;
+            margin-block-end: 1em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+        }
+
+        .u-color-secondary {
+            color: #586673 !important;
+        }
+
+        .u-mh-small {
+            margin-right: 15px !important;
+            margin-left: 15px !important;
+        }
+
+        .u-ml-small {
+            margin-left: 15px !important;
+        }
+
+        .c-card {
+            margin-bottom: 30px;
+            padding: 30px;
+            border-radius: 5px;
+            background-color: #fafafa;
+            box-shadow: 0 10px 60px 0 rgba(29, 29, 31, .09);
+        }
+
+        .content {
+            padding: 0 18px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 1s ease-out;
+            background-color: #f1f1f1;
+        }
+
+        .container {
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .c-avatar__img {
+            width: 70px;
+            min-width: 70px;
+            height: 70px;
+            border-radius: 100%;
+            overflow: hidden;
+        }
+
+        .o-media {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: start;
+            align-items: flex-start;
+        }
+
+        .c-footer__link {
+            margin-right: 15px;
+            color: #586673;
+            font-size: .875rem;
+        }
+
+        .c-footer {
+            background-color: #ecedf2;
+        }
+
+        .u-mt-xsmall {
+            margin-top: 10px !important;
+        }
+
+        .c-footer {
+            display: -ms-flexbox;
+            /* display: flex; */
+            -ms-flex-align: center;
+            align-items: center;
+            margin-top: 50px;
+            padding: 30px 15px;
+            border-top: 1px solid #e1e2e8;
+            background: #fafafa;
+        }
+
+        footer {
+            display: block;
+        }
+
+        .container-fluid {
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .o-page {
+            position: relative;
+            height: 100%;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            background-position: -10vw 10vh;
+        }
+
+        body {
+            display: block;
+            margin: 8px;
+        }
+
+        .u-mt-medium {
+            margin-top: 30px !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="o-page">
+        <div class="container-fluid u-p-zero">
+            <header class="c-navbar u-mb-large">
+                    <img src="https://kss.sa/iam-registration/kss-sa-241/" width="128">
+                </a>
+                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/f/f5/Saudi_Vision_2030_logo.svg/1200px-Saudi_Vision_2030_logo.svg.png"
+                    width="128" class="u-opacity-heavy u-mr-auto u-hidden-down@mobile">
+            </header>
+        </div>
+        <div class="container">
+            <div id="content">
+                <div class="row u-justify-center ">
+                    <button class="collapsible">Username and Password</button>
+                    <div class="content" id="pl2" style="max-height: 1200px; width: 100%;">
+                        <div class="row u-justify-center">
+                            <div class="col-md-8">
+                                <div class="c-card">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <form action={% url 'login' %} method = 'POST'>
+                                                {% csrf_token %}
+                                                <div class="c-field u-mb-medium">
+                                                     <label class="c-field__label" for="j_username">Username / National Id</label>
+                                                     {{form.username}}
+                                                </div>
+
+                                                <div class="c-field u-mb-medium">
+                                                    <label class="c-field__label" for="j_password">Username / National Id</label>
+                                                    {{form.password}}
+                                                </div>
+                                                
+                                                <div class="c-field u-text-center">
+
+                                                    <button type="submit" name="btnAuthenticate" class="c-btn c-btn--fullwidth">
+                                                        <i class="feather icon-log-in "></i>Login</button>
+
+                                                    <div class="u-flex u-justify-between u-mt-medium">
+                                                        <a class="c-btn c-btn--secondary c-btn--outline c-btn--small">
+                                                            <i class="feather icon-unlock"></i> Forgot/Change Password</a>
+
+                                                        <a href=# class="c-btn c-btn--secondary c-btn--outline c-btn--small">
+                                                            <i class="feather icon-user"></i>New Account</a>
+                                                    </div>
+
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div
+                                            class="col-md-5 u-text-center u-p-small u-mh-small u-hidden-down@mobile u-color-secondary">
+                                            <img src="https://i.imgur.com/QYwpDRW.png" width="150">
+                                            <p>Please enter your username or National Id and password, then click 'Login'.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <footer class="c-footer u-mt-xsmall u-justify-between">
+                        <div class="o-media">
+                            <div class="o-media__img u-ml-small">
+                                <div class="c-avatar">
+                                    <img class="c-avatar__img"
+                                        src="https://m.eyeofriyadh.com/directory/images/2022/12/11791eb4da42c.jpg"
+                                        alt="NIC-logo">
+                                </div>
+                            </div>
+
+                            <div class="o-media__content u-ml-small">
+                                <p>Development and operation</p>
+                                <h5 class="u-color-secondary">National Information Center</h5>
+                                <p>National Single Sign-On All rights reserved © 2022</p>
+                            </div>
+                        </div>
+                        <nav>
+                            <a class="c-footer__link" href=#>Home</a>
+                            <a class="c-footer__link" href=#>About</a>
+                            <a class="c-footer__link" href=#>Contact Us</a>
+                            <a class="c-footer__link" href=#>Terms &amp; Conditions</a>
+                            <a class="c-footer__link" href=#>Assitance &amp; Support</a>
+                        </nav>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
