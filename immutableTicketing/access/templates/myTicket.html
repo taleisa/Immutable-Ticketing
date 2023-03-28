@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Immutable Ticketing</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <ul class="menu">
+                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-shopping-basket"></i> Marketplace</a></li>
+                    <li><a href="#"><i class="fas fa-ticket-alt"></i> My Ticket</a></li>
+                    <li><a href="#"><i class="fas fa-user"></i> My Profile</a></li>
+                    <li><a href="#"><i class="fas fa-phone"></i> Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="myTicketSection">
+        <div class="container">
+            <div class="section-header">
+                <h1>My Tickets</h1>
+            </div>
+
+            <div class="myTickets">
+                <div class="myTicket">
+                    <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <span class="myTicketTitle">Event Name</span>
+                    <span class="myTicketTime">4:00 PM</span>
+                    <div class="myTicketLocationDate">
+                        <div class="myTicketLocationDiv">
+                            <i class='myTicketLocationIcon fas fa-map-marker-alt'></i>
+                        </div>
+                        <div class="myTicketLocationText">
+                            <span class="myTicketCity">Riyadh</span><br>
+                            <span class="myTicketDate">2-4-2022</span>
+                        </div>
+                        <button class="myTicketListBtn">List Ticket</button>
+                    </div>
+                </div>
+
+                <div class="myTicket">
+                    <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <span class="myTicketTitle">Event Name</span>
+                    <span class="myTicketTime">4:00 PM</span>
+                    <div class="myTicketLocationDate">
+                        <div class="myTicketLocationDiv">
+                            <i class='myTicketLocationIcon fas fa-map-marker-alt'></i>
+                        </div>
+                        <div class="myTicketLocationText">
+                            <span class="myTicketCity">Riyadh</span><br>
+                            <span class="myTicketDate">2-4-2022</span>
+                        </div>
+                        <button class="myTicketListBtn">List Ticket</button>
+                    </div>
+                </div>
+
+                <div class="myTicket">
+                    <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <span class="myTicketTitle">Event Name</span>
+                    <span class="myTicketTime">4:00 PM</span>
+                    <div class="myTicketLocationDate">
+                        <div class="myTicketLocationDiv">
+                            <i class='myTicketLocationIcon fas fa-map-marker-alt'></i>
+                        </div>
+                        <div class="myTicketLocationText">
+                            <span class="myTicketCity">Riyadh</span><br>
+                            <span class="myTicketDate">2-4-2022</span>
+                        </div>
+                        <button class="myTicketListBtn">List Ticket</button>
+                    </div>
+                </div>
+
+                <div class="myTicket">
+                    <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <span class="myTicketTitle">Event Name</span>
+                    <span class="myTicketTime">4:00 PM</span>
+                    <div class="myTicketLocationDate">
+                        <div class="myTicketLocationDiv">
+                            <i class='myTicketLocationIcon fas fa-map-marker-alt'></i>
+                        </div>
+                        <div class="myTicketLocationText">
+                            <span class="myTicketCity">Riyadh</span><br>
+                            <span class="myTicketDate">2-4-2022</span>
+                        </div>
+                        <button class="myTicketListBtn">List Ticket</button>
+                    </div>
+                </div>
+
+                <div class="myTicket" id="listed">
+                    <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                    <span class="myTicketTitle">Event Name</span>
+                    <span class="myTicketTime">4:00 PM</span>
+                    <div class="myTicketLocationDate">
+                        <div class="myTicketLocationDiv">
+                            <i class='myTicketLocationIcon fas fa-map-marker-alt'></i>
+                        </div>
+                        <div class="myTicketLocationText">
+                            <span class="myTicketCity">Riyadh</span><br>
+                            <span class="myTicketDate">2-4-2022</span>
+                        </div>
+                        <button class="myTicketListBtn">List Ticket</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Confirmation Popup -->
+            <div class="cd-popup popup-list" role="alert">
+                <div class="cd-popup-container">
+                    <p>Are you sure you want to list this ticket?</p>
+                    <ul class="cd-buttons">
+                        <li><a href="#0">Confirm</a></li>
+                        <li><a href="#0" class="cd-popup-cancel">Cancel</a></li>
+                    </ul>
+                    <a href="#0" class="cd-popup-close img-replace"></a>
+                </div>
+            </div>
+
+            <div class="cd-popup popup-unlist" role="alert">
+                <div class="cd-popup-container">
+                    <p>Are you sure you want to unlist this ticket?</p>
+                    <ul class="cd-buttons">
+                        <li><a href="#0">Confirm</a></li>
+                        <li><a href="#0" class="cd-popup-cancel">Cancel</a></li>
+                    </ul>
+                    <a href="#0" class="cd-popup-close img-replace"></a>
+                </div>
+            </div>
+
+    </section>
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var listedTicket = document.getElementById("listed");
+            if (listedTicket) {
+                var listBtn = listedTicket.querySelector("button");
+                if (listBtn) {
+                    listBtn.innerHTML = "Unlist Ticket";
+                    listBtn.classList.remove("myTicketListBtn");
+                    listBtn.classList.add("myTicketUnlistBtn");
+                }
+            }
+        });
+
+        jQuery(document).ready(function ($) {
+            //open popup
+            $('.myTicketListBtn').on('click', function (event) {
+                event.preventDefault();
+                $('.popup-list').addClass('is-visible');
+            });
+
+            $('.myTicketUnlistBtn').on('click', function (event) {
+                event.preventDefault();
+                $('.popup-unlist').addClass('is-visible');
+            });
+
+            //close popup
+            $('.cd-popup').on('click', function (event) {
+                if ($(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup') || $(event.target).is('.cd-popup-cancel')) {
+                    event.preventDefault();
+                    $(this).removeClass('is-visible');
+                }
+            });
+            //close popup when clicking the esc keyboard button
+            $(document).keyup(function (event) {
+                if (event.which == '27') {
+                    $('.cd-popup').removeClass('is-visible');
+                }
+            });
+        });
+
+    </script>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-logo">
+                </div>
+                <div class="footer-links">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Marketplace</a></li>
+                        <li><a href="#">My Ticket</a></li>
+                        <li><a href="#">My Profile</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <ul>
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Immutable Ticketing System Using Blockchain Technology. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
