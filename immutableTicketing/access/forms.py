@@ -1,12 +1,13 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm  
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from access.models import web3User
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import AuthenticationForm
 class accountForm(UserCreationForm):
     username = forms.CharField(label='username', min_length=5, max_length=150)  
     password1 = forms.CharField(label='password', widget=forms.PasswordInput)  
     password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput)  
-    wallet_address = forms.CharField(widget=forms.HiddenInput,max_length = 42, required=True)
+    wallet_address = forms.CharField(widget=forms.HiddenInput,max_length = 42, required=False)
     def username_clean(self):  
         username = self.cleaned_data['username'].lower()  
         new = User.objects.filter(username = username)  
@@ -35,16 +36,17 @@ class accountForm(UserCreationForm):
         web3User.objects.create(user = user, wallet_address = self.cleaned_data['wallet_address'])  
         return user  
 
-class loginForm(forms.Form):
-    wallet_address = forms.CharField(widget=forms.HiddenInput(),max_length = 42,required=True)
+class loginForm(AuthenticationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget = forms.widgets.TextInput(attrs={
+                'class': 'c-input',
+                'id':'j_username',
+            })
+        self.fields['password'].widget = forms.widgets.PasswordInput(attrs={
+                'class': 'c-input',
+                'id':'j_password'
+            })
 
-    # def __init__(self, request,*args, **kwargs):
-    #     self.request = kwargs.pop('request', None)
-    #     super(loginForm, self).__init__(*args, **kwargs)
-
-
-    # def get_user():
-    #     print("herefromgetuser")
-    #     user = web3AuthBackend.authenticate(wallet_address = wallet_address)
-    #     return user
-
+class walletForm(forms.Form):
+        wallet_address = forms.CharField(widget=forms.HiddenInput,max_length = 42)
