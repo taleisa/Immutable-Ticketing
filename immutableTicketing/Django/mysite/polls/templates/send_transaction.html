@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Send Ethereum Transaction</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>Send Ethereum Transaction</h1>
+    <form method="post" action="">
+        {% csrf_token %}
+        <!--<label for="account">Your Ethereum Account:</label><br>
+        <input type="text" id="account" name="account"><br>-->
+        <label for="recipient">Recipient Address:</label><br>
+        <input type="text" id="recipient" name="recipient"><br>
+        <label for="amount">Amount (in Wei):</label><br>
+        <input type="text" id="amount" name="amount"><br>
+        <button type="button" onclick="sendTransaction()">Send Transaction</button>
+    </form>
+    <script>
+        async function sendTransaction() {
+            // Request access to the user's Ethereum account
+            await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+            // Get the user's Ethereum address
+            const accounts = await web3.eth.getAccounts();
+            const from = accounts[1];
+
+            // Get the input values from the form
+            var recipient = document.getElementById("recipient").value;
+            var amount = document.getElementById("amount").value;
+            var url = "/send-transaction/";
+
+            // Send the data to the Django view using Axios
+            axios.post(url, {
+                account: from,
+                recipient: recipient,
+                amount: amount
+            })
+            .then(function (response) {
+                console.log(response);
+                alert("Transaction sent successfully! Transaction hash: " + response.data.txn_receipt.transactionHash);
+            })
+            .catch(function (error) {
+                console.log(error);
+                alert("Error sending transaction: " + error);
+            });
+        }
+    </script>
+</body>
+</html>

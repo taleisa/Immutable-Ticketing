@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Send Transaction</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+   
+</head>
+<body>
+    <h1>Test Buy ticket</h1>
+    <label for="token">Token ID:</label>
+    <input type="number" id="TokenId" placeholder="0"><br>
+    <button onclick="sendTransaction()">Send Transaction</button>
+    <span id="account"><br></span>
+    <!--<ul>
+        {% for x in contract_abi %}
+          <li>{{ x }}</li>
+        {% endfor %} 
+      </ul>-->
+      <script>
+        const contract_address = "{{contract_address}}";
+        const contract_abi = "{{contract_abi|safe}}";
+        const web3 = new Web3(new Web3.providers.HttpProvider('HTTP://127.0.0.1:7545'));
+
+        const token_id = document.getElementById('tokenId').value;
+            const contract = new web3.eth.Contract(contract_abi, contract_address);
+            const txn_params = {
+                tokenId: token_id /*"{{token_id}}"*/,
+                data: contract.methods.buy(tokenId).encodeABI(),
+            };
+            async function sendTransaction() {
+            await window.ethereum.request({ method: 'eth_requestAccounts' })
+                .then(() => {
+                    return web3.eth.getAccounts();
+                })
+                .then((accounts) => {
+                    /*txn_params.from = accounts[1];*/
+                    /*print the account to check*/
+                    document.getElementById("account").innerText = accounts[1];
+                    return window.ethereum.request({
+                        method: 'eth_signTransaction',
+                        params: [txn_params],
+                    });
+                })
+                .then((signed_txn) => {
+                    return web3.eth.sendSignedTransaction(signed_txn.raw);
+                })
+                .then((txn_hash) => {
+                    return web3.eth.getTransactionReceipt(txn_hash);
+                })
+                .then((txn_receipt) => {
+                    console.log(txn_receipt);
+                })
+                .catch((error) => {
+                    console.error(error);
+                });}
+    </script>
+</body>
+</html>

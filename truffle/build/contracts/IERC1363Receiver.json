@@ -1,0 +1,300 @@
+{
+  "contractName": "IERC1363Receiver",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "operator",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "onTransferReceived",
+      "outputs": [
+        {
+          "internalType": "bytes4",
+          "name": "",
+          "type": "bytes4"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"operator\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"onTransferReceived\",\"outputs\":[{\"internalType\":\"bytes4\",\"name\":\"\",\"type\":\"bytes4\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"onTransferReceived(address,address,uint256,bytes)\":{\"details\":\"Any ERC1363 smart contract calls this function on the recipient after a `transfer` or a `transferFrom`. This function MAY throw to revert and reject the transfer. Return of other than the magic value MUST result in the transaction being reverted. Note: the token contract address is always the message sender.\",\"params\":{\"data\":\"bytes Additional data with no specified format\",\"from\":\"address The address which are token transferred from\",\"operator\":\"address The address which called `transferAndCall` or `transferFromAndCall` function\",\"value\":\"uint256 The amount of tokens transferred\"},\"returns\":{\"_0\":\"`bytes4(keccak256(\\\"onTransferReceived(address,address,uint256,bytes)\\\"))`  unless throwing\"}}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"onTransferReceived(address,address,uint256,bytes)\":{\"notice\":\"Handle the receipt of ERC1363 tokens\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/node_modules/@openzeppelin/contracts/interfaces/IERC1363Receiver.sol\":\"IERC1363Receiver\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/node_modules/@openzeppelin/contracts/interfaces/IERC1363Receiver.sol\":{\"keccak256\":\"0x28584e7e468ad231d928452d1b8f73a50a1f38097e4c3b07dbfbe4d60f675761\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://282e71f94c0e322a2db794f3bf328e7c46187872a65f78301c8137572574f7a3\",\"dweb:/ipfs/QmP1QuKWCtMnexeoK9GAk4qakFhEJzxEmRocEugjdSE4bR\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\n// OpenZeppelin Contracts v4.4.1 (interfaces/IERC1363Receiver.sol)\n\npragma solidity ^0.8.0;\n\ninterface IERC1363Receiver {\n    /*\n     * Note: the ERC-165 identifier for this interface is 0x88a7ca5c.\n     * 0x88a7ca5c === bytes4(keccak256(\"onTransferReceived(address,address,uint256,bytes)\"))\n     */\n\n    /**\n     * @notice Handle the receipt of ERC1363 tokens\n     * @dev Any ERC1363 smart contract calls this function on the recipient\n     * after a `transfer` or a `transferFrom`. This function MAY throw to revert and reject the\n     * transfer. Return of other than the magic value MUST result in the\n     * transaction being reverted.\n     * Note: the token contract address is always the message sender.\n     * @param operator address The address which called `transferAndCall` or `transferFromAndCall` function\n     * @param from address The address which are token transferred from\n     * @param value uint256 The amount of tokens transferred\n     * @param data bytes Additional data with no specified format\n     * @return `bytes4(keccak256(\"onTransferReceived(address,address,uint256,bytes)\"))`\n     *  unless throwing\n     */\n    function onTransferReceived(\n        address operator,\n        address from,\n        uint256 value,\n        bytes memory data\n    ) external returns (bytes4);\n}\n",
+  "sourcePath": "/Users/Faisal/Desktop/Capstone/Immutable-Ticketing/truffle/contracts/node_modules/@openzeppelin/contracts/interfaces/IERC1363Receiver.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/node_modules/@openzeppelin/contracts/interfaces/IERC1363Receiver.sol",
+    "exportedSymbols": {
+      "IERC1363Receiver": [
+        8353
+      ]
+    },
+    "id": 8354,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 8338,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "100:23:44"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IERC1363Receiver",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 8353,
+        "linearizedBaseContracts": [
+          8353
+        ],
+        "name": "IERC1363Receiver",
+        "nameLocation": "135:16:44",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "documentation": {
+              "id": 8339,
+              "nodeType": "StructuredDocumentation",
+              "src": "337:832:44",
+              "text": " @notice Handle the receipt of ERC1363 tokens\n @dev Any ERC1363 smart contract calls this function on the recipient\n after a `transfer` or a `transferFrom`. This function MAY throw to revert and reject the\n transfer. Return of other than the magic value MUST result in the\n transaction being reverted.\n Note: the token contract address is always the message sender.\n @param operator address The address which called `transferAndCall` or `transferFromAndCall` function\n @param from address The address which are token transferred from\n @param value uint256 The amount of tokens transferred\n @param data bytes Additional data with no specified format\n @return `bytes4(keccak256(\"onTransferReceived(address,address,uint256,bytes)\"))`\n  unless throwing"
+            },
+            "functionSelector": "88a7ca5c",
+            "id": 8352,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "onTransferReceived",
+            "nameLocation": "1183:18:44",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 8348,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8341,
+                  "mutability": "mutable",
+                  "name": "operator",
+                  "nameLocation": "1219:8:44",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8352,
+                  "src": "1211:16:44",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 8340,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1211:7:44",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 8343,
+                  "mutability": "mutable",
+                  "name": "from",
+                  "nameLocation": "1245:4:44",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8352,
+                  "src": "1237:12:44",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 8342,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1237:7:44",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 8345,
+                  "mutability": "mutable",
+                  "name": "value",
+                  "nameLocation": "1267:5:44",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8352,
+                  "src": "1259:13:44",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 8344,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1259:7:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 8347,
+                  "mutability": "mutable",
+                  "name": "data",
+                  "nameLocation": "1295:4:44",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8352,
+                  "src": "1282:17:44",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_memory_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 8346,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1282:5:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1201:104:44"
+            },
+            "returnParameters": {
+              "id": 8351,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8350,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8352,
+                  "src": "1324:6:44",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes4",
+                    "typeString": "bytes4"
+                  },
+                  "typeName": {
+                    "id": 8349,
+                    "name": "bytes4",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1324:6:44",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes4",
+                      "typeString": "bytes4"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1323:8:44"
+            },
+            "scope": 8353,
+            "src": "1174:158:44",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 8354,
+        "src": "125:1209:44",
+        "usedErrors": []
+      }
+    ],
+    "src": "100:1235:44"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.19+commit.7dd6d404.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.13",
+  "updatedAt": "2023-03-25T18:51:50.092Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "onTransferReceived(address,address,uint256,bytes)": {
+        "details": "Any ERC1363 smart contract calls this function on the recipient after a `transfer` or a `transferFrom`. This function MAY throw to revert and reject the transfer. Return of other than the magic value MUST result in the transaction being reverted. Note: the token contract address is always the message sender.",
+        "params": {
+          "data": "bytes Additional data with no specified format",
+          "from": "address The address which are token transferred from",
+          "operator": "address The address which called `transferAndCall` or `transferFromAndCall` function",
+          "value": "uint256 The amount of tokens transferred"
+        },
+        "returns": {
+          "_0": "`bytes4(keccak256(\"onTransferReceived(address,address,uint256,bytes)\"))`  unless throwing"
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "onTransferReceived(address,address,uint256,bytes)": {
+        "notice": "Handle the receipt of ERC1363 tokens"
+      }
+    },
+    "version": 1
+  }
+}
