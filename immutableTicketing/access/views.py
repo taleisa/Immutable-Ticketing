@@ -52,6 +52,3 @@ class nafath(LoginView):
     
     
 
-class homePage(LoginRequiredMixin, TemplateView):
-    template_name = 'homePage.html'
-    login_url = reverse_lazy("login")
