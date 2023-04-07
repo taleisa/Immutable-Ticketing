@@ -7,19 +7,24 @@ class accountForm(UserCreationForm):
     username = forms.CharField(label='username', min_length=5, max_length=150)  
     password1 = forms.CharField(label='password', widget=forms.PasswordInput)  
     password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput)  
-    wallet_address = forms.CharField(widget=forms.HiddenInput,max_length = 42, required=False)
+    #wallet_address = forms.CharField(widget=forms.HiddenInput,max_length = 42, required=False)
     def username_clean(self):  
         username = self.cleaned_data['username'].lower()  
         new = User.objects.filter(username = username)  
         if new.count():  
             raise ValidationError("User Already Exist")  
-        return username  
-    def wallet_address_clean(self):
-        wallet_address = self.cleaned_data['wallet_address']
-        web3User = web3User.objects.get(wallet_address = wallet_address)
-        if web3User:
-            raise ValidationError("Address already in use")
-        return wallet_address  
+        return username 
+    #############################################
+    ###Uncomment if signup is with wallet address
+    #############################################
+    
+     
+    # def wallet_address_clean(self):
+    #     wallet_address = self.cleaned_data['wallet_address']
+    #     web3User = web3User.objects.get(wallet_address = wallet_address)
+    #     if web3User:
+    #         raise ValidationError("Address already in use")
+    #     return wallet_address  
     def clean_password2(self):  
         password1 = self.cleaned_data['password1']  
         password2 = self.cleaned_data['password2']  
@@ -33,7 +38,7 @@ class accountForm(UserCreationForm):
             username = self.cleaned_data['username'],   
             password = self.cleaned_data['password1'],  
         )
-        web3User.objects.create(user = user, wallet_address = self.cleaned_data['wallet_address'])  
+        #web3User.objects.create(user = user, wallet_address = self.cleaned_data['wallet_address'])  
         return user  
 
 class loginForm(AuthenticationForm):
