@@ -9,6 +9,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth import authenticate, login
 from . models import web3User
 from django.contrib import messages
+from django.db import IntegrityError
 
 class createAccount(FormView):
     template_name = "createAccount.html"
@@ -32,14 +33,19 @@ class login(FormView):
         try:
             user_wallet_address = user.web3User.wallet_address
         except:
+            
             webUser = web3User(user = user)
             webUser.wallet_address = wallet_address
-            webUser.save()
-            messages.success(self.request, 'Wallet has been saved')
+            try:
+                webUser.save()
+            except IntegrityError:
+                messages.error(self.request, 'Wallet registered to other user, please use your wallet')
+            else:
+                messages.success(self.request, 'Wallet has been saved')
             self.success_url = reverse_lazy('login')
         else:
             if user_wallet_address != wallet_address:
-                messages.error(self.request, 'Please connect your regidtered wallet')
+                messages.error(self.request, 'Please connect your registered wallet')
                 self.success_url = reverse_lazy('login')
                 return super(login, self).form_valid(form)
            
