@@ -13,20 +13,6 @@
 </head>
 
 <body>
-    <header>
-        <div class="container">
-            <nav>
-                <ul class="menu">
-                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="#"><i class="fas fa-shopping-basket"></i> Marketplace</a></li>
-                    <li><a href="#"><i class="fas fa-ticket-alt"></i> My Ticket</a></li>
-                    <li><a href="#"><i class="fas fa-user"></i> My Profile</a></li>
-                    <li><a href="#"><i class="fas fa-phone"></i> Contact Us</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
     <section class="contactUsSection">
         <div class="container">
             <div class="section-header">
@@ -54,34 +40,17 @@
 
     </script>
     <footer class="footer">
-        <div class="container">
-            <div class="footer-top">
-                <div class="footer-logo">
-                </div>
-                <div class="footer-links">
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Marketplace</a></li>
-                        <li><a href="#">My Ticket</a></li>
-                        <li><a href="#">My Profile</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div class="footer-social">
-                    <ul>
-                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                    </ul>
-                </div>
-            </div>
-            <hr>
-            <div class="footer-bottom">
-                <p>&copy; 2023 Immutable Ticketing System Using Blockchain Technology. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+				<a href="homePage.html" class="home-page"><i class="fas fa-home" style='font-size:24px'></i></a>
+				<a href="marketplacePage.html" class="marketplace-page"><i class="fas fa-shopping-basket" style='font-size:24px'></i></a>
+				<a href="myTicket.html" class="ticket-page"><i class="fas fa-ticket-alt" style='font-size:24px'></i></a>
+				<a href="myProfile.html" class="profile-page"><i class="fas fa-user" style='font-size:24px'></i></a>
+				<a href="contactUs.html" class="contact-page"><i class="fas fa-envelope" style='font-size:24px'></i></a>
+			</footer>	
+		<script>
+				document.addEventListener("DOMContentLoaded", function() {
+					document.querySelector('.contact-page').classList.add('active');
+				});
+		</script>
 </body>
 
 </html>
