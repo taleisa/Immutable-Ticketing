@@ -9,4 +9,4 @@ class homePage(LoginRequiredMixin, TemplateView):
 
 class eventPage(LoginRequiredMixin, TemplateView):
     template_name = 'eventPage.html'
-    login_url = reverse_lazy("event")
+    login_url = reverse_lazy("events")

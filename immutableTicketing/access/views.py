@@ -58,3 +58,15 @@ class nafath(LoginView):
     
     
 
+class profilePage(LoginRequiredMixin,TemplateView):
+    template_name = 'myProfile.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+        context = {
+            'name':user.get_full_name(),
+            'email':user.email,
+            'wallet':user.web3User.wallet_address
+        }
+        return context
+    
