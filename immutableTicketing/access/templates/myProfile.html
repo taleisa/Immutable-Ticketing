@@ -2,11 +2,12 @@
 <html lang="en">
 
 <head>
+    {% load static  %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Immutable Ticketing</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href={% static 'access/style.css' %}>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
 
@@ -14,17 +15,7 @@
 
 <body>
     <header>
-        <div class="container">
-            <nav>
-                <ul class="menu">
-                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-                    <li><a href="#"><i class="fas fa-shopping-basket"></i> Marketplace</a></li>
-                    <li><a href="#"><i class="fas fa-ticket-alt"></i> My Ticket</a></li>
-                    <li><a href="#"><i class="fas fa-user"></i> My Profile</a></li>
-                    <li><a href="#"><i class="fas fa-phone"></i> Contact Us</a></li>
-                </ul>
-            </nav>
-        </div>
+        
     </header>
 
     <section class="myProfileSection">
@@ -34,18 +25,17 @@
             </div>
             <img src="https://secure.gravatar.com/avatar/d5b2344d21c5d3da318657fb100979fa?s=500&d=mm&r=g" style="height:200px; border-radius: 50%; border: 8px solid #FFF;" alt="Profile Picture">
             <br>
-            <span id="myProfileName">Naif Binkhathlan</span>
+            <span id="myProfileName">{{name}}</span>
             <br>
-            <span id="myProfileEmail">nabinkhathlan@alfaisal.edu</span>
-            <br>
-            <br>
+            <span id="myProfileEmail">{{email}}</span>
             <br>
             <br>
-            <span id="labelBalance">TOTAL BALANCE</span>
             <br>
             <br>
-            <span id="labelCurr">SAR </span>
-            <span id="myProfileBalance">237.95</span>
+            <span id="labelBalance">Wallet Address</span>
+            <br>
+            <br>
+            <span id="myProfileBalance">{{wallet}}</span>
             <br>
             <br>
             <a href="#" id="addBtnAnchor">
