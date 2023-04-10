@@ -112,13 +112,7 @@
                 </div>
             </section>
             <script src={% static 'access/script.js' %}></script>
-			<footer class="footer">
-				<a href="homePage.html" class="home-page"><i class="fas fa-home" style='font-size:24px'></i></a>
-				<a href="marketplacePage.html" class="marketplace-page"><i class="fas fa-shopping-basket" style='font-size:24px'></i></a>
-				<a href="myTicket.html" class="ticket-page"><i class="fas fa-ticket-alt" style='font-size:24px'></i></a>
-				<a href="myProfile.html" class="profile-page"><i class="fas fa-user" style='font-size:24px'></i></a>
-				<a href="contactUs.html" class="contact-page"><i class="fas fa-envelope" style='font-size:24px'></i></a>
-			</footer>	
+			{% include 'access/footer.html' %}
 		<script>
 				document.addEventListener("DOMContentLoaded", function() {
 					document.querySelector('.marketplace-page').classList.add('active');

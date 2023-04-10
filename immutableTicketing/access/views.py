@@ -12,7 +12,7 @@ from django.contrib import messages
 from django.db import IntegrityError
 
 class createAccount(FormView):
-    template_name = "createAccount.html"
+    template_name = "access/createAccount.html"
     success_url  = reverse_lazy('login')
     form_class = accountForm
     def form_valid(self, form):
@@ -20,7 +20,7 @@ class createAccount(FormView):
         return super(createAccount, self).form_valid(form)
         
 class login(FormView):
-    template_name = 'AppToNafath.html'
+    template_name = 'access/AppToNafath.html'
     success_url = reverse_lazy('home')
     form_class = walletForm
     def form_valid(self, form):
@@ -52,14 +52,14 @@ class login(FormView):
         return super(login, self).form_valid(form)
 
 class nafath(LoginView):
-    template_name = "nafathLoginV1.0.html"
+    template_name = "access/nafathLoginV1.0.html"
     next_page = reverse_lazy('login')
     authentication_form = loginForm
     
     
 
 class profilePage(LoginRequiredMixin,TemplateView):
-    template_name = 'myProfile.html'
+    template_name = 'access/myProfile.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user

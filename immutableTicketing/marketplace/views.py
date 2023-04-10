@@ -4,9 +4,9 @@ from django.views.generic import TemplateView
 from django.urls import reverse_lazy
 
 class homePage(LoginRequiredMixin, TemplateView):
-    template_name = 'homePage.html'
+    template_name = 'marketplace/homePage.html'
     login_url = reverse_lazy("login")
 
 class eventPage(LoginRequiredMixin, TemplateView):
-    template_name = 'eventPage.html'
+    template_name = 'marketplace/eventPage.html'
     login_url = reverse_lazy("events")
