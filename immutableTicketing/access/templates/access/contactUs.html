@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Immutable Ticketing</title>
-    <link rel="stylesheet" href="style.css">
+    {% load static %}
+    <link rel="stylesheet" href={% static 'access/style.css'  %}>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
 
@@ -34,18 +35,9 @@
                 </div>
             </div>
     </section>
-    <script src="script.js"></script>
+    <script src={% static 'access/script.js' %}></script>
 
-    <script>
-
-    </script>
-    <footer class="footer">
-				<a href="homePage.html" class="home-page"><i class="fas fa-home" style='font-size:24px'></i></a>
-				<a href="marketplacePage.html" class="marketplace-page"><i class="fas fa-shopping-basket" style='font-size:24px'></i></a>
-				<a href="myTicket.html" class="ticket-page"><i class="fas fa-ticket-alt" style='font-size:24px'></i></a>
-				<a href="myProfile.html" class="profile-page"><i class="fas fa-user" style='font-size:24px'></i></a>
-				<a href="contactUs.html" class="contact-page"><i class="fas fa-envelope" style='font-size:24px'></i></a>
-			</footer>	
+    {% include 'access/footer.html' %}
 		<script>
 				document.addEventListener("DOMContentLoaded", function() {
 					document.querySelector('.contact-page').classList.add('active');
