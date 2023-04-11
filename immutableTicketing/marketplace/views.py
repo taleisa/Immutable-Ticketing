@@ -4,7 +4,7 @@ from django.views.generic import TemplateView
 from django.urls import reverse_lazy
 
 class homePage(LoginRequiredMixin, TemplateView):
-    template_name = 'marketplace/homePage.html'
+    template_name = 'marketplace/marketplacePage.html'
     login_url = reverse_lazy("login")
 
 class eventPage(LoginRequiredMixin, TemplateView):
