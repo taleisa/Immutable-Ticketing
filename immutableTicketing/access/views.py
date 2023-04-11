@@ -70,3 +70,5 @@ class profilePage(LoginRequiredMixin,TemplateView):
         }
         return context
     
+class contactUs(LoginRequiredMixin,TemplateView):
+    template_name = 'access/contactUs.html'
