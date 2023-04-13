@@ -4,5 +4,5 @@ from . import views
 
 urlpatterns = [
     path('home/', views.load_template, name='template'),
-    path('send-transaction/', views.send_transaction, name='send transaction'),
+    path('home/<account>', views.send_transaction, name='send transaction'),
 ]

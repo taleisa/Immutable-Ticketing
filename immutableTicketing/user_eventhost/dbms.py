@@ -1,7 +1,7 @@
 import sqlite3
 
 class DBMS:
-    con = sqlite3.connect("user and eventhost/ImmutabelTicketing.db")
+    con = sqlite3.connect("/Users/Faisal/Desktop/Capstone/Immutable-Ticketing/immutableTicketing/user_eventhost/ImmutabelTicketing.db")
     cur = con.cursor()
 
     # Database methods
@@ -52,4 +52,3 @@ class DBMS:
         query = """INSERT INTO event VALUES(?,?,?,?,?,?,?,?)"""
         DBMS.cur.execute(query, [event_name,event_symbol,event_location,event_type,str(event_start_date),str(event_end_date),event_host_address,contractAddress])
         DBMS.con.commit()
-  

@@ -53,7 +53,7 @@ class EventHost:
         # self.mintTicket(tempcontract, other information)
         return temp_contract    
 
-    def mintTicket(nft_contract, ticket_URI, ticket_price, ticket_seat_number):
+    def mintTicket(self, nft_contract, ticket_URI, ticket_price, ticket_seat_number):
         #create nft_contract by querying the database and retreiving the contract address
         nft_contract.functions.safeMint(EventHost.GEA,ticket_URI,ticket_price,ticket_seat_number).transact({"from": EventHost.GEA})    
 

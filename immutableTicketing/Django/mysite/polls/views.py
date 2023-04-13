@@ -14,47 +14,41 @@ def load_template(request):
 
     return render(request, 'buy_ticket.html', {"contract_address": contract_address , "contract_abi": abi})
 
-def send_transaction(request):
-    #load template
-    template = loader.get_template('polls/send_transaction.html')
+def send_transaction(request, account):
+    #get ABI
+    truffleFile = json.load(open('/Users/Faisal/desktop/capstone/Immutable-Ticketing/truffle/build/contracts/TicketNFT.json')) # truffle generated file
+    abi = truffleFile['abi'] # ABI generated in the file
+    Bytecode = truffleFile['bytecode'] # metadata generated in the file
+
+    #Get contract address
+    contract_address = "0xDFf43e81a80BdB91EF10d8316b29701d0813A2D6" #example address
+
     
-    # Connect to an Ethereum node using a provider (e.g., Infura)
-    infura_url = 'https://mainnet.infura.io/v3/YOUR-INFURA-PROJECT-ID'
-    web3 = Web3(Web3.HTTPProvider(infura_url))
+    # assumes event_name is unique
+    #create contract instance of the event the user wants to buy
+    w3 = Web3(Web3.HTTPProvider('HTTP://127.0.0.1:7545'))
+    temp_contract = w3.eth.contract(contract_address, abi= abi, bytecode = Bytecode)
 
-    # Load the contract ABI and address
-    with open('contract_abi.json') as f:
-        contract_abi = json.load(f)
-    contract_address = 'YOUR-CONTRACT-ADDRESS'
+    #grant customer verified accounts role if customer exists in database (assumes customer exists)
 
-    # Get the user's account address from Metamask
-    account = request.POST['account']
+    #event_host = EventHost(DBMS.getEventHostAddress(event_name))
+    #event_host.grantCustomerRole(account, temp_contract)
 
-    # Get the recipient and amount from the user
-    recipient = request.POST['recipient']
-    amount = request.POST['amount']
+    #retrieve the ticket index
+    #arr = self.retrieveTicketInfo(event_name)
+    ticket_index = 3 #arr[0]
+    ticket_price = 500000000000000 #arr[1]
 
-    # Create a contract instance using the ABI and address
-    contract = web3.eth.contract(address=contract_address, abi=contract_abi)
-
-    # Encode the contract function call data
-    data = contract.functions.transfer(recipient, amount).buildTransaction()['data']
-
-    # Build the transaction object
-    txn = {
-        'to': contract_address,
-        'data': data,
-        'gas': 200000,
-        'gasPrice': web3.eth.gas_price,
-        'nonce': web3.eth.getTransactionCount(account),
-    }
-
-    # Sign the transaction using Metamask
-    signed_txn = web3.eth.account.sign_transaction(txn, private_key=None)
-
-    # Send the signed transaction to the Ethereum network
-    txn_hash = web3.eth.sendRawTransaction(signed_txn.rawTransaction)
-    txn_receipt = web3.eth.waitForTransactionReceipt(txn_hash)
-
-    # Return the transaction receipt
-    return JsonResponse({'status': 'success', 'txn_receipt': txn_receipt})
+    #call the buy function to excute transaction
+    tx_dict = temp_contract.functions.buy(
+        ticket_index, temp_contract.encodeABI(fn_name="buy", args= [ticket_index, account])
+                                              ).build_transaction({"from": account,
+                                                                    'value': ticket_price,
+                                                                    'nonce': w3.eth.get_transaction_count(account)}) # {'nonce': User.w3.eth.get_transaction_count(self.user_address)} specifies nonce
+    print(tx_dict)
+        #key = "0x58514bd1f6170c2978b8f5e4aedc9dccf63da236710f9e0e94b7e8296b79c7f4" #for testing purposes only
+        #signed_txn = User.w3.eth.account.sign_transaction(tx_dict,key)
+        #print(User.w3.eth.send_raw_transaction(signed_txn.rawTransaction))
+        #temp_contract.functions.buy().transact({"from": EventHost.GEA})
+        #send the transaction to metamask to confirm the transaction
+    return render(request, 'buy_ticket.html', {"contract_address": contract_address , "contract_abi": abi, "tx_dict": tx_dict})
