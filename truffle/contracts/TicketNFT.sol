@@ -16,6 +16,7 @@ contract TicketNFT is ERC721, ERC721Burnable, ERC721URIStorage, Ownable, AccessC
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");//Account who can mint
     bytes32 public constant VERIFIED_ACCOUNTS = keccak256("VERIFIED_ACCOUNTS");//Accounts that are verified(in our database)
     bytes32 public constant GEA_ACCOUNTS = keccak256("GEA_ACCOUNTS");//Accounts belonging to GEA
+    bytes32 public constant GATE_ACCOUNTS = keccak256("GATE_ACCOUNTS");//Accounts belonging to Gate
     Ticket[] public _allTickets;//Array that contains all tickets index is ticket ID
     //Common for all tickets
     string public _eventName;
@@ -38,6 +39,7 @@ contract TicketNFT is ERC721, ERC721Burnable, ERC721URIStorage, Ownable, AccessC
         _endDate = endDate;
     } 
 
+    event ValueLogged(uint256 value);
 
     function safeMint(address to, string memory uri, uint256 price, uint256 seatNumber) public onlyRole(MINTER_ROLE) {
         require(hasRole(GEA_ACCOUNTS, to), "Cannot mint to account not owned by GEA");
@@ -54,6 +56,10 @@ contract TicketNFT is ERC721, ERC721Burnable, ERC721URIStorage, Ownable, AccessC
         bytes memory data)public payable onlyRole(VERIFIED_ACCOUNTS){
             require(_allTickets[tokenId]._forSale == true,"Ticket not for sale");
             require(msg.value == _allTickets[tokenId]._price, "Incorrect price");
+
+            // Emit an event that logs the value of msg.value
+            emit ValueLogged(msg.value);
+
             super._safeTransfer(ownerOf(tokenId),msg.sender,tokenId, data);
             ticketIndexToOwner[tokenId] = msg.sender;//Ticket is now owned by sender
             _allTickets[tokenId]._forSale = false;//Ticket no longer for sale once transfered to new owner
@@ -63,6 +69,16 @@ contract TicketNFT is ERC721, ERC721Burnable, ERC721URIStorage, Ownable, AccessC
         require(ticketIndexToOwner[tokenId]==msg.sender,"No ticket owner");
         _allTickets[tokenId]._forSale = option;
     }
+
+    //Function to use ticket at gate
+    function useTicket(address to,
+        uint256 tokenId,
+        bytes memory data)public payable onlyRole(VERIFIED_ACCOUNTS){
+            require(hasRole(GATE_ACCOUNTS, to), "Cannot use ticket at address other than gate");
+            require(_allTickets[tokenId]._forSale == false,"Ticket for sale");
+            super._safeTransfer(ownerOf(tokenId),to,tokenId, data);
+            ticketIndexToOwner[tokenId] = to;//Ticket is now owned by gate
+        }
 
     function safeTransferFrom(
         address from,

@@ -15,21 +15,21 @@
     "absolutePath": "project:/contracts/node_modules/@openzeppelin/contracts/utils/cryptography/ECDSA.sol",
     "exportedSymbols": {
       "ECDSA": [
-        22915
+        22979
       ],
       "Math": [
-        25276
+        25340
       ],
       "Strings": [
-        22340
+        22404
       ]
     },
-    "id": 22916,
+    "id": 22980,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 22556,
+        "id": 22620,
         "literals": [
           "solidity",
           "^",
@@ -42,11 +42,11 @@
       {
         "absolutePath": "project:/contracts/node_modules/@openzeppelin/contracts/utils/Strings.sol",
         "file": "../Strings.sol",
-        "id": 22557,
+        "id": 22621,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 22916,
-        "sourceUnit": 22341,
+        "scope": 22980,
+        "sourceUnit": 22405,
         "src": "137:24:144",
         "symbolAliases": [],
         "unitAlias": ""
@@ -58,15 +58,15 @@
         "contractDependencies": [],
         "contractKind": "library",
         "documentation": {
-          "id": 22558,
+          "id": 22622,
           "nodeType": "StructuredDocumentation",
           "src": "163:205:144",
           "text": " @dev Elliptic Curve Digital Signature Algorithm (ECDSA) operations.\n These functions can be used to verify that a message was signed by the holder\n of the private keys of a given address."
         },
         "fullyImplemented": true,
-        "id": 22915,
+        "id": 22979,
         "linearizedBaseContracts": [
-          22915
+          22979
         ],
         "name": "ECDSA",
         "nameLocation": "377:5:144",
@@ -74,38 +74,38 @@
         "nodes": [
           {
             "canonicalName": "ECDSA.RecoverError",
-            "id": 22564,
+            "id": 22628,
             "members": [
               {
-                "id": 22559,
+                "id": 22623,
                 "name": "NoError",
                 "nameLocation": "417:7:144",
                 "nodeType": "EnumValue",
                 "src": "417:7:144"
               },
               {
-                "id": 22560,
+                "id": 22624,
                 "name": "InvalidSignature",
                 "nameLocation": "434:16:144",
                 "nodeType": "EnumValue",
                 "src": "434:16:144"
               },
               {
-                "id": 22561,
+                "id": 22625,
                 "name": "InvalidSignatureLength",
                 "nameLocation": "460:22:144",
                 "nodeType": "EnumValue",
                 "src": "460:22:144"
               },
               {
-                "id": 22562,
+                "id": 22626,
                 "name": "InvalidSignatureS",
                 "nameLocation": "492:17:144",
                 "nodeType": "EnumValue",
                 "src": "492:17:144"
               },
               {
-                "id": 22563,
+                "id": 22627,
                 "name": "InvalidSignatureV",
                 "nameLocation": "519:17:144",
                 "nodeType": "EnumValue",
@@ -119,30 +119,30 @@
           },
           {
             "body": {
-              "id": 22607,
+              "id": 22671,
               "nodeType": "Block",
               "src": "624:457:144",
               "statements": [
                 {
                   "condition": {
                     "commonType": {
-                      "typeIdentifier": "t_enum$_RecoverError_$22564",
+                      "typeIdentifier": "t_enum$_RecoverError_$22628",
                       "typeString": "enum ECDSA.RecoverError"
                     },
-                    "id": 22573,
+                    "id": 22637,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 22570,
+                      "id": 22634,
                       "name": "error",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 22567,
+                      "referencedDeclaration": 22631,
                       "src": "638:5:144",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RecoverError_$22564",
+                        "typeIdentifier": "t_enum$_RecoverError_$22628",
                         "typeString": "enum ECDSA.RecoverError"
                       }
                     },
@@ -150,18 +150,18 @@
                     "operator": "==",
                     "rightExpression": {
                       "expression": {
-                        "id": 22571,
+                        "id": 22635,
                         "name": "RecoverError",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 22564,
+                        "referencedDeclaration": 22628,
                         "src": "647:12:144",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_enum$_RecoverError_$22564_$",
+                          "typeIdentifier": "t_type$_t_enum$_RecoverError_$22628_$",
                           "typeString": "type(enum ECDSA.RecoverError)"
                         }
                       },
-                      "id": 22572,
+                      "id": 22636,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -169,10 +169,10 @@
                       "memberLocation": "660:7:144",
                       "memberName": "NoError",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 22559,
+                      "referencedDeclaration": 22623,
                       "src": "647:20:144",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RecoverError_$22564",
+                        "typeIdentifier": "t_enum$_RecoverError_$22628",
                         "typeString": "enum ECDSA.RecoverError"
                       }
                     },
@@ -185,23 +185,23 @@
                   "falseBody": {
                     "condition": {
                       "commonType": {
-                        "typeIdentifier": "t_enum$_RecoverError_$22564",
+                        "typeIdentifier": "t_enum$_RecoverError_$22628",
                         "typeString": "enum ECDSA.RecoverError"
                       },
-                      "id": 22579,
+                      "id": 22643,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
                       "lValueRequested": false,
                       "leftExpression": {
-                        "id": 22576,
+                        "id": 22640,
                         "name": "error",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 22567,
+                        "referencedDeclaration": 22631,
                         "src": "734:5:144",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_enum$_RecoverError_$22564",
+                          "typeIdentifier": "t_enum$_RecoverError_$22628",
                           "typeString": "enum ECDSA.RecoverError"
                         }
                       },
@@ -209,18 +209,18 @@
                       "operator": "==",
                       "rightExpression": {
                         "expression": {
-                          "id": 22577,
+                          "id": 22641,
                           "name": "RecoverError",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 22564,
+                          "referencedDeclaration": 22628,
                           "src": "743:12:144",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_enum$_RecoverError_$22564_$",
+                            "typeIdentifier": "t_type$_t_enum$_RecoverError_$22628_$",
                             "typeString": "type(enum ECDSA.RecoverError)"
                           }
                         },
-                        "id": 22578,
+                        "id": 22642,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -228,10 +228,10 @@
                         "memberLocation": "756:16:144",
                         "memberName": "InvalidSignature",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 22560,
+                        "referencedDeclaration": 22624,
                         "src": "743:29:144",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_enum$_RecoverError_$22564",
+                          "typeIdentifier": "t_enum$_RecoverError_$22628",
                           "typeString": "enum ECDSA.RecoverError"
                         }
                       },
@@ -244,23 +244,23 @@
                     "falseBody": {
                       "condition": {
                         "commonType": {
-                          "typeIdentifier": "t_enum$_RecoverError_$22564",
+                          "typeIdentifier": "t_enum$_RecoverError_$22628",
                           "typeString": "enum ECDSA.RecoverError"
                         },
-                        "id": 22588,
+                        "id": 22652,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
                         "lValueRequested": false,
                         "leftExpression": {
-                          "id": 22585,
+                          "id": 22649,
                           "name": "error",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 22567,
+                          "referencedDeclaration": 22631,
                           "src": "843:5:144",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_RecoverError_$22564",
+                            "typeIdentifier": "t_enum$_RecoverError_$22628",
                             "typeString": "enum ECDSA.RecoverError"
                           }
                         },
@@ -268,18 +268,18 @@
                         "operator": "==",
                         "rightExpression": {
                           "expression": {
-                            "id": 22586,
+                            "id": 22650,
                             "name": "RecoverError",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 22564,
+                            "referencedDeclaration": 22628,
                             "src": "852:12:144",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_type$_t_enum$_RecoverError_$22564_$",
+                              "typeIdentifier": "t_type$_t_enum$_RecoverError_$22628_$",
                               "typeString": "type(enum ECDSA.RecoverError)"
                             }
                           },
-                          "id": 22587,
+                          "id": 22651,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -287,10 +287,10 @@
                           "memberLocation": "865:22:144",
                           "memberName": "InvalidSignatureLength",
                           "nodeType": "MemberAccess",
-                          "referencedDeclaration": 22561,
+                          "referencedDeclaration": 22625,
                           "src": "852:35:144",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_enum$_RecoverError_$22564",
+                            "typeIdentifier": "t_enum$_RecoverError_$22628",
                             "typeString": "enum ECDSA.RecoverError"
                           }
                         },
@@ -303,23 +303,23 @@
                       "falseBody": {
                         "condition": {
                           "commonType": {
-                            "typeIdentifier": "t_enum$_RecoverError_$22564",
+                            "typeIdentifier": "t_enum$_RecoverError_$22628",
                             "typeString": "enum ECDSA.RecoverError"
                           },
-                          "id": 22597,
+                          "id": 22661,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
                           "lValueRequested": false,
                           "leftExpression": {
-                            "id": 22594,
+                            "id": 22658,
                             "name": "error",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 22567,
+                            "referencedDeclaration": 22631,
                             "src": "965:5:144",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_enum$_RecoverError_$22564",
+                              "typeIdentifier": "t_enum$_RecoverError_$22628",
                               "typeString": "enum ECDSA.RecoverError"
                             }
                           },
@@ -327,18 +327,18 @@
                           "operator": "==",
                           "rightExpression": {
                             "expression": {
-                              "id": 22595,
+                              "id": 22659,
                               "name": "RecoverError",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 22564,
+                              "referencedDeclaration": 22628,
                               "src": "974:12:144",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_type$_t_enum$_RecoverError_$22564_$",
+                                "typeIdentifier": "t_type$_t_enum$_RecoverError_$22628_$",
                                 "typeString": "type(enum ECDSA.RecoverError)"
                               }
                             },
-                            "id": 22596,
+                            "id": 22660,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -346,10 +346,10 @@
                             "memberLocation": "987:17:144",
                             "memberName": "InvalidSignatureS",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 22562,
+                            "referencedDeclaration": 22626,
                             "src": "974:30:144",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_enum$_RecoverError_$22564",
+                              "typeIdentifier": "t_enum$_RecoverError_$22628",
                               "typeString": "enum ECDSA.RecoverError"
                             }
                           },
@@ -359,11 +359,11 @@
                             "typeString": "bool"
                           }
                         },
-                        "id": 22603,
+                        "id": 22667,
                         "nodeType": "IfStatement",
                         "src": "961:114:144",
                         "trueBody": {
-                          "id": 22602,
+                          "id": 22666,
                           "nodeType": "Block",
                           "src": "1006:69:144",
                           "statements": [
@@ -372,7 +372,7 @@
                                 "arguments": [
                                   {
                                     "hexValue": "45434453413a20696e76616c6964207369676e6174757265202773272076616c7565",
-                                    "id": 22599,
+                                    "id": 22663,
                                     "isConstant": false,
                                     "isLValue": false,
                                     "isPure": true,
@@ -394,7 +394,7 @@
                                       "typeString": "literal_string \"ECDSA: invalid signature 's' value\""
                                     }
                                   ],
-                                  "id": 22598,
+                                  "id": 22662,
                                   "name": "revert",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [
@@ -408,7 +408,7 @@
                                     "typeString": "function (string memory) pure"
                                   }
                                 },
-                                "id": 22600,
+                                "id": 22664,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": false,
@@ -424,18 +424,18 @@
                                   "typeString": "tuple()"
                                 }
                               },
-                              "id": 22601,
+                              "id": 22665,
                               "nodeType": "ExpressionStatement",
                               "src": "1020:44:144"
                             }
                           ]
                         }
                       },
-                      "id": 22604,
+                      "id": 22668,
                       "nodeType": "IfStatement",
                       "src": "839:236:144",
                       "trueBody": {
-                        "id": 22593,
+                        "id": 22657,
                         "nodeType": "Block",
                         "src": "889:66:144",
                         "statements": [
@@ -444,7 +444,7 @@
                               "arguments": [
                                 {
                                   "hexValue": "45434453413a20696e76616c6964207369676e6174757265206c656e677468",
-                                  "id": 22590,
+                                  "id": 22654,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": true,
@@ -466,7 +466,7 @@
                                     "typeString": "literal_string \"ECDSA: invalid signature length\""
                                   }
                                 ],
-                                "id": 22589,
+                                "id": 22653,
                                 "name": "revert",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [
@@ -480,7 +480,7 @@
                                   "typeString": "function (string memory) pure"
                                 }
                               },
-                              "id": 22591,
+                              "id": 22655,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -496,18 +496,18 @@
                                 "typeString": "tuple()"
                               }
                             },
-                            "id": 22592,
+                            "id": 22656,
                             "nodeType": "ExpressionStatement",
                             "src": "903:41:144"
                           }
                         ]
                       }
                     },
-                    "id": 22605,
+                    "id": 22669,
                     "nodeType": "IfStatement",
                     "src": "730:345:144",
                     "trueBody": {
-                      "id": 22584,
+                      "id": 22648,
                       "nodeType": "Block",
                       "src": "774:59:144",
                       "statements": [
@@ -516,7 +516,7 @@
                             "arguments": [
                               {
                                 "hexValue": "45434453413a20696e76616c6964207369676e6174757265",
-                                "id": 22581,
+                                "id": 22645,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -538,7 +538,7 @@
                                   "typeString": "literal_string \"ECDSA: invalid signature\""
                                 }
                               ],
-                              "id": 22580,
+                              "id": 22644,
                               "name": "revert",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [
@@ -552,7 +552,7 @@
                                 "typeString": "function (string memory) pure"
                               }
                             },
-                            "id": 22582,
+                            "id": 22646,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -568,24 +568,24 @@
                               "typeString": "tuple()"
                             }
                           },
-                          "id": 22583,
+                          "id": 22647,
                           "nodeType": "ExpressionStatement",
                           "src": "788:34:144"
                         }
                       ]
                     }
                   },
-                  "id": 22606,
+                  "id": 22670,
                   "nodeType": "IfStatement",
                   "src": "634:441:144",
                   "trueBody": {
-                    "id": 22575,
+                    "id": 22639,
                     "nodeType": "Block",
                     "src": "669:55:144",
                     "statements": [
                       {
-                        "functionReturnParameters": 22569,
-                        "id": 22574,
+                        "functionReturnParameters": 22633,
+                        "id": 22638,
                         "nodeType": "Return",
                         "src": "683:7:144"
                       }
@@ -594,7 +594,7 @@
                 }
               ]
             },
-            "id": 22608,
+            "id": 22672,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -602,41 +602,41 @@
             "nameLocation": "579:11:144",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 22568,
+              "id": 22632,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 22567,
+                  "id": 22631,
                   "mutability": "mutable",
                   "name": "error",
                   "nameLocation": "604:5:144",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22608,
+                  "scope": 22672,
                   "src": "591:18:144",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_enum$_RecoverError_$22564",
+                    "typeIdentifier": "t_enum$_RecoverError_$22628",
                     "typeString": "enum ECDSA.RecoverError"
                   },
                   "typeName": {
-                    "id": 22566,
+                    "id": 22630,
                     "nodeType": "UserDefinedTypeName",
                     "pathNode": {
-                      "id": 22565,
+                      "id": 22629,
                       "name": "RecoverError",
                       "nameLocations": [
                         "591:12:144"
                       ],
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 22564,
+                      "referencedDeclaration": 22628,
                       "src": "591:12:144"
                     },
-                    "referencedDeclaration": 22564,
+                    "referencedDeclaration": 22628,
                     "src": "591:12:144",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_RecoverError_$22564",
+                      "typeIdentifier": "t_enum$_RecoverError_$22628",
                       "typeString": "enum ECDSA.RecoverError"
                     }
                   },
@@ -646,12 +646,12 @@
               "src": "590:20:144"
             },
             "returnParameters": {
-              "id": 22569,
+              "id": 22633,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "624:0:144"
             },
-            "scope": 22915,
+            "scope": 22979,
             "src": "570:511:144",
             "stateMutability": "pure",
             "virtual": false,
@@ -659,7 +659,7 @@
           },
           {
             "body": {
-              "id": 22653,
+              "id": 22717,
               "nodeType": "Block",
               "src": "2249:626:144",
               "statements": [
@@ -669,25 +669,25 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 22624,
+                    "id": 22688,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
                       "expression": {
-                        "id": 22621,
+                        "id": 22685,
                         "name": "signature",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 22613,
+                        "referencedDeclaration": 22677,
                         "src": "2263:9:144",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes_memory_ptr",
                           "typeString": "bytes memory"
                         }
                       },
-                      "id": 22622,
+                      "id": 22686,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -705,7 +705,7 @@
                     "operator": "==",
                     "rightExpression": {
                       "hexValue": "3635",
-                      "id": 22623,
+                      "id": 22687,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -726,7 +726,7 @@
                     }
                   },
                   "falseBody": {
-                    "id": 22651,
+                    "id": 22715,
                     "nodeType": "Block",
                     "src": "2788:81:144",
                     "statements": [
@@ -737,7 +737,7 @@
                               "arguments": [
                                 {
                                   "hexValue": "30",
-                                  "id": 22645,
+                                  "id": 22709,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": true,
@@ -759,7 +759,7 @@
                                     "typeString": "int_const 0"
                                   }
                                 ],
-                                "id": 22644,
+                                "id": 22708,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -771,14 +771,14 @@
                                   "typeString": "type(address)"
                                 },
                                 "typeName": {
-                                  "id": 22643,
+                                  "id": 22707,
                                   "name": "address",
                                   "nodeType": "ElementaryTypeName",
                                   "src": "2810:7:144",
                                   "typeDescriptions": {}
                                 }
                               },
-                              "id": 22646,
+                              "id": 22710,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -796,18 +796,18 @@
                             },
                             {
                               "expression": {
-                                "id": 22647,
+                                "id": 22711,
                                 "name": "RecoverError",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 22564,
+                                "referencedDeclaration": 22628,
                                 "src": "2822:12:144",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_type$_t_enum$_RecoverError_$22564_$",
+                                  "typeIdentifier": "t_type$_t_enum$_RecoverError_$22628_$",
                                   "typeString": "type(enum ECDSA.RecoverError)"
                                 }
                               },
-                              "id": 22648,
+                              "id": 22712,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -815,15 +815,15 @@
                               "memberLocation": "2835:22:144",
                               "memberName": "InvalidSignatureLength",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 22561,
+                              "referencedDeclaration": 22625,
                               "src": "2822:35:144",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_enum$_RecoverError_$22564",
+                                "typeIdentifier": "t_enum$_RecoverError_$22628",
                                 "typeString": "enum ECDSA.RecoverError"
                               }
                             }
                           ],
-                          "id": 22649,
+                          "id": 22713,
                           "isConstant": false,
                           "isInlineArray": false,
                           "isLValue": false,
@@ -832,38 +832,38 @@
                           "nodeType": "TupleExpression",
                           "src": "2809:49:144",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_tuple$_t_address_$_t_enum$_RecoverError_$22564_$",
+                            "typeIdentifier": "t_tuple$_t_address_$_t_enum$_RecoverError_$22628_$",
                             "typeString": "tuple(address,enum ECDSA.RecoverError)"
                           }
                         },
-                        "functionReturnParameters": 22620,
-                        "id": 22650,
+                        "functionReturnParameters": 22684,
+                        "id": 22714,
                         "nodeType": "Return",
                         "src": "2802:56:144"
                       }
                     ]
                   },
-                  "id": 22652,
+                  "id": 22716,
                   "nodeType": "IfStatement",
                   "src": "2259:610:144",
                   "trueBody": {
-                    "id": 22642,
+                    "id": 22706,
                     "nodeType": "Block",
                     "src": "2287:495:144",
                     "statements": [
                       {
                         "assignments": [
-                          22626
+                          22690
                         ],
                         "declarations": [
                           {
                             "constant": false,
-                            "id": 22626,
+                            "id": 22690,
                             "mutability": "mutable",
                             "name": "r",
                             "nameLocation": "2309:1:144",
                             "nodeType": "VariableDeclaration",
-                            "scope": 22642,
+                            "scope": 22706,
                             "src": "2301:9:144",
                             "stateVariable": false,
                             "storageLocation": "default",
@@ -872,7 +872,7 @@
                               "typeString": "bytes32"
                             },
                             "typeName": {
-                              "id": 22625,
+                              "id": 22689,
                               "name": "bytes32",
                               "nodeType": "ElementaryTypeName",
                               "src": "2301:7:144",
@@ -884,23 +884,23 @@
                             "visibility": "internal"
                           }
                         ],
-                        "id": 22627,
+                        "id": 22691,
                         "nodeType": "VariableDeclarationStatement",
                         "src": "2301:9:144"
                       },
                       {
                         "assignments": [
-                          22629
+                          22693
                         ],
                         "declarations": [
                           {
                             "constant": false,
-                            "id": 22629,
+                            "id": 22693,
                             "mutability": "mutable",
                             "name": "s",
                             "nameLocation": "2332:1:144",
                             "nodeType": "VariableDeclaration",
-                            "scope": 22642,
+                            "scope": 22706,
                             "src": "2324:9:144",
                             "stateVariable": false,
                             "storageLocation": "default",
@@ -909,7 +909,7 @@
                               "typeString": "bytes32"
                             },
                             "typeName": {
-                              "id": 22628,
+                              "id": 22692,
                               "name": "bytes32",
                               "nodeType": "ElementaryTypeName",
                               "src": "2324:7:144",
@@ -921,23 +921,23 @@
                             "visibility": "internal"
                           }
                         ],
-                        "id": 22630,
+                        "id": 22694,
                         "nodeType": "VariableDeclarationStatement",
                         "src": "2324:9:144"
                       },
                       {
                         "assignments": [
-                          22632
+                          22696
                         ],
                         "declarations": [
                           {
                             "constant": false,
-                            "id": 22632,
+                            "id": 22696,
                             "mutability": "mutable",
                             "name": "v",
                             "nameLocation": "2353:1:144",
                             "nodeType": "VariableDeclaration",
-                            "scope": 22642,
+                            "scope": 22706,
                             "src": "2347:7:144",
                             "stateVariable": false,
                             "storageLocation": "default",
@@ -946,7 +946,7 @@
                               "typeString": "uint8"
                             },
                             "typeName": {
-                              "id": 22631,
+                              "id": 22695,
                               "name": "uint8",
                               "nodeType": "ElementaryTypeName",
                               "src": "2347:5:144",
@@ -958,7 +958,7 @@
                             "visibility": "internal"
                           }
                         ],
-                        "id": 22633,
+                        "id": 22697,
                         "nodeType": "VariableDeclarationStatement",
                         "src": "2347:7:144"
                       },
@@ -1126,49 +1126,49 @@
                         "evmVersion": "paris",
                         "externalReferences": [
                           {
-                            "declaration": 22626,
+                            "declaration": 22690,
                             "isOffset": false,
                             "isSlot": false,
                             "src": "2573:1:144",
                             "valueSize": 1
                           },
                           {
-                            "declaration": 22629,
+                            "declaration": 22693,
                             "isOffset": false,
                             "isSlot": false,
                             "src": "2622:1:144",
                             "valueSize": 1
                           },
                           {
-                            "declaration": 22613,
+                            "declaration": 22677,
                             "isOffset": false,
                             "isSlot": false,
                             "src": "2588:9:144",
                             "valueSize": 1
                           },
                           {
-                            "declaration": 22613,
+                            "declaration": 22677,
                             "isOffset": false,
                             "isSlot": false,
                             "src": "2637:9:144",
                             "valueSize": 1
                           },
                           {
-                            "declaration": 22613,
+                            "declaration": 22677,
                             "isOffset": false,
                             "isSlot": false,
                             "src": "2694:9:144",
                             "valueSize": 1
                           },
                           {
-                            "declaration": 22632,
+                            "declaration": 22696,
                             "isOffset": false,
                             "isSlot": false,
                             "src": "2671:1:144",
                             "valueSize": 1
                           }
                         ],
-                        "id": 22634,
+                        "id": 22698,
                         "nodeType": "InlineAssembly",
                         "src": "2546:180:144"
                       },
@@ -1176,11 +1176,11 @@
                         "expression": {
                           "arguments": [
                             {
-                              "id": 22636,
+                              "id": 22700,
                               "name": "hash",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 22611,
+                              "referencedDeclaration": 22675,
                               "src": "2757:4:144",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_bytes32",
@@ -1188,11 +1188,11 @@
                               }
                             },
                             {
-                              "id": 22637,
+                              "id": 22701,
                               "name": "v",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 22632,
+                              "referencedDeclaration": 22696,
                               "src": "2763:1:144",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint8",
@@ -1200,11 +1200,11 @@
                               }
                             },
                             {
-                              "id": 22638,
+                              "id": 22702,
                               "name": "r",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 22626,
+                              "referencedDeclaration": 22690,
                               "src": "2766:1:144",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_bytes32",
@@ -1212,11 +1212,11 @@
                               }
                             },
                             {
-                              "id": 22639,
+                              "id": 22703,
                               "name": "s",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 22629,
+                              "referencedDeclaration": 22693,
                               "src": "2769:1:144",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_bytes32",
@@ -1243,22 +1243,22 @@
                                 "typeString": "bytes32"
                               }
                             ],
-                            "id": 22635,
+                            "id": 22699,
                             "name": "tryRecover",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [
-                              22654,
-                              22728,
-                              22822
+                              22718,
+                              22792,
+                              22886
                             ],
-                            "referencedDeclaration": 22822,
+                            "referencedDeclaration": 22886,
                             "src": "2746:10:144",
                             "typeDescriptions": {
-                              "typeIdentifier": "t_function_internal_pure$_t_bytes32_$_t_uint8_$_t_bytes32_$_t_bytes32_$returns$_t_address_$_t_enum$_RecoverError_$22564_$",
+                              "typeIdentifier": "t_function_internal_pure$_t_bytes32_$_t_uint8_$_t_bytes32_$_t_bytes32_$returns$_t_address_$_t_enum$_RecoverError_$22628_$",
                               "typeString": "function (bytes32,uint8,bytes32,bytes32) pure returns (address,enum ECDSA.RecoverError)"
                             }
                           },
-                          "id": 22640,
+                          "id": 22704,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": false,
@@ -1270,12 +1270,12 @@
                           "src": "2746:25:144",
                           "tryCall": false,
                           "typeDescriptions": {
-                            "typeIdentifier": "t_tuple$_t_address_$_t_enum$_RecoverError_$22564_$",
+                            "typeIdentifier": "t_tuple$_t_address_$_t_enum$_RecoverError_$22628_$",
                             "typeString": "tuple(address,enum ECDSA.RecoverError)"
                           }
                         },
-                        "functionReturnParameters": 22620,
-                        "id": 22641,
+                        "functionReturnParameters": 22684,
+                        "id": 22705,
                         "nodeType": "Return",
                         "src": "2739:32:144"
                       }
@@ -1285,12 +1285,12 @@
               ]
             },
             "documentation": {
-              "id": 22609,
+              "id": 22673,
               "nodeType": "StructuredDocumentation",
               "src": "1087:1053:144",
               "text": " @dev Returns the address that signed a hashed message (`hash`) with\n `signature` or error string. This address can then be used for verification purposes.\n The `ecrecover` EVM opcode allows for malleable (non-unique) signatures:\n this function rejects them by requiring the `s` value to be in the lower\n half order, and the `v` value to be either 27 or 28.\n IMPORTANT: `hash` _must_ be the result of a hash operation for the\n verification to be secure: it is possible to craft signatures that\n recover to arbitrary addresses for non-hashed data. A safe way to ensure\n this is by receiving a hash of the original message (which may otherwise\n be too long), and then calling {toEthSignedMessageHash} on it.\n Documentation for signature generation:\n - with https://web3js.readthedocs.io/en/v1.3.4/web3-eth-accounts.html#sign[Web3.js]\n - with https://docs.ethers.io/v5/api/signer/#Signer-signMessage[ethers]\n _Available since v4.3._"
             },
-            "id": 22654,
+            "id": 22718,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -1298,17 +1298,17 @@
             "nameLocation": "2154:10:144",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 22614,
+              "id": 22678,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 22611,
+                  "id": 22675,
                   "mutability": "mutable",
                   "name": "hash",
                   "nameLocation": "2173:4:144",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22654,
+                  "scope": 22718,
                   "src": "2165:12:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1317,7 +1317,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 22610,
+                    "id": 22674,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "2165:7:144",
@@ -1330,12 +1330,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 22613,
+                  "id": 22677,
                   "mutability": "mutable",
                   "name": "signature",
                   "nameLocation": "2192:9:144",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22654,
+                  "scope": 22718,
                   "src": "2179:22:144",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1344,7 +1344,7 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 22612,
+                    "id": 22676,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "2179:5:144",
@@ -1359,17 +1359,17 @@
               "src": "2164:38:144"
             },
             "returnParameters": {
-              "id": 22620,
+              "id": 22684,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 22616,
+                  "id": 22680,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22654,
+                  "scope": 22718,
                   "src": "2226:7:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1378,7 +1378,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 22615,
+                    "id": 22679,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "2226:7:144",
@@ -1392,36 +1392,36 @@
                 },
                 {
                   "constant": false,
-                  "id": 22619,
+                  "id": 22683,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22654,
+                  "scope": 22718,
                   "src": "2235:12:144",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_enum$_RecoverError_$22564",
+                    "typeIdentifier": "t_enum$_RecoverError_$22628",
                     "typeString": "enum ECDSA.RecoverError"
                   },
                   "typeName": {
-                    "id": 22618,
+                    "id": 22682,
                     "nodeType": "UserDefinedTypeName",
                     "pathNode": {
-                      "id": 22617,
+                      "id": 22681,
                       "name": "RecoverError",
                       "nameLocations": [
                         "2235:12:144"
                       ],
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 22564,
+                      "referencedDeclaration": 22628,
                       "src": "2235:12:144"
                     },
-                    "referencedDeclaration": 22564,
+                    "referencedDeclaration": 22628,
                     "src": "2235:12:144",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_RecoverError_$22564",
+                      "typeIdentifier": "t_enum$_RecoverError_$22628",
                       "typeString": "enum ECDSA.RecoverError"
                     }
                   },
@@ -1430,7 +1430,7 @@
               ],
               "src": "2225:23:144"
             },
-            "scope": 22915,
+            "scope": 22979,
             "src": "2145:730:144",
             "stateMutability": "pure",
             "virtual": false,
@@ -1438,24 +1438,24 @@
           },
           {
             "body": {
-              "id": 22680,
+              "id": 22744,
               "nodeType": "Block",
               "src": "3748:140:144",
               "statements": [
                 {
                   "assignments": [
-                    22665,
-                    22668
+                    22729,
+                    22732
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 22665,
+                      "id": 22729,
                       "mutability": "mutable",
                       "name": "recovered",
                       "nameLocation": "3767:9:144",
                       "nodeType": "VariableDeclaration",
-                      "scope": 22680,
+                      "scope": 22744,
                       "src": "3759:17:144",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -1464,7 +1464,7 @@
                         "typeString": "address"
                       },
                       "typeName": {
-                        "id": 22664,
+                        "id": 22728,
                         "name": "address",
                         "nodeType": "ElementaryTypeName",
                         "src": "3759:7:144",
@@ -1478,51 +1478,51 @@
                     },
                     {
                       "constant": false,
-                      "id": 22668,
+                      "id": 22732,
                       "mutability": "mutable",
                       "name": "error",
                       "nameLocation": "3791:5:144",
                       "nodeType": "VariableDeclaration",
-                      "scope": 22680,
+                      "scope": 22744,
                       "src": "3778:18:144",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RecoverError_$22564",
+                        "typeIdentifier": "t_enum$_RecoverError_$22628",
                         "typeString": "enum ECDSA.RecoverError"
                       },
                       "typeName": {
-                        "id": 22667,
+                        "id": 22731,
                         "nodeType": "UserDefinedTypeName",
                         "pathNode": {
-                          "id": 22666,
+                          "id": 22730,
                           "name": "RecoverError",
                           "nameLocations": [
                             "3778:12:144"
                           ],
                           "nodeType": "IdentifierPath",
-                          "referencedDeclaration": 22564,
+                          "referencedDeclaration": 22628,
                           "src": "3778:12:144"
                         },
-                        "referencedDeclaration": 22564,
+                        "referencedDeclaration": 22628,
                         "src": "3778:12:144",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_enum$_RecoverError_$22564",
+                          "typeIdentifier": "t_enum$_RecoverError_$22628",
                           "typeString": "enum ECDSA.RecoverError"
                         }
                       },
                       "visibility": "internal"
                     }
                   ],
-                  "id": 22673,
+                  "id": 22737,
                   "initialValue": {
                     "arguments": [
                       {
-                        "id": 22670,
+                        "id": 22734,
                         "name": "hash",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 22657,
+                        "referencedDeclaration": 22721,
                         "src": "3811:4:144",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
@@ -1530,11 +1530,11 @@
                         }
                       },
                       {
-                        "id": 22671,
+                        "id": 22735,
                         "name": "signature",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 22659,
+                        "referencedDeclaration": 22723,
                         "src": "3817:9:144",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes_memory_ptr",
@@ -1553,22 +1553,22 @@
                           "typeString": "bytes memory"
                         }
                       ],
-                      "id": 22669,
+                      "id": 22733,
                       "name": "tryRecover",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        22654,
-                        22728,
-                        22822
+                        22718,
+                        22792,
+                        22886
                       ],
-                      "referencedDeclaration": 22654,
+                      "referencedDeclaration": 22718,
                       "src": "3800:10:144",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_pure$_t_bytes32_$_t_bytes_memory_ptr_$returns$_t_address_$_t_enum$_RecoverError_$22564_$",
+                        "typeIdentifier": "t_function_internal_pure$_t_bytes32_$_t_bytes_memory_ptr_$returns$_t_address_$_t_enum$_RecoverError_$22628_$",
                         "typeString": "function (bytes32,bytes memory) pure returns (address,enum ECDSA.RecoverError)"
                       }
                     },
-                    "id": 22672,
+                    "id": 22736,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1580,7 +1580,7 @@
                     "src": "3800:27:144",
                     "tryCall": false,
                     "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$_t_address_$_t_enum$_RecoverError_$22564_$",
+                      "typeIdentifier": "t_tuple$_t_address_$_t_enum$_RecoverError_$22628_$",
                       "typeString": "tuple(address,enum ECDSA.RecoverError)"
                     }
                   },
@@ -1591,14 +1591,14 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 22675,
+                        "id": 22739,
                         "name": "error",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 22668,
+                        "referencedDeclaration": 22732,
                         "src": "3849:5:144",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_enum$_RecoverError_$22564",
+                          "typeIdentifier": "t_enum$_RecoverError_$22628",
                           "typeString": "enum ECDSA.RecoverError"
                         }
                       }
@@ -1606,22 +1606,22 @@
                     "expression": {
                       "argumentTypes": [
                         {
-                          "typeIdentifier": "t_enum$_RecoverError_$22564",
+                          "typeIdentifier": "t_enum$_RecoverError_$22628",
                           "typeString": "enum ECDSA.RecoverError"
                         }
                       ],
-                      "id": 22674,
+                      "id": 22738,
                       "name": "_throwError",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 22608,
+                      "referencedDeclaration": 22672,
                       "src": "3837:11:144",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_pure$_t_enum$_RecoverError_$22564_$returns$__$",
+                        "typeIdentifier": "t_function_internal_pure$_t_enum$_RecoverError_$22628_$returns$__$",
                         "typeString": "function (enum ECDSA.RecoverError) pure"
                       }
                     },
-                    "id": 22676,
+                    "id": 22740,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1637,37 +1637,37 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 22677,
+                  "id": 22741,
                   "nodeType": "ExpressionStatement",
                   "src": "3837:18:144"
                 },
                 {
                   "expression": {
-                    "id": 22678,
+                    "id": 22742,
                     "name": "recovered",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 22665,
+                    "referencedDeclaration": 22729,
                     "src": "3872:9:144",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "functionReturnParameters": 22663,
-                  "id": 22679,
+                  "functionReturnParameters": 22727,
+                  "id": 22743,
                   "nodeType": "Return",
                   "src": "3865:16:144"
                 }
               ]
             },
             "documentation": {
-              "id": 22655,
+              "id": 22719,
               "nodeType": "StructuredDocumentation",
               "src": "2881:775:144",
               "text": " @dev Returns the address that signed a hashed message (`hash`) with\n `signature`. This address can then be used for verification purposes.\n The `ecrecover` EVM opcode allows for malleable (non-unique) signatures:\n this function rejects them by requiring the `s` value to be in the lower\n half order, and the `v` value to be either 27 or 28.\n IMPORTANT: `hash` _must_ be the result of a hash operation for the\n verification to be secure: it is possible to craft signatures that\n recover to arbitrary addresses for non-hashed data. A safe way to ensure\n this is by receiving a hash of the original message (which may otherwise\n be too long), and then calling {toEthSignedMessageHash} on it."
             },
-            "id": 22681,
+            "id": 22745,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -1675,17 +1675,17 @@
             "nameLocation": "3670:7:144",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 22660,
+              "id": 22724,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 22657,
+                  "id": 22721,
                   "mutability": "mutable",
                   "name": "hash",
                   "nameLocation": "3686:4:144",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22681,
+                  "scope": 22745,
                   "src": "3678:12:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1694,7 +1694,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 22656,
+                    "id": 22720,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "3678:7:144",
@@ -1707,12 +1707,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 22659,
+                  "id": 22723,
                   "mutability": "mutable",
                   "name": "signature",
                   "nameLocation": "3705:9:144",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22681,
+                  "scope": 22745,
                   "src": "3692:22:144",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1721,7 +1721,7 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 22658,
+                    "id": 22722,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "3692:5:144",
@@ -1736,17 +1736,17 @@
               "src": "3677:38:144"
             },
             "returnParameters": {
-              "id": 22663,
+              "id": 22727,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 22662,
+                  "id": 22726,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22681,
+                  "scope": 22745,
                   "src": "3739:7:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1755,7 +1755,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 22661,
+                    "id": 22725,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "3739:7:144",
@@ -1770,7 +1770,7 @@
               ],
               "src": "3738:9:144"
             },
-            "scope": 22915,
+            "scope": 22979,
             "src": "3661:227:144",
             "stateMutability": "pure",
             "virtual": false,
@@ -1778,23 +1778,23 @@
           },
           {
             "body": {
-              "id": 22727,
+              "id": 22791,
               "nodeType": "Block",
               "src": "4275:203:144",
               "statements": [
                 {
                   "assignments": [
-                    22697
+                    22761
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 22697,
+                      "id": 22761,
                       "mutability": "mutable",
                       "name": "s",
                       "nameLocation": "4293:1:144",
                       "nodeType": "VariableDeclaration",
-                      "scope": 22727,
+                      "scope": 22791,
                       "src": "4285:9:144",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -1803,7 +1803,7 @@
                         "typeString": "bytes32"
                       },
                       "typeName": {
-                        "id": 22696,
+                        "id": 22760,
                         "name": "bytes32",
                         "nodeType": "ElementaryTypeName",
                         "src": "4285:7:144",
@@ -1815,23 +1815,23 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 22704,
+                  "id": 22768,
                   "initialValue": {
                     "commonType": {
                       "typeIdentifier": "t_bytes32",
                       "typeString": "bytes32"
                     },
-                    "id": 22703,
+                    "id": 22767,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 22698,
+                      "id": 22762,
                       "name": "vs",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 22688,
+                      "referencedDeclaration": 22752,
                       "src": "4297:2:144",
                       "typeDescriptions": {
                         "typeIdentifier": "t_bytes32",
@@ -1844,7 +1844,7 @@
                       "arguments": [
                         {
                           "hexValue": "307837666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666666",
-                          "id": 22701,
+                          "id": 22765,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -1866,7 +1866,7 @@
                             "typeString": "int_const 5789...(69 digits omitted)...9967"
                           }
                         ],
-                        "id": 22700,
+                        "id": 22764,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -1878,14 +1878,14 @@
                           "typeString": "type(bytes32)"
                         },
                         "typeName": {
-                          "id": 22699,
+                          "id": 22763,
                           "name": "bytes32",
                           "nodeType": "ElementaryTypeName",
                           "src": "4302:7:144",
                           "typeDescriptions": {}
                         }
                       },
-                      "id": 22702,
+                      "id": 22766,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -1912,17 +1912,17 @@
                 },
                 {
                   "assignments": [
-                    22706
+                    22770
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 22706,
+                      "id": 22770,
                       "mutability": "mutable",
                       "name": "v",
                       "nameLocation": "4393:1:144",
                       "nodeType": "VariableDeclaration",
-                      "scope": 22727,
+                      "scope": 22791,
                       "src": "4387:7:144",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -1931,7 +1931,7 @@
                         "typeString": "uint8"
                       },
                       "typeName": {
-                        "id": 22705,
+                        "id": 22769,
                         "name": "uint8",
                         "nodeType": "ElementaryTypeName",
                         "src": "4387:5:144",
@@ -1943,7 +1943,7 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 22719,
+                  "id": 22783,
                   "initialValue": {
                     "arguments": [
                       {
@@ -1951,7 +1951,7 @@
                           "typeIdentifier": "t_uint256",
                           "typeString": "uint256"
                         },
-                        "id": 22717,
+                        "id": 22781,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -1963,7 +1963,7 @@
                                 "typeIdentifier": "t_uint256",
                                 "typeString": "uint256"
                               },
-                              "id": 22714,
+                              "id": 22778,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -1971,11 +1971,11 @@
                               "leftExpression": {
                                 "arguments": [
                                   {
-                                    "id": 22711,
+                                    "id": 22775,
                                     "name": "vs",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
-                                    "referencedDeclaration": 22688,
+                                    "referencedDeclaration": 22752,
                                     "src": "4412:2:144",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_bytes32",
@@ -1990,7 +1990,7 @@
                                       "typeString": "bytes32"
                                     }
                                   ],
-                                  "id": 22710,
+                                  "id": 22774,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": true,
@@ -2002,14 +2002,14 @@
                                     "typeString": "type(uint256)"
                                   },
                                   "typeName": {
-                                    "id": 22709,
+                                    "id": 22773,
                                     "name": "uint256",
                                     "nodeType": "ElementaryTypeName",
                                     "src": "4404:7:144",
                                     "typeDescriptions": {}
                                   }
                                 },
-                                "id": 22712,
+                                "id": 22776,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": false,
@@ -2029,7 +2029,7 @@
                               "operator": ">>",
                               "rightExpression": {
                                 "hexValue": "323535",
-                                "id": 22713,
+                                "id": 22777,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -2050,7 +2050,7 @@
                               }
                             }
                           ],
-                          "id": 22715,
+                          "id": 22779,
                           "isConstant": false,
                           "isInlineArray": false,
                           "isLValue": false,
@@ -2067,7 +2067,7 @@
                         "operator": "+",
                         "rightExpression": {
                           "hexValue": "3237",
-                          "id": 22716,
+                          "id": 22780,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -2095,7 +2095,7 @@
                           "typeString": "uint256"
                         }
                       ],
-                      "id": 22708,
+                      "id": 22772,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -2107,14 +2107,14 @@
                         "typeString": "type(uint8)"
                       },
                       "typeName": {
-                        "id": 22707,
+                        "id": 22771,
                         "name": "uint8",
                         "nodeType": "ElementaryTypeName",
                         "src": "4397:5:144",
                         "typeDescriptions": {}
                       }
                     },
-                    "id": 22718,
+                    "id": 22782,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2137,11 +2137,11 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 22721,
+                        "id": 22785,
                         "name": "hash",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 22684,
+                        "referencedDeclaration": 22748,
                         "src": "4457:4:144",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
@@ -2149,11 +2149,11 @@
                         }
                       },
                       {
-                        "id": 22722,
+                        "id": 22786,
                         "name": "v",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 22706,
+                        "referencedDeclaration": 22770,
                         "src": "4463:1:144",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint8",
@@ -2161,11 +2161,11 @@
                         }
                       },
                       {
-                        "id": 22723,
+                        "id": 22787,
                         "name": "r",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 22686,
+                        "referencedDeclaration": 22750,
                         "src": "4466:1:144",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
@@ -2173,11 +2173,11 @@
                         }
                       },
                       {
-                        "id": 22724,
+                        "id": 22788,
                         "name": "s",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 22697,
+                        "referencedDeclaration": 22761,
                         "src": "4469:1:144",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
@@ -2204,22 +2204,22 @@
                           "typeString": "bytes32"
                         }
                       ],
-                      "id": 22720,
+                      "id": 22784,
                       "name": "tryRecover",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        22654,
-                        22728,
-                        22822
+                        22718,
+                        22792,
+                        22886
                       ],
-                      "referencedDeclaration": 22822,
+                      "referencedDeclaration": 22886,
                       "src": "4446:10:144",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_pure$_t_bytes32_$_t_uint8_$_t_bytes32_$_t_bytes32_$returns$_t_address_$_t_enum$_RecoverError_$22564_$",
+                        "typeIdentifier": "t_function_internal_pure$_t_bytes32_$_t_uint8_$_t_bytes32_$_t_bytes32_$returns$_t_address_$_t_enum$_RecoverError_$22628_$",
                         "typeString": "function (bytes32,uint8,bytes32,bytes32) pure returns (address,enum ECDSA.RecoverError)"
                       }
                     },
-                    "id": 22725,
+                    "id": 22789,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2231,24 +2231,24 @@
                     "src": "4446:25:144",
                     "tryCall": false,
                     "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$_t_address_$_t_enum$_RecoverError_$22564_$",
+                      "typeIdentifier": "t_tuple$_t_address_$_t_enum$_RecoverError_$22628_$",
                       "typeString": "tuple(address,enum ECDSA.RecoverError)"
                     }
                   },
-                  "functionReturnParameters": 22695,
-                  "id": 22726,
+                  "functionReturnParameters": 22759,
+                  "id": 22790,
                   "nodeType": "Return",
                   "src": "4439:32:144"
                 }
               ]
             },
             "documentation": {
-              "id": 22682,
+              "id": 22746,
               "nodeType": "StructuredDocumentation",
               "src": "3894:243:144",
               "text": " @dev Overload of {ECDSA-tryRecover} that receives the `r` and `vs` short-signature fields separately.\n See https://eips.ethereum.org/EIPS/eip-2098[EIP-2098 short signatures]\n _Available since v4.3._"
             },
-            "id": 22728,
+            "id": 22792,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -2256,17 +2256,17 @@
             "nameLocation": "4151:10:144",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 22689,
+              "id": 22753,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 22684,
+                  "id": 22748,
                   "mutability": "mutable",
                   "name": "hash",
                   "nameLocation": "4179:4:144",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22728,
+                  "scope": 22792,
                   "src": "4171:12:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2275,7 +2275,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 22683,
+                    "id": 22747,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "4171:7:144",
@@ -2288,12 +2288,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 22686,
+                  "id": 22750,
                   "mutability": "mutable",
                   "name": "r",
                   "nameLocation": "4201:1:144",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22728,
+                  "scope": 22792,
                   "src": "4193:9:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2302,7 +2302,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 22685,
+                    "id": 22749,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "4193:7:144",
@@ -2315,12 +2315,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 22688,
+                  "id": 22752,
                   "mutability": "mutable",
                   "name": "vs",
                   "nameLocation": "4220:2:144",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22728,
+                  "scope": 22792,
                   "src": "4212:10:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2329,7 +2329,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 22687,
+                    "id": 22751,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "4212:7:144",
@@ -2344,17 +2344,17 @@
               "src": "4161:67:144"
             },
             "returnParameters": {
-              "id": 22695,
+              "id": 22759,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 22691,
+                  "id": 22755,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22728,
+                  "scope": 22792,
                   "src": "4252:7:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2363,7 +2363,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 22690,
+                    "id": 22754,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "4252:7:144",
@@ -2377,36 +2377,36 @@
                 },
                 {
                   "constant": false,
-                  "id": 22694,
+                  "id": 22758,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22728,
+                  "scope": 22792,
                   "src": "4261:12:144",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_enum$_RecoverError_$22564",
+                    "typeIdentifier": "t_enum$_RecoverError_$22628",
                     "typeString": "enum ECDSA.RecoverError"
                   },
                   "typeName": {
-                    "id": 22693,
+                    "id": 22757,
                     "nodeType": "UserDefinedTypeName",
                     "pathNode": {
-                      "id": 22692,
+                      "id": 22756,
                       "name": "RecoverError",
                       "nameLocations": [
                         "4261:12:144"
                       ],
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 22564,
+                      "referencedDeclaration": 22628,
                       "src": "4261:12:144"
                     },
-                    "referencedDeclaration": 22564,
+                    "referencedDeclaration": 22628,
                     "src": "4261:12:144",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_RecoverError_$22564",
+                      "typeIdentifier": "t_enum$_RecoverError_$22628",
                       "typeString": "enum ECDSA.RecoverError"
                     }
                   },
@@ -2415,7 +2415,7 @@
               ],
               "src": "4251:23:144"
             },
-            "scope": 22915,
+            "scope": 22979,
             "src": "4142:336:144",
             "stateMutability": "pure",
             "virtual": false,
@@ -2423,24 +2423,24 @@
           },
           {
             "body": {
-              "id": 22757,
+              "id": 22821,
               "nodeType": "Block",
               "src": "4759:136:144",
               "statements": [
                 {
                   "assignments": [
-                    22741,
-                    22744
+                    22805,
+                    22808
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 22741,
+                      "id": 22805,
                       "mutability": "mutable",
                       "name": "recovered",
                       "nameLocation": "4778:9:144",
                       "nodeType": "VariableDeclaration",
-                      "scope": 22757,
+                      "scope": 22821,
                       "src": "4770:17:144",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -2449,7 +2449,7 @@
                         "typeString": "address"
                       },
                       "typeName": {
-                        "id": 22740,
+                        "id": 22804,
                         "name": "address",
                         "nodeType": "ElementaryTypeName",
                         "src": "4770:7:144",
@@ -2463,51 +2463,51 @@
                     },
                     {
                       "constant": false,
-                      "id": 22744,
+                      "id": 22808,
                       "mutability": "mutable",
                       "name": "error",
                       "nameLocation": "4802:5:144",
                       "nodeType": "VariableDeclaration",
-                      "scope": 22757,
+                      "scope": 22821,
                       "src": "4789:18:144",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RecoverError_$22564",
+                        "typeIdentifier": "t_enum$_RecoverError_$22628",
                         "typeString": "enum ECDSA.RecoverError"
                       },
                       "typeName": {
-                        "id": 22743,
+                        "id": 22807,
                         "nodeType": "UserDefinedTypeName",
                         "pathNode": {
-                          "id": 22742,
+                          "id": 22806,
                           "name": "RecoverError",
                           "nameLocations": [
                             "4789:12:144"
                           ],
                           "nodeType": "IdentifierPath",
-                          "referencedDeclaration": 22564,
+                          "referencedDeclaration": 22628,
                           "src": "4789:12:144"
                         },
-                        "referencedDeclaration": 22564,
+                        "referencedDeclaration": 22628,
                         "src": "4789:12:144",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_enum$_RecoverError_$22564",
+                          "typeIdentifier": "t_enum$_RecoverError_$22628",
                           "typeString": "enum ECDSA.RecoverError"
                         }
                       },
                       "visibility": "internal"
                     }
                   ],
-                  "id": 22750,
+                  "id": 22814,
                   "initialValue": {
                     "arguments": [
                       {
-                        "id": 22746,
+                        "id": 22810,
                         "name": "hash",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 22731,
+                        "referencedDeclaration": 22795,
                         "src": "4822:4:144",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
@@ -2515,11 +2515,11 @@
                         }
                       },
                       {
-                        "id": 22747,
+                        "id": 22811,
                         "name": "r",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 22733,
+                        "referencedDeclaration": 22797,
                         "src": "4828:1:144",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
@@ -2527,11 +2527,11 @@
                         }
                       },
                       {
-                        "id": 22748,
+                        "id": 22812,
                         "name": "vs",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 22735,
+                        "referencedDeclaration": 22799,
                         "src": "4831:2:144",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
@@ -2554,22 +2554,22 @@
                           "typeString": "bytes32"
                         }
                       ],
-                      "id": 22745,
+                      "id": 22809,
                       "name": "tryRecover",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        22654,
-                        22728,
-                        22822
+                        22718,
+                        22792,
+                        22886
                       ],
-                      "referencedDeclaration": 22728,
+                      "referencedDeclaration": 22792,
                       "src": "4811:10:144",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_pure$_t_bytes32_$_t_bytes32_$_t_bytes32_$returns$_t_address_$_t_enum$_RecoverError_$22564_$",
+                        "typeIdentifier": "t_function_internal_pure$_t_bytes32_$_t_bytes32_$_t_bytes32_$returns$_t_address_$_t_enum$_RecoverError_$22628_$",
                         "typeString": "function (bytes32,bytes32,bytes32) pure returns (address,enum ECDSA.RecoverError)"
                       }
                     },
-                    "id": 22749,
+                    "id": 22813,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2581,7 +2581,7 @@
                     "src": "4811:23:144",
                     "tryCall": false,
                     "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$_t_address_$_t_enum$_RecoverError_$22564_$",
+                      "typeIdentifier": "t_tuple$_t_address_$_t_enum$_RecoverError_$22628_$",
                       "typeString": "tuple(address,enum ECDSA.RecoverError)"
                     }
                   },
@@ -2592,14 +2592,14 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 22752,
+                        "id": 22816,
                         "name": "error",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 22744,
+                        "referencedDeclaration": 22808,
                         "src": "4856:5:144",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_enum$_RecoverError_$22564",
+                          "typeIdentifier": "t_enum$_RecoverError_$22628",
                           "typeString": "enum ECDSA.RecoverError"
                         }
                       }
@@ -2607,22 +2607,22 @@
                     "expression": {
                       "argumentTypes": [
                         {
-                          "typeIdentifier": "t_enum$_RecoverError_$22564",
+                          "typeIdentifier": "t_enum$_RecoverError_$22628",
                           "typeString": "enum ECDSA.RecoverError"
                         }
                       ],
-                      "id": 22751,
+                      "id": 22815,
                       "name": "_throwError",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 22608,
+                      "referencedDeclaration": 22672,
                       "src": "4844:11:144",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_pure$_t_enum$_RecoverError_$22564_$returns$__$",
+                        "typeIdentifier": "t_function_internal_pure$_t_enum$_RecoverError_$22628_$returns$__$",
                         "typeString": "function (enum ECDSA.RecoverError) pure"
                       }
                     },
-                    "id": 22753,
+                    "id": 22817,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2638,37 +2638,37 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 22754,
+                  "id": 22818,
                   "nodeType": "ExpressionStatement",
                   "src": "4844:18:144"
                 },
                 {
                   "expression": {
-                    "id": 22755,
+                    "id": 22819,
                     "name": "recovered",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 22741,
+                    "referencedDeclaration": 22805,
                     "src": "4879:9:144",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "functionReturnParameters": 22739,
-                  "id": 22756,
+                  "functionReturnParameters": 22803,
+                  "id": 22820,
                   "nodeType": "Return",
                   "src": "4872:16:144"
                 }
               ]
             },
             "documentation": {
-              "id": 22729,
+              "id": 22793,
               "nodeType": "StructuredDocumentation",
               "src": "4484:154:144",
               "text": " @dev Overload of {ECDSA-recover} that receives the `r and `vs` short-signature fields separately.\n _Available since v4.2._"
             },
-            "id": 22758,
+            "id": 22822,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -2676,17 +2676,17 @@
             "nameLocation": "4652:7:144",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 22736,
+              "id": 22800,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 22731,
+                  "id": 22795,
                   "mutability": "mutable",
                   "name": "hash",
                   "nameLocation": "4677:4:144",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22758,
+                  "scope": 22822,
                   "src": "4669:12:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2695,7 +2695,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 22730,
+                    "id": 22794,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "4669:7:144",
@@ -2708,12 +2708,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 22733,
+                  "id": 22797,
                   "mutability": "mutable",
                   "name": "r",
                   "nameLocation": "4699:1:144",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22758,
+                  "scope": 22822,
                   "src": "4691:9:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2722,7 +2722,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 22732,
+                    "id": 22796,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "4691:7:144",
@@ -2735,12 +2735,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 22735,
+                  "id": 22799,
                   "mutability": "mutable",
                   "name": "vs",
                   "nameLocation": "4718:2:144",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22758,
+                  "scope": 22822,
                   "src": "4710:10:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2749,7 +2749,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 22734,
+                    "id": 22798,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "4710:7:144",
@@ -2764,17 +2764,17 @@
               "src": "4659:67:144"
             },
             "returnParameters": {
-              "id": 22739,
+              "id": 22803,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 22738,
+                  "id": 22802,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22758,
+                  "scope": 22822,
                   "src": "4750:7:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2783,7 +2783,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 22737,
+                    "id": 22801,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "4750:7:144",
@@ -2798,7 +2798,7 @@
               ],
               "src": "4749:9:144"
             },
-            "scope": 22915,
+            "scope": 22979,
             "src": "4643:252:144",
             "stateMutability": "pure",
             "virtual": false,
@@ -2806,7 +2806,7 @@
           },
           {
             "body": {
-              "id": 22821,
+              "id": 22885,
               "nodeType": "Block",
               "src": "5218:1345:144",
               "statements": [
@@ -2816,7 +2816,7 @@
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     },
-                    "id": 22780,
+                    "id": 22844,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2824,11 +2824,11 @@
                     "leftExpression": {
                       "arguments": [
                         {
-                          "id": 22777,
+                          "id": 22841,
                           "name": "s",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 22767,
+                          "referencedDeclaration": 22831,
                           "src": "6114:1:144",
                           "typeDescriptions": {
                             "typeIdentifier": "t_bytes32",
@@ -2843,7 +2843,7 @@
                             "typeString": "bytes32"
                           }
                         ],
-                        "id": 22776,
+                        "id": 22840,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -2855,14 +2855,14 @@
                           "typeString": "type(uint256)"
                         },
                         "typeName": {
-                          "id": 22775,
+                          "id": 22839,
                           "name": "uint256",
                           "nodeType": "ElementaryTypeName",
                           "src": "6106:7:144",
                           "typeDescriptions": {}
                         }
                       },
-                      "id": 22778,
+                      "id": 22842,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -2882,7 +2882,7 @@
                     "operator": ">",
                     "rightExpression": {
                       "hexValue": "307837464646464646464646464646464646464646464646464646464646464646463544353736453733353741343530314444464539324634363638314232304130",
-                      "id": 22779,
+                      "id": 22843,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -2902,11 +2902,11 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 22790,
+                  "id": 22854,
                   "nodeType": "IfStatement",
                   "src": "6102:161:144",
                   "trueBody": {
-                    "id": 22789,
+                    "id": 22853,
                     "nodeType": "Block",
                     "src": "6187:76:144",
                     "statements": [
@@ -2917,7 +2917,7 @@
                               "arguments": [
                                 {
                                   "hexValue": "30",
-                                  "id": 22783,
+                                  "id": 22847,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": true,
@@ -2939,7 +2939,7 @@
                                     "typeString": "int_const 0"
                                   }
                                 ],
-                                "id": 22782,
+                                "id": 22846,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -2951,14 +2951,14 @@
                                   "typeString": "type(address)"
                                 },
                                 "typeName": {
-                                  "id": 22781,
+                                  "id": 22845,
                                   "name": "address",
                                   "nodeType": "ElementaryTypeName",
                                   "src": "6209:7:144",
                                   "typeDescriptions": {}
                                 }
                               },
-                              "id": 22784,
+                              "id": 22848,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -2976,18 +2976,18 @@
                             },
                             {
                               "expression": {
-                                "id": 22785,
+                                "id": 22849,
                                 "name": "RecoverError",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 22564,
+                                "referencedDeclaration": 22628,
                                 "src": "6221:12:144",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_type$_t_enum$_RecoverError_$22564_$",
+                                  "typeIdentifier": "t_type$_t_enum$_RecoverError_$22628_$",
                                   "typeString": "type(enum ECDSA.RecoverError)"
                                 }
                               },
-                              "id": 22786,
+                              "id": 22850,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -2995,15 +2995,15 @@
                               "memberLocation": "6234:17:144",
                               "memberName": "InvalidSignatureS",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 22562,
+                              "referencedDeclaration": 22626,
                               "src": "6221:30:144",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_enum$_RecoverError_$22564",
+                                "typeIdentifier": "t_enum$_RecoverError_$22628",
                                 "typeString": "enum ECDSA.RecoverError"
                               }
                             }
                           ],
-                          "id": 22787,
+                          "id": 22851,
                           "isConstant": false,
                           "isInlineArray": false,
                           "isLValue": false,
@@ -3012,12 +3012,12 @@
                           "nodeType": "TupleExpression",
                           "src": "6208:44:144",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_tuple$_t_address_$_t_enum$_RecoverError_$22564_$",
+                            "typeIdentifier": "t_tuple$_t_address_$_t_enum$_RecoverError_$22628_$",
                             "typeString": "tuple(address,enum ECDSA.RecoverError)"
                           }
                         },
-                        "functionReturnParameters": 22774,
-                        "id": 22788,
+                        "functionReturnParameters": 22838,
+                        "id": 22852,
                         "nodeType": "Return",
                         "src": "6201:51:144"
                       }
@@ -3026,17 +3026,17 @@
                 },
                 {
                   "assignments": [
-                    22792
+                    22856
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 22792,
+                      "id": 22856,
                       "mutability": "mutable",
                       "name": "signer",
                       "nameLocation": "6365:6:144",
                       "nodeType": "VariableDeclaration",
-                      "scope": 22821,
+                      "scope": 22885,
                       "src": "6357:14:144",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -3045,7 +3045,7 @@
                         "typeString": "address"
                       },
                       "typeName": {
-                        "id": 22791,
+                        "id": 22855,
                         "name": "address",
                         "nodeType": "ElementaryTypeName",
                         "src": "6357:7:144",
@@ -3058,15 +3058,15 @@
                       "visibility": "internal"
                     }
                   ],
-                  "id": 22799,
+                  "id": 22863,
                   "initialValue": {
                     "arguments": [
                       {
-                        "id": 22794,
+                        "id": 22858,
                         "name": "hash",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 22761,
+                        "referencedDeclaration": 22825,
                         "src": "6384:4:144",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
@@ -3074,11 +3074,11 @@
                         }
                       },
                       {
-                        "id": 22795,
+                        "id": 22859,
                         "name": "v",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 22763,
+                        "referencedDeclaration": 22827,
                         "src": "6390:1:144",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint8",
@@ -3086,11 +3086,11 @@
                         }
                       },
                       {
-                        "id": 22796,
+                        "id": 22860,
                         "name": "r",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 22765,
+                        "referencedDeclaration": 22829,
                         "src": "6393:1:144",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
@@ -3098,11 +3098,11 @@
                         }
                       },
                       {
-                        "id": 22797,
+                        "id": 22861,
                         "name": "s",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 22767,
+                        "referencedDeclaration": 22831,
                         "src": "6396:1:144",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
@@ -3129,7 +3129,7 @@
                           "typeString": "bytes32"
                         }
                       ],
-                      "id": 22793,
+                      "id": 22857,
                       "name": "ecrecover",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
@@ -3140,7 +3140,7 @@
                         "typeString": "function (bytes32,uint8,bytes32,bytes32) pure returns (address)"
                       }
                     },
-                    "id": 22798,
+                    "id": 22862,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3165,17 +3165,17 @@
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     },
-                    "id": 22805,
+                    "id": 22869,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftExpression": {
-                      "id": 22800,
+                      "id": 22864,
                       "name": "signer",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 22792,
+                      "referencedDeclaration": 22856,
                       "src": "6412:6:144",
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
@@ -3188,7 +3188,7 @@
                       "arguments": [
                         {
                           "hexValue": "30",
-                          "id": 22803,
+                          "id": 22867,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -3210,7 +3210,7 @@
                             "typeString": "int_const 0"
                           }
                         ],
-                        "id": 22802,
+                        "id": 22866,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -3222,14 +3222,14 @@
                           "typeString": "type(address)"
                         },
                         "typeName": {
-                          "id": 22801,
+                          "id": 22865,
                           "name": "address",
                           "nodeType": "ElementaryTypeName",
                           "src": "6422:7:144",
                           "typeDescriptions": {}
                         }
                       },
-                      "id": 22804,
+                      "id": 22868,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": true,
@@ -3251,11 +3251,11 @@
                       "typeString": "bool"
                     }
                   },
-                  "id": 22815,
+                  "id": 22879,
                   "nodeType": "IfStatement",
                   "src": "6408:101:144",
                   "trueBody": {
-                    "id": 22814,
+                    "id": 22878,
                     "nodeType": "Block",
                     "src": "6434:75:144",
                     "statements": [
@@ -3266,7 +3266,7 @@
                               "arguments": [
                                 {
                                   "hexValue": "30",
-                                  "id": 22808,
+                                  "id": 22872,
                                   "isConstant": false,
                                   "isLValue": false,
                                   "isPure": true,
@@ -3288,7 +3288,7 @@
                                     "typeString": "int_const 0"
                                   }
                                 ],
-                                "id": 22807,
+                                "id": 22871,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": true,
@@ -3300,14 +3300,14 @@
                                   "typeString": "type(address)"
                                 },
                                 "typeName": {
-                                  "id": 22806,
+                                  "id": 22870,
                                   "name": "address",
                                   "nodeType": "ElementaryTypeName",
                                   "src": "6456:7:144",
                                   "typeDescriptions": {}
                                 }
                               },
-                              "id": 22809,
+                              "id": 22873,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -3325,18 +3325,18 @@
                             },
                             {
                               "expression": {
-                                "id": 22810,
+                                "id": 22874,
                                 "name": "RecoverError",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 22564,
+                                "referencedDeclaration": 22628,
                                 "src": "6468:12:144",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_type$_t_enum$_RecoverError_$22564_$",
+                                  "typeIdentifier": "t_type$_t_enum$_RecoverError_$22628_$",
                                   "typeString": "type(enum ECDSA.RecoverError)"
                                 }
                               },
-                              "id": 22811,
+                              "id": 22875,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": true,
@@ -3344,15 +3344,15 @@
                               "memberLocation": "6481:16:144",
                               "memberName": "InvalidSignature",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 22560,
+                              "referencedDeclaration": 22624,
                               "src": "6468:29:144",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_enum$_RecoverError_$22564",
+                                "typeIdentifier": "t_enum$_RecoverError_$22628",
                                 "typeString": "enum ECDSA.RecoverError"
                               }
                             }
                           ],
-                          "id": 22812,
+                          "id": 22876,
                           "isConstant": false,
                           "isInlineArray": false,
                           "isLValue": false,
@@ -3361,12 +3361,12 @@
                           "nodeType": "TupleExpression",
                           "src": "6455:43:144",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_tuple$_t_address_$_t_enum$_RecoverError_$22564_$",
+                            "typeIdentifier": "t_tuple$_t_address_$_t_enum$_RecoverError_$22628_$",
                             "typeString": "tuple(address,enum ECDSA.RecoverError)"
                           }
                         },
-                        "functionReturnParameters": 22774,
-                        "id": 22813,
+                        "functionReturnParameters": 22838,
+                        "id": 22877,
                         "nodeType": "Return",
                         "src": "6448:50:144"
                       }
@@ -3377,11 +3377,11 @@
                   "expression": {
                     "components": [
                       {
-                        "id": 22816,
+                        "id": 22880,
                         "name": "signer",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 22792,
+                        "referencedDeclaration": 22856,
                         "src": "6527:6:144",
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
@@ -3390,18 +3390,18 @@
                       },
                       {
                         "expression": {
-                          "id": 22817,
+                          "id": 22881,
                           "name": "RecoverError",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 22564,
+                          "referencedDeclaration": 22628,
                           "src": "6535:12:144",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_type$_t_enum$_RecoverError_$22564_$",
+                            "typeIdentifier": "t_type$_t_enum$_RecoverError_$22628_$",
                             "typeString": "type(enum ECDSA.RecoverError)"
                           }
                         },
-                        "id": 22818,
+                        "id": 22882,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": true,
@@ -3409,15 +3409,15 @@
                         "memberLocation": "6548:7:144",
                         "memberName": "NoError",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 22559,
+                        "referencedDeclaration": 22623,
                         "src": "6535:20:144",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_enum$_RecoverError_$22564",
+                          "typeIdentifier": "t_enum$_RecoverError_$22628",
                           "typeString": "enum ECDSA.RecoverError"
                         }
                       }
                     ],
-                    "id": 22819,
+                    "id": 22883,
                     "isConstant": false,
                     "isInlineArray": false,
                     "isLValue": false,
@@ -3426,24 +3426,24 @@
                     "nodeType": "TupleExpression",
                     "src": "6526:30:144",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$_t_address_$_t_enum$_RecoverError_$22564_$",
+                      "typeIdentifier": "t_tuple$_t_address_$_t_enum$_RecoverError_$22628_$",
                       "typeString": "tuple(address,enum ECDSA.RecoverError)"
                     }
                   },
-                  "functionReturnParameters": 22774,
-                  "id": 22820,
+                  "functionReturnParameters": 22838,
+                  "id": 22884,
                   "nodeType": "Return",
                   "src": "6519:37:144"
                 }
               ]
             },
             "documentation": {
-              "id": 22759,
+              "id": 22823,
               "nodeType": "StructuredDocumentation",
               "src": "4901:163:144",
               "text": " @dev Overload of {ECDSA-tryRecover} that receives the `v`,\n `r` and `s` signature fields separately.\n _Available since v4.3._"
             },
-            "id": 22822,
+            "id": 22886,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -3451,17 +3451,17 @@
             "nameLocation": "5078:10:144",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 22768,
+              "id": 22832,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 22761,
+                  "id": 22825,
                   "mutability": "mutable",
                   "name": "hash",
                   "nameLocation": "5106:4:144",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22822,
+                  "scope": 22886,
                   "src": "5098:12:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3470,7 +3470,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 22760,
+                    "id": 22824,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "5098:7:144",
@@ -3483,12 +3483,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 22763,
+                  "id": 22827,
                   "mutability": "mutable",
                   "name": "v",
                   "nameLocation": "5126:1:144",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22822,
+                  "scope": 22886,
                   "src": "5120:7:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3497,7 +3497,7 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 22762,
+                    "id": 22826,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
                     "src": "5120:5:144",
@@ -3510,12 +3510,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 22765,
+                  "id": 22829,
                   "mutability": "mutable",
                   "name": "r",
                   "nameLocation": "5145:1:144",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22822,
+                  "scope": 22886,
                   "src": "5137:9:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3524,7 +3524,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 22764,
+                    "id": 22828,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "5137:7:144",
@@ -3537,12 +3537,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 22767,
+                  "id": 22831,
                   "mutability": "mutable",
                   "name": "s",
                   "nameLocation": "5164:1:144",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22822,
+                  "scope": 22886,
                   "src": "5156:9:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3551,7 +3551,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 22766,
+                    "id": 22830,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "5156:7:144",
@@ -3566,17 +3566,17 @@
               "src": "5088:83:144"
             },
             "returnParameters": {
-              "id": 22774,
+              "id": 22838,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 22770,
+                  "id": 22834,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22822,
+                  "scope": 22886,
                   "src": "5195:7:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3585,7 +3585,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 22769,
+                    "id": 22833,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "5195:7:144",
@@ -3599,36 +3599,36 @@
                 },
                 {
                   "constant": false,
-                  "id": 22773,
+                  "id": 22837,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22822,
+                  "scope": 22886,
                   "src": "5204:12:144",
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_enum$_RecoverError_$22564",
+                    "typeIdentifier": "t_enum$_RecoverError_$22628",
                     "typeString": "enum ECDSA.RecoverError"
                   },
                   "typeName": {
-                    "id": 22772,
+                    "id": 22836,
                     "nodeType": "UserDefinedTypeName",
                     "pathNode": {
-                      "id": 22771,
+                      "id": 22835,
                       "name": "RecoverError",
                       "nameLocations": [
                         "5204:12:144"
                       ],
                       "nodeType": "IdentifierPath",
-                      "referencedDeclaration": 22564,
+                      "referencedDeclaration": 22628,
                       "src": "5204:12:144"
                     },
-                    "referencedDeclaration": 22564,
+                    "referencedDeclaration": 22628,
                     "src": "5204:12:144",
                     "typeDescriptions": {
-                      "typeIdentifier": "t_enum$_RecoverError_$22564",
+                      "typeIdentifier": "t_enum$_RecoverError_$22628",
                       "typeString": "enum ECDSA.RecoverError"
                     }
                   },
@@ -3637,7 +3637,7 @@
               ],
               "src": "5194:23:144"
             },
-            "scope": 22915,
+            "scope": 22979,
             "src": "5069:1494:144",
             "stateMutability": "pure",
             "virtual": false,
@@ -3645,24 +3645,24 @@
           },
           {
             "body": {
-              "id": 22854,
+              "id": 22918,
               "nodeType": "Block",
               "src": "6828:138:144",
               "statements": [
                 {
                   "assignments": [
-                    22837,
-                    22840
+                    22901,
+                    22904
                   ],
                   "declarations": [
                     {
                       "constant": false,
-                      "id": 22837,
+                      "id": 22901,
                       "mutability": "mutable",
                       "name": "recovered",
                       "nameLocation": "6847:9:144",
                       "nodeType": "VariableDeclaration",
-                      "scope": 22854,
+                      "scope": 22918,
                       "src": "6839:17:144",
                       "stateVariable": false,
                       "storageLocation": "default",
@@ -3671,7 +3671,7 @@
                         "typeString": "address"
                       },
                       "typeName": {
-                        "id": 22836,
+                        "id": 22900,
                         "name": "address",
                         "nodeType": "ElementaryTypeName",
                         "src": "6839:7:144",
@@ -3685,51 +3685,51 @@
                     },
                     {
                       "constant": false,
-                      "id": 22840,
+                      "id": 22904,
                       "mutability": "mutable",
                       "name": "error",
                       "nameLocation": "6871:5:144",
                       "nodeType": "VariableDeclaration",
-                      "scope": 22854,
+                      "scope": 22918,
                       "src": "6858:18:144",
                       "stateVariable": false,
                       "storageLocation": "default",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_enum$_RecoverError_$22564",
+                        "typeIdentifier": "t_enum$_RecoverError_$22628",
                         "typeString": "enum ECDSA.RecoverError"
                       },
                       "typeName": {
-                        "id": 22839,
+                        "id": 22903,
                         "nodeType": "UserDefinedTypeName",
                         "pathNode": {
-                          "id": 22838,
+                          "id": 22902,
                           "name": "RecoverError",
                           "nameLocations": [
                             "6858:12:144"
                           ],
                           "nodeType": "IdentifierPath",
-                          "referencedDeclaration": 22564,
+                          "referencedDeclaration": 22628,
                           "src": "6858:12:144"
                         },
-                        "referencedDeclaration": 22564,
+                        "referencedDeclaration": 22628,
                         "src": "6858:12:144",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_enum$_RecoverError_$22564",
+                          "typeIdentifier": "t_enum$_RecoverError_$22628",
                           "typeString": "enum ECDSA.RecoverError"
                         }
                       },
                       "visibility": "internal"
                     }
                   ],
-                  "id": 22847,
+                  "id": 22911,
                   "initialValue": {
                     "arguments": [
                       {
-                        "id": 22842,
+                        "id": 22906,
                         "name": "hash",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 22825,
+                        "referencedDeclaration": 22889,
                         "src": "6891:4:144",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
@@ -3737,11 +3737,11 @@
                         }
                       },
                       {
-                        "id": 22843,
+                        "id": 22907,
                         "name": "v",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 22827,
+                        "referencedDeclaration": 22891,
                         "src": "6897:1:144",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint8",
@@ -3749,11 +3749,11 @@
                         }
                       },
                       {
-                        "id": 22844,
+                        "id": 22908,
                         "name": "r",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 22829,
+                        "referencedDeclaration": 22893,
                         "src": "6900:1:144",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
@@ -3761,11 +3761,11 @@
                         }
                       },
                       {
-                        "id": 22845,
+                        "id": 22909,
                         "name": "s",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 22831,
+                        "referencedDeclaration": 22895,
                         "src": "6903:1:144",
                         "typeDescriptions": {
                           "typeIdentifier": "t_bytes32",
@@ -3792,22 +3792,22 @@
                           "typeString": "bytes32"
                         }
                       ],
-                      "id": 22841,
+                      "id": 22905,
                       "name": "tryRecover",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        22654,
-                        22728,
-                        22822
+                        22718,
+                        22792,
+                        22886
                       ],
-                      "referencedDeclaration": 22822,
+                      "referencedDeclaration": 22886,
                       "src": "6880:10:144",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_pure$_t_bytes32_$_t_uint8_$_t_bytes32_$_t_bytes32_$returns$_t_address_$_t_enum$_RecoverError_$22564_$",
+                        "typeIdentifier": "t_function_internal_pure$_t_bytes32_$_t_uint8_$_t_bytes32_$_t_bytes32_$returns$_t_address_$_t_enum$_RecoverError_$22628_$",
                         "typeString": "function (bytes32,uint8,bytes32,bytes32) pure returns (address,enum ECDSA.RecoverError)"
                       }
                     },
-                    "id": 22846,
+                    "id": 22910,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3819,7 +3819,7 @@
                     "src": "6880:25:144",
                     "tryCall": false,
                     "typeDescriptions": {
-                      "typeIdentifier": "t_tuple$_t_address_$_t_enum$_RecoverError_$22564_$",
+                      "typeIdentifier": "t_tuple$_t_address_$_t_enum$_RecoverError_$22628_$",
                       "typeString": "tuple(address,enum ECDSA.RecoverError)"
                     }
                   },
@@ -3830,14 +3830,14 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 22849,
+                        "id": 22913,
                         "name": "error",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 22840,
+                        "referencedDeclaration": 22904,
                         "src": "6927:5:144",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_enum$_RecoverError_$22564",
+                          "typeIdentifier": "t_enum$_RecoverError_$22628",
                           "typeString": "enum ECDSA.RecoverError"
                         }
                       }
@@ -3845,22 +3845,22 @@
                     "expression": {
                       "argumentTypes": [
                         {
-                          "typeIdentifier": "t_enum$_RecoverError_$22564",
+                          "typeIdentifier": "t_enum$_RecoverError_$22628",
                           "typeString": "enum ECDSA.RecoverError"
                         }
                       ],
-                      "id": 22848,
+                      "id": 22912,
                       "name": "_throwError",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
-                      "referencedDeclaration": 22608,
+                      "referencedDeclaration": 22672,
                       "src": "6915:11:144",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_function_internal_pure$_t_enum$_RecoverError_$22564_$returns$__$",
+                        "typeIdentifier": "t_function_internal_pure$_t_enum$_RecoverError_$22628_$returns$__$",
                         "typeString": "function (enum ECDSA.RecoverError) pure"
                       }
                     },
-                    "id": 22850,
+                    "id": 22914,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -3876,37 +3876,37 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 22851,
+                  "id": 22915,
                   "nodeType": "ExpressionStatement",
                   "src": "6915:18:144"
                 },
                 {
                   "expression": {
-                    "id": 22852,
+                    "id": 22916,
                     "name": "recovered",
                     "nodeType": "Identifier",
                     "overloadedDeclarations": [],
-                    "referencedDeclaration": 22837,
+                    "referencedDeclaration": 22901,
                     "src": "6950:9:144",
                     "typeDescriptions": {
                       "typeIdentifier": "t_address",
                       "typeString": "address"
                     }
                   },
-                  "functionReturnParameters": 22835,
-                  "id": 22853,
+                  "functionReturnParameters": 22899,
+                  "id": 22917,
                   "nodeType": "Return",
                   "src": "6943:16:144"
                 }
               ]
             },
             "documentation": {
-              "id": 22823,
+              "id": 22887,
               "nodeType": "StructuredDocumentation",
               "src": "6569:122:144",
               "text": " @dev Overload of {ECDSA-recover} that receives the `v`,\n `r` and `s` signature fields separately."
             },
-            "id": 22855,
+            "id": 22919,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -3914,17 +3914,17 @@
             "nameLocation": "6705:7:144",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 22832,
+              "id": 22896,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 22825,
+                  "id": 22889,
                   "mutability": "mutable",
                   "name": "hash",
                   "nameLocation": "6730:4:144",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22855,
+                  "scope": 22919,
                   "src": "6722:12:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3933,7 +3933,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 22824,
+                    "id": 22888,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "6722:7:144",
@@ -3946,12 +3946,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 22827,
+                  "id": 22891,
                   "mutability": "mutable",
                   "name": "v",
                   "nameLocation": "6750:1:144",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22855,
+                  "scope": 22919,
                   "src": "6744:7:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3960,7 +3960,7 @@
                     "typeString": "uint8"
                   },
                   "typeName": {
-                    "id": 22826,
+                    "id": 22890,
                     "name": "uint8",
                     "nodeType": "ElementaryTypeName",
                     "src": "6744:5:144",
@@ -3973,12 +3973,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 22829,
+                  "id": 22893,
                   "mutability": "mutable",
                   "name": "r",
                   "nameLocation": "6769:1:144",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22855,
+                  "scope": 22919,
                   "src": "6761:9:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3987,7 +3987,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 22828,
+                    "id": 22892,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "6761:7:144",
@@ -4000,12 +4000,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 22831,
+                  "id": 22895,
                   "mutability": "mutable",
                   "name": "s",
                   "nameLocation": "6788:1:144",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22855,
+                  "scope": 22919,
                   "src": "6780:9:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4014,7 +4014,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 22830,
+                    "id": 22894,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "6780:7:144",
@@ -4029,17 +4029,17 @@
               "src": "6712:83:144"
             },
             "returnParameters": {
-              "id": 22835,
+              "id": 22899,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 22834,
+                  "id": 22898,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22855,
+                  "scope": 22919,
                   "src": "6819:7:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4048,7 +4048,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 22833,
+                    "id": 22897,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "6819:7:144",
@@ -4063,7 +4063,7 @@
               ],
               "src": "6818:9:144"
             },
-            "scope": 22915,
+            "scope": 22979,
             "src": "6696:270:144",
             "stateMutability": "pure",
             "virtual": false,
@@ -4071,7 +4071,7 @@
           },
           {
             "body": {
-              "id": 22871,
+              "id": 22935,
               "nodeType": "Block",
               "src": "7334:187:144",
               "statements": [
@@ -4082,7 +4082,7 @@
                         "arguments": [
                           {
                             "hexValue": "19457468657265756d205369676e6564204d6573736167653a0a3332",
-                            "id": 22866,
+                            "id": 22930,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -4097,11 +4097,11 @@
                             "value": "\u0019Ethereum Signed Message:\n32"
                           },
                           {
-                            "id": 22867,
+                            "id": 22931,
                             "name": "hash",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 22858,
+                            "referencedDeclaration": 22922,
                             "src": "7508:4:144",
                             "typeDescriptions": {
                               "typeIdentifier": "t_bytes32",
@@ -4121,7 +4121,7 @@
                             }
                           ],
                           "expression": {
-                            "id": 22864,
+                            "id": 22928,
                             "name": "abi",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
@@ -4132,7 +4132,7 @@
                               "typeString": "abi"
                             }
                           },
-                          "id": 22865,
+                          "id": 22929,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -4146,7 +4146,7 @@
                             "typeString": "function () pure returns (bytes memory)"
                           }
                         },
-                        "id": 22868,
+                        "id": 22932,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -4170,7 +4170,7 @@
                           "typeString": "bytes memory"
                         }
                       ],
-                      "id": 22863,
+                      "id": 22927,
                       "name": "keccak256",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
@@ -4181,7 +4181,7 @@
                         "typeString": "function (bytes memory) pure returns (bytes32)"
                       }
                     },
-                    "id": 22869,
+                    "id": 22933,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4197,20 +4197,20 @@
                       "typeString": "bytes32"
                     }
                   },
-                  "functionReturnParameters": 22862,
-                  "id": 22870,
+                  "functionReturnParameters": 22926,
+                  "id": 22934,
                   "nodeType": "Return",
                   "src": "7438:76:144"
                 }
               ]
             },
             "documentation": {
-              "id": 22856,
+              "id": 22920,
               "nodeType": "StructuredDocumentation",
               "src": "6972:279:144",
               "text": " @dev Returns an Ethereum Signed Message, created from a `hash`. This\n produces hash corresponding to the one signed with the\n https://eth.wiki/json-rpc/API#eth_sign[`eth_sign`]\n JSON-RPC method as part of EIP-191.\n See {recover}."
             },
-            "id": 22872,
+            "id": 22936,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -4218,17 +4218,17 @@
             "nameLocation": "7265:22:144",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 22859,
+              "id": 22923,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 22858,
+                  "id": 22922,
                   "mutability": "mutable",
                   "name": "hash",
                   "nameLocation": "7296:4:144",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22872,
+                  "scope": 22936,
                   "src": "7288:12:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4237,7 +4237,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 22857,
+                    "id": 22921,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "7288:7:144",
@@ -4252,17 +4252,17 @@
               "src": "7287:14:144"
             },
             "returnParameters": {
-              "id": 22862,
+              "id": 22926,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 22861,
+                  "id": 22925,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22872,
+                  "scope": 22936,
                   "src": "7325:7:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4271,7 +4271,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 22860,
+                    "id": 22924,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "7325:7:144",
@@ -4285,7 +4285,7 @@
               ],
               "src": "7324:9:144"
             },
-            "scope": 22915,
+            "scope": 22979,
             "src": "7256:265:144",
             "stateMutability": "pure",
             "virtual": false,
@@ -4293,7 +4293,7 @@
           },
           {
             "body": {
-              "id": 22893,
+              "id": 22957,
               "nodeType": "Block",
               "src": "7886:116:144",
               "statements": [
@@ -4304,7 +4304,7 @@
                         "arguments": [
                           {
                             "hexValue": "19457468657265756d205369676e6564204d6573736167653a0a",
-                            "id": 22883,
+                            "id": 22947,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -4322,18 +4322,18 @@
                             "arguments": [
                               {
                                 "expression": {
-                                  "id": 22886,
+                                  "id": 22950,
                                   "name": "s",
                                   "nodeType": "Identifier",
                                   "overloadedDeclarations": [],
-                                  "referencedDeclaration": 22875,
+                                  "referencedDeclaration": 22939,
                                   "src": "7981:1:144",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_bytes_memory_ptr",
                                     "typeString": "bytes memory"
                                   }
                                 },
-                                "id": 22887,
+                                "id": 22951,
                                 "isConstant": false,
                                 "isLValue": false,
                                 "isPure": false,
@@ -4356,18 +4356,18 @@
                                 }
                               ],
                               "expression": {
-                                "id": 22884,
+                                "id": 22948,
                                 "name": "Strings",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 22340,
+                                "referencedDeclaration": 22404,
                                 "src": "7964:7:144",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_type$_t_contract$_Strings_$22340_$",
+                                  "typeIdentifier": "t_type$_t_contract$_Strings_$22404_$",
                                   "typeString": "type(library Strings)"
                                 }
                               },
-                              "id": 22885,
+                              "id": 22949,
                               "isConstant": false,
                               "isLValue": false,
                               "isPure": false,
@@ -4375,14 +4375,14 @@
                               "memberLocation": "7972:8:144",
                               "memberName": "toString",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 22223,
+                              "referencedDeclaration": 22287,
                               "src": "7964:16:144",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_function_internal_pure$_t_uint256_$returns$_t_string_memory_ptr_$",
                                 "typeString": "function (uint256) pure returns (string memory)"
                               }
                             },
-                            "id": 22888,
+                            "id": 22952,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": false,
@@ -4399,11 +4399,11 @@
                             }
                           },
                           {
-                            "id": 22889,
+                            "id": 22953,
                             "name": "s",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 22875,
+                            "referencedDeclaration": 22939,
                             "src": "7992:1:144",
                             "typeDescriptions": {
                               "typeIdentifier": "t_bytes_memory_ptr",
@@ -4427,7 +4427,7 @@
                             }
                           ],
                           "expression": {
-                            "id": 22881,
+                            "id": 22945,
                             "name": "abi",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
@@ -4438,7 +4438,7 @@
                               "typeString": "abi"
                             }
                           },
-                          "id": 22882,
+                          "id": 22946,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -4452,7 +4452,7 @@
                             "typeString": "function () pure returns (bytes memory)"
                           }
                         },
-                        "id": 22890,
+                        "id": 22954,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -4476,7 +4476,7 @@
                           "typeString": "bytes memory"
                         }
                       ],
-                      "id": 22880,
+                      "id": 22944,
                       "name": "keccak256",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
@@ -4487,7 +4487,7 @@
                         "typeString": "function (bytes memory) pure returns (bytes32)"
                       }
                     },
-                    "id": 22891,
+                    "id": 22955,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4503,20 +4503,20 @@
                       "typeString": "bytes32"
                     }
                   },
-                  "functionReturnParameters": 22879,
-                  "id": 22892,
+                  "functionReturnParameters": 22943,
+                  "id": 22956,
                   "nodeType": "Return",
                   "src": "7896:99:144"
                 }
               ]
             },
             "documentation": {
-              "id": 22873,
+              "id": 22937,
               "nodeType": "StructuredDocumentation",
               "src": "7527:274:144",
               "text": " @dev Returns an Ethereum Signed Message, created from `s`. This\n produces hash corresponding to the one signed with the\n https://eth.wiki/json-rpc/API#eth_sign[`eth_sign`]\n JSON-RPC method as part of EIP-191.\n See {recover}."
             },
-            "id": 22894,
+            "id": 22958,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -4524,17 +4524,17 @@
             "nameLocation": "7815:22:144",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 22876,
+              "id": 22940,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 22875,
+                  "id": 22939,
                   "mutability": "mutable",
                   "name": "s",
                   "nameLocation": "7851:1:144",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22894,
+                  "scope": 22958,
                   "src": "7838:14:144",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -4543,7 +4543,7 @@
                     "typeString": "bytes"
                   },
                   "typeName": {
-                    "id": 22874,
+                    "id": 22938,
                     "name": "bytes",
                     "nodeType": "ElementaryTypeName",
                     "src": "7838:5:144",
@@ -4558,17 +4558,17 @@
               "src": "7837:16:144"
             },
             "returnParameters": {
-              "id": 22879,
+              "id": 22943,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 22878,
+                  "id": 22942,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22894,
+                  "scope": 22958,
                   "src": "7877:7:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4577,7 +4577,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 22877,
+                    "id": 22941,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "7877:7:144",
@@ -4591,7 +4591,7 @@
               ],
               "src": "7876:9:144"
             },
-            "scope": 22915,
+            "scope": 22979,
             "src": "7806:196:144",
             "stateMutability": "pure",
             "virtual": false,
@@ -4599,7 +4599,7 @@
           },
           {
             "body": {
-              "id": 22913,
+              "id": 22977,
               "nodeType": "Block",
               "src": "8443:92:144",
               "statements": [
@@ -4610,7 +4610,7 @@
                         "arguments": [
                           {
                             "hexValue": "1901",
-                            "id": 22907,
+                            "id": 22971,
                             "isConstant": false,
                             "isLValue": false,
                             "isPure": true,
@@ -4625,11 +4625,11 @@
                             "value": "\u0019\u0001"
                           },
                           {
-                            "id": 22908,
+                            "id": 22972,
                             "name": "domainSeparator",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 22897,
+                            "referencedDeclaration": 22961,
                             "src": "8499:15:144",
                             "typeDescriptions": {
                               "typeIdentifier": "t_bytes32",
@@ -4637,11 +4637,11 @@
                             }
                           },
                           {
-                            "id": 22909,
+                            "id": 22973,
                             "name": "structHash",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 22899,
+                            "referencedDeclaration": 22963,
                             "src": "8516:10:144",
                             "typeDescriptions": {
                               "typeIdentifier": "t_bytes32",
@@ -4665,7 +4665,7 @@
                             }
                           ],
                           "expression": {
-                            "id": 22905,
+                            "id": 22969,
                             "name": "abi",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
@@ -4676,7 +4676,7 @@
                               "typeString": "abi"
                             }
                           },
-                          "id": 22906,
+                          "id": 22970,
                           "isConstant": false,
                           "isLValue": false,
                           "isPure": true,
@@ -4690,7 +4690,7 @@
                             "typeString": "function () pure returns (bytes memory)"
                           }
                         },
-                        "id": 22910,
+                        "id": 22974,
                         "isConstant": false,
                         "isLValue": false,
                         "isPure": false,
@@ -4714,7 +4714,7 @@
                           "typeString": "bytes memory"
                         }
                       ],
-                      "id": 22904,
+                      "id": 22968,
                       "name": "keccak256",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
@@ -4725,7 +4725,7 @@
                         "typeString": "function (bytes memory) pure returns (bytes32)"
                       }
                     },
-                    "id": 22911,
+                    "id": 22975,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -4741,20 +4741,20 @@
                       "typeString": "bytes32"
                     }
                   },
-                  "functionReturnParameters": 22903,
-                  "id": 22912,
+                  "functionReturnParameters": 22967,
+                  "id": 22976,
                   "nodeType": "Return",
                   "src": "8453:75:144"
                 }
               ]
             },
             "documentation": {
-              "id": 22895,
+              "id": 22959,
               "nodeType": "StructuredDocumentation",
               "src": "8008:328:144",
               "text": " @dev Returns an Ethereum Signed Typed Data, created from a\n `domainSeparator` and a `structHash`. This produces hash corresponding\n to the one signed with the\n https://eips.ethereum.org/EIPS/eip-712[`eth_signTypedData`]\n JSON-RPC method as part of EIP-712.\n See {recover}."
             },
-            "id": 22914,
+            "id": 22978,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -4762,17 +4762,17 @@
             "nameLocation": "8350:15:144",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 22900,
+              "id": 22964,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 22897,
+                  "id": 22961,
                   "mutability": "mutable",
                   "name": "domainSeparator",
                   "nameLocation": "8374:15:144",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22914,
+                  "scope": 22978,
                   "src": "8366:23:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4781,7 +4781,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 22896,
+                    "id": 22960,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "8366:7:144",
@@ -4794,12 +4794,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 22899,
+                  "id": 22963,
                   "mutability": "mutable",
                   "name": "structHash",
                   "nameLocation": "8399:10:144",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22914,
+                  "scope": 22978,
                   "src": "8391:18:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4808,7 +4808,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 22898,
+                    "id": 22962,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "8391:7:144",
@@ -4823,17 +4823,17 @@
               "src": "8365:45:144"
             },
             "returnParameters": {
-              "id": 22903,
+              "id": 22967,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 22902,
+                  "id": 22966,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 22914,
+                  "scope": 22978,
                   "src": "8434:7:144",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -4842,7 +4842,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 22901,
+                    "id": 22965,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "8434:7:144",
@@ -4856,14 +4856,14 @@
               ],
               "src": "8433:9:144"
             },
-            "scope": 22915,
+            "scope": 22979,
             "src": "8341:194:144",
             "stateMutability": "pure",
             "virtual": false,
             "visibility": "internal"
           }
         ],
-        "scope": 22916,
+        "scope": 22980,
         "src": "369:8168:144",
         "usedErrors": []
       }
@@ -4876,7 +4876,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.13",
-  "updatedAt": "2023-03-25T18:51:50.454Z",
+  "updatedAt": "2023-04-15T21:50:16.458Z",
   "devdoc": {
     "details": "Elliptic Curve Digital Signature Algorithm (ECDSA) operations. These functions can be used to verify that a message was signed by the holder of the private keys of a given address.",
     "kind": "dev",

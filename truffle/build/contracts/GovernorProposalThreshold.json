@@ -880,60 +880,60 @@
     "absolutePath": "project:/contracts/node_modules/@openzeppelin/contracts/governance/extensions/GovernorProposalThreshold.sol",
     "exportedSymbols": {
       "Address": [
-        20299
+        20363
       ],
       "Context": [
-        21895
+        21959
       ],
       "DoubleEndedQueue": [
-        27777
+        27841
       ],
       "ECDSA": [
-        22915
+        22979
       ],
       "EIP712": [
-        23069
+        23133
       ],
       "ERC165": [
-        23991
+        24055
       ],
       "Governor": [
-        3750
+        3814
       ],
       "GovernorProposalThreshold": [
-        6330
+        6394
       ],
       "IERC1155Receiver": [
-        11754
+        11818
       ],
       "IERC165": [
-        24307
+        24371
       ],
       "IERC721Receiver": [
-        17220
+        17284
       ],
       "IGovernor": [
-        4047
+        4111
       ],
       "Math": [
-        25276
+        25340
       ],
       "SafeCast": [
-        26817
+        26881
       ],
       "Strings": [
-        22340
+        22404
       ],
       "Timers": [
-        22554
+        22618
       ]
     },
-    "id": 6331,
+    "id": 6395,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 6299,
+        "id": 6363,
         "literals": [
           "solidity",
           "^",
@@ -946,11 +946,11 @@
       {
         "absolutePath": "project:/contracts/node_modules/@openzeppelin/contracts/governance/Governor.sol",
         "file": "../Governor.sol",
-        "id": 6300,
+        "id": 6364,
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
-        "scope": 6331,
-        "sourceUnit": 3751,
+        "scope": 6395,
+        "sourceUnit": 3815,
         "src": "145:25:29",
         "symbolAliases": [],
         "unitAlias": ""
@@ -960,16 +960,16 @@
         "baseContracts": [
           {
             "baseName": {
-              "id": 6302,
+              "id": 6366,
               "name": "Governor",
               "nameLocations": [
                 "383:8:29"
               ],
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 3750,
+              "referencedDeclaration": 3814,
               "src": "383:8:29"
             },
-            "id": 6303,
+            "id": 6367,
             "nodeType": "InheritanceSpecifier",
             "src": "383:8:29"
           }
@@ -978,23 +978,23 @@
         "contractDependencies": [],
         "contractKind": "contract",
         "documentation": {
-          "id": 6301,
+          "id": 6365,
           "nodeType": "StructuredDocumentation",
           "src": "172:163:29",
           "text": " @dev Extension of {Governor} for proposal restriction to token holders with a minimum balance.\n _Available since v4.3._\n _Deprecated since v4.4._"
         },
         "fullyImplemented": false,
-        "id": 6330,
+        "id": 6394,
         "linearizedBaseContracts": [
-          6330,
-          3750,
-          11754,
-          17220,
-          4047,
-          23069,
-          23991,
-          24307,
-          21895
+          6394,
+          3814,
+          11818,
+          17284,
+          4111,
+          23133,
+          24055,
+          24371,
+          21959
         ],
         "name": "GovernorProposalThreshold",
         "nameLocation": "354:25:29",
@@ -1002,10 +1002,10 @@
         "nodes": [
           {
             "baseFunctions": [
-              3008
+              3072
             ],
             "body": {
-              "id": 6328,
+              "id": 6392,
               "nodeType": "Block",
               "src": "599:78:29",
               "statements": [
@@ -1013,11 +1013,11 @@
                   "expression": {
                     "arguments": [
                       {
-                        "id": 6322,
+                        "id": 6386,
                         "name": "targets",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 6306,
+                        "referencedDeclaration": 6370,
                         "src": "630:7:29",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_address_$dyn_memory_ptr",
@@ -1025,11 +1025,11 @@
                         }
                       },
                       {
-                        "id": 6323,
+                        "id": 6387,
                         "name": "values",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 6309,
+                        "referencedDeclaration": 6373,
                         "src": "639:6:29",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
@@ -1037,11 +1037,11 @@
                         }
                       },
                       {
-                        "id": 6324,
+                        "id": 6388,
                         "name": "calldatas",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 6312,
+                        "referencedDeclaration": 6376,
                         "src": "647:9:29",
                         "typeDescriptions": {
                           "typeIdentifier": "t_array$_t_bytes_memory_ptr_$dyn_memory_ptr",
@@ -1049,11 +1049,11 @@
                         }
                       },
                       {
-                        "id": 6325,
+                        "id": 6389,
                         "name": "description",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 6314,
+                        "referencedDeclaration": 6378,
                         "src": "658:11:29",
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_memory_ptr",
@@ -1081,18 +1081,18 @@
                         }
                       ],
                       "expression": {
-                        "id": 6320,
+                        "id": 6384,
                         "name": "super",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
                         "referencedDeclaration": 4294967271,
                         "src": "616:5:29",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_type$_t_super$_GovernorProposalThreshold_$6330_$",
+                          "typeIdentifier": "t_type$_t_super$_GovernorProposalThreshold_$6394_$",
                           "typeString": "type(contract super GovernorProposalThreshold)"
                         }
                       },
-                      "id": 6321,
+                      "id": 6385,
                       "isConstant": false,
                       "isLValue": false,
                       "isPure": false,
@@ -1100,14 +1100,14 @@
                       "memberLocation": "622:7:29",
                       "memberName": "propose",
                       "nodeType": "MemberAccess",
-                      "referencedDeclaration": 3008,
+                      "referencedDeclaration": 3072,
                       "src": "616:13:29",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_internal_nonpayable$_t_array$_t_address_$dyn_memory_ptr_$_t_array$_t_uint256_$dyn_memory_ptr_$_t_array$_t_bytes_memory_ptr_$dyn_memory_ptr_$_t_string_memory_ptr_$returns$_t_uint256_$",
                         "typeString": "function (address[] memory,uint256[] memory,bytes memory[] memory,string memory) returns (uint256)"
                       }
                     },
-                    "id": 6326,
+                    "id": 6390,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1123,15 +1123,15 @@
                       "typeString": "uint256"
                     }
                   },
-                  "functionReturnParameters": 6319,
-                  "id": 6327,
+                  "functionReturnParameters": 6383,
+                  "id": 6391,
                   "nodeType": "Return",
                   "src": "609:61:29"
                 }
               ]
             },
             "functionSelector": "7d5e81e2",
-            "id": 6329,
+            "id": 6393,
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -1139,23 +1139,23 @@
             "nameLocation": "407:7:29",
             "nodeType": "FunctionDefinition",
             "overrides": {
-              "id": 6316,
+              "id": 6380,
               "nodeType": "OverrideSpecifier",
               "overrides": [],
               "src": "572:8:29"
             },
             "parameters": {
-              "id": 6315,
+              "id": 6379,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6306,
+                  "id": 6370,
                   "mutability": "mutable",
                   "name": "targets",
                   "nameLocation": "441:7:29",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6329,
+                  "scope": 6393,
                   "src": "424:24:29",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1165,7 +1165,7 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 6304,
+                      "id": 6368,
                       "name": "address",
                       "nodeType": "ElementaryTypeName",
                       "src": "424:7:29",
@@ -1175,7 +1175,7 @@
                         "typeString": "address"
                       }
                     },
-                    "id": 6305,
+                    "id": 6369,
                     "nodeType": "ArrayTypeName",
                     "src": "424:9:29",
                     "typeDescriptions": {
@@ -1187,12 +1187,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 6309,
+                  "id": 6373,
                   "mutability": "mutable",
                   "name": "values",
                   "nameLocation": "475:6:29",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6329,
+                  "scope": 6393,
                   "src": "458:23:29",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1202,7 +1202,7 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 6307,
+                      "id": 6371,
                       "name": "uint256",
                       "nodeType": "ElementaryTypeName",
                       "src": "458:7:29",
@@ -1211,7 +1211,7 @@
                         "typeString": "uint256"
                       }
                     },
-                    "id": 6308,
+                    "id": 6372,
                     "nodeType": "ArrayTypeName",
                     "src": "458:9:29",
                     "typeDescriptions": {
@@ -1223,12 +1223,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 6312,
+                  "id": 6376,
                   "mutability": "mutable",
                   "name": "calldatas",
                   "nameLocation": "506:9:29",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6329,
+                  "scope": 6393,
                   "src": "491:24:29",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1238,7 +1238,7 @@
                   },
                   "typeName": {
                     "baseType": {
-                      "id": 6310,
+                      "id": 6374,
                       "name": "bytes",
                       "nodeType": "ElementaryTypeName",
                       "src": "491:5:29",
@@ -1247,7 +1247,7 @@
                         "typeString": "bytes"
                       }
                     },
-                    "id": 6311,
+                    "id": 6375,
                     "nodeType": "ArrayTypeName",
                     "src": "491:7:29",
                     "typeDescriptions": {
@@ -1259,12 +1259,12 @@
                 },
                 {
                   "constant": false,
-                  "id": 6314,
+                  "id": 6378,
                   "mutability": "mutable",
                   "name": "description",
                   "nameLocation": "539:11:29",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6329,
+                  "scope": 6393,
                   "src": "525:25:29",
                   "stateVariable": false,
                   "storageLocation": "memory",
@@ -1273,7 +1273,7 @@
                     "typeString": "string"
                   },
                   "typeName": {
-                    "id": 6313,
+                    "id": 6377,
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "525:6:29",
@@ -1288,17 +1288,17 @@
               "src": "414:142:29"
             },
             "returnParameters": {
-              "id": 6319,
+              "id": 6383,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 6318,
+                  "id": 6382,
                   "mutability": "mutable",
                   "name": "",
                   "nameLocation": "-1:-1:-1",
                   "nodeType": "VariableDeclaration",
-                  "scope": 6329,
+                  "scope": 6393,
                   "src": "590:7:29",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1307,7 +1307,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 6317,
+                    "id": 6381,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "590:7:29",
@@ -1321,17 +1321,17 @@
               ],
               "src": "589:9:29"
             },
-            "scope": 6330,
+            "scope": 6394,
             "src": "398:279:29",
             "stateMutability": "nonpayable",
             "virtual": true,
             "visibility": "public"
           }
         ],
-        "scope": 6331,
+        "scope": 6395,
         "src": "336:343:29",
         "usedErrors": [
-          27443
+          27507
         ]
       }
     ],
@@ -1343,7 +1343,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.13",
-  "updatedAt": "2023-03-25T18:51:50.052Z",
+  "updatedAt": "2023-04-15T21:50:15.501Z",
   "devdoc": {
     "details": "Extension of {Governor} for proposal restriction to token holders with a minimum balance. _Available since v4.3._ _Deprecated since v4.4._",
     "errors": {

@@ -10,7 +10,7 @@ class User:
     ABI = truffleFile['abi'] # ABI generated in the file
     Bytecode = truffleFile['bytecode'] # metadata generated in the file
 
-    GEA = "0x1cd482155343F078647F504B81d07871e27d4484"
+    GEA = "0x11D5575b8EE64B048b46dDc7942176444e3D8b70"
 
     def __init__(self, user_address):
         self.user_address = user_address

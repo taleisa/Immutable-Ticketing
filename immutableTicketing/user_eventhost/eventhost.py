@@ -3,7 +3,7 @@ from dbms import DBMS
 import json
 class EventHost:
     # Defining the address of the GEA and the minter
-    GEA = "0x1cd482155343F078647F504B81d07871e27d4484"      # Account[3] address GEA
+    GEA = "0x11D5575b8EE64B048b46dDc7942176444e3D8b70"      # Account[3] address GEA
     # connecting the blockchain network in ganache
     w3 = Web3(Web3.HTTPProvider('HTTP://127.0.0.1:7545'))
     #retrieving the generated ABI and Byte code from the 
