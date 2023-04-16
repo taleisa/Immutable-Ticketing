@@ -8,3 +8,6 @@ class web3User(models.Model):
     is_event_host = models.BooleanField(default = False)
     is_GEA = models.BooleanField(default = False)
 
+
+class Event(models.Model):
+    wallet_address = models.CharField(max_length = 42, unique=True)

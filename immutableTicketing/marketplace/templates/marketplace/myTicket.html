@@ -26,15 +26,15 @@
                 {% for ticket in tickets  %}
                     <div class="myTicket">
                     <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                    <span class="myTicketTitle">{{ticket.Title}}</span>
-                    <span class="myTicketTime">{{ticket.Time}}</span>
+                    <span class="myTicketTitle">{{ticket.name}}</span>
+                    <span class="myTicketTime">{{ticket.startDate}}</span>
                     <div class="myTicketLocationDate">
                         <div class="myTicketLocationDiv">
                             <i class='myTicketLocationIcon fas fa-map-marker-alt'></i>
                         </div>
                         <div class="myTicketLocationText">
-                            <span class="myTicketCity">{{ticket.Location}}</span><br>
-                            <span class="myTicketDate">{{ticket.Date}}</span>
+                            <span class="myTicketCity">{{ticket.location}}</span><br>
+                            <span class="myTicketDate">{{ticket.endDate}}</span>
                         </div>
                         <button class="myTicketListBtn">List Ticket</button>
                     </div>
