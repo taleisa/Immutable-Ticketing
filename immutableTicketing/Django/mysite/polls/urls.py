@@ -1,8 +1,8 @@
 from django.urls import path
-
 from . import views
+from .views import buyForm, success
 
 urlpatterns = [
-    path('home/', views.load_template, name='template'),
-    path('home/<account>', views.send_transaction, name='send transaction'),
+    path('home/', buyForm.as_view(), name='buy'),
+    path('home/success/', success.as_view(), name='success'),
 ]

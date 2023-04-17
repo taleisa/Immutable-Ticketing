@@ -34,7 +34,7 @@ contract_address = "0x15382Add19aD7DB6D6bD96cf774dafE94A0Fb731"
 #eventhost1.grantMinterRole(temp_contract)
 
 #gea_e = EventHost(GEA)
-#gea_e.mintTicket(temp_contract, "whfljkwef", 500000000000000, 501)
+#gea_e.mintTicket(temp_contract, "whfljkwef", 500000000000000, 502)
 
 
 #minting tickets

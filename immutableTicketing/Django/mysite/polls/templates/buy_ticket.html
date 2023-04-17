@@ -10,9 +10,24 @@
     <button id="send-transcation">Send Transaction</button>
     <label for="token">Token ID:</label>
     <input type="number" id="TokenId" placeholder="0"><br>
+    <form method="post" action="">
+        {% csrf_token %}
+        {{form}}
+        <button id="submit-form">Submit Form</button>
+    </form>
+    <button id="check">CHECK</button>
     <button id="sign-transcation">Sign Transaction</button>
     <span id="account"><br></span>
     <span id="output"></span>
+    {{ gas|json_script:"gas" }}
+    {{ maxFeePerGas|json_script:"maxFeePerGas" }}
+    {{ maxPriorityFeePerGas|json_script:"maxPriorityFeePerGas" }}
+    {{ chainId|json_script:"chainId" }}
+    {{ from_|json_script:"from" }}
+    {{ value|json_script:"value" }}
+    {{ nonce|json_script:"nonce" }}
+    {{ to|json_script:"to" }}
+    {{ data|json_script:"data" }}
     <!--<ul>
         {% for x in contract_abi %}
           <li>{{ x }}</li>
@@ -24,9 +39,13 @@
             /* retreives user account address*/
         ethereum.request({method: 'eth_requestAccounts'}).then(accounts => {
             account = accounts[0];
+            document.getElementById('id_wallet_address').value = account; //gets the account from metamask and saves it to to form.account
             document.getElementById("account").innerText = account;
-
         });
+        });
+        document.getElementById('check').addEventListener('click', event => {
+            const data = JSON.parse(document.getElementById('data').textContent);
+            document.getElementById("account").innerText = "From form"+value;
         });
         document.getElementById('send-transcation').addEventListener('click', event =>{
             /* sends ether to the 'to' account*/
@@ -41,15 +60,25 @@
         });
         document.getElementById('sign-transcation').addEventListener('click', event =>{
             /* buys ticket*/
-            let transactionParam = {'gas': "80701", 
-            'maxFeePerGas': "1221235230", 
-            'maxPriorityFeePerGas': "1000000000", 
-            'chainId': "1337", 
-            'from': '0x79F61a835acb55212915Dd05B546517BEBb2F97D', 
-            'value': "0x1c6bf52634000", 
-            'nonce': "2", 
-            'to': '0x15382Add19aD7DB6D6bD96cf774dafE94A0Fb731', 
-            'data': '0x821895510000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000848218955100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000001479f61a835acb55212915dd05b546517bebb2f97d00000000000000000000000000000000000000000000000000000000000000000000000000000000'}; 
+            const gas = JSON.parse(document.getElementById('gas').textContent);
+            const maxFeePerGas = JSON.parse(document.getElementById('maxFeePerGas').textContent);
+            const maxPriorityFeePerGas = JSON.parse(document.getElementById('maxPriorityFeePerGas').textContent);
+            const chainId = JSON.parse(document.getElementById('chainId').textContent);
+            const from = JSON.parse(document.getElementById('from').textContent);
+            const value = JSON.parse(document.getElementById('value').textContent);
+            const nonce = JSON.parse(document.getElementById('nonce').textContent);
+            const to = JSON.parse(document.getElementById('to').textContent);
+            const data = JSON.parse(document.getElementById('data').textContent);
+            let transactionParam = {'gas': gas, 
+            'maxFeePerGas': maxFeePerGas, 
+            'maxPriorityFeePerGas': maxPriorityFeePerGas, 
+            'chainId': chainId, 
+            'from': from, 
+            'value': value, 
+            'nonce': nonce, 
+            'to': to, 
+            'data': data};
+            document.getElementById("account").innerText = "From form: "+ transactionParam.from; 
             /* working {
             'gas': "79541", 
             'maxFeePerGas': "1002151624", 
