@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView, ListView
+from django.views.generic import TemplateView, ListView, FormView
 from django.views import View
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from access.models import Event
+from forms import listForm
 
 class homePage(LoginRequiredMixin, TemplateView):
     template_name = 'marketplace/marketplacePage.html'
@@ -14,7 +15,7 @@ class eventPage(LoginRequiredMixin, TemplateView):
     template_name = 'marketplace/eventPage.html'
     login_url = reverse_lazy("events")
     
-class ownedTickets(LoginRequiredMixin,TemplateView):
+class ownedTickets(LoginRequiredMixin,FormView):
     template_name  = 'marketplace/myTicket.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -26,7 +27,14 @@ class ownedTickets(LoginRequiredMixin,TemplateView):
     
     
     
-class listTicket(LoginRequiredMixin,View):
+class listTicket(LoginRequiredMixin,FormView):
+    template_name = market
+    form_class = listForm
+    def form_valid(self, form):
+        contract_address = form.cleaned_data['contract_address']
+        ticket_index = forms.cleaned_data['ticket_index']
+        return super(listTicket, self).form_valid(form)
+    
     def get(self, request, *args, **kwargs):
         ticket_address = args['address']
         ###################################################
@@ -50,6 +58,15 @@ class User:
     def __init__(self, user_address):
         self.user_address = user_address
 
+
+    def listTicket(self,ticketIndex,contract_addrress):
+        # Contract the the ticket belongs to 
+        contract  = User.w3.eth.contract(address=contract_addrress,abi= User.ABI, bytecode = User.Bytecode)
+        tx_dict = temp_contract.functions.buy(
+            ticket_index, temp_contract.encodeABI(fn_name="sale", args= [True, ticketIndex])
+                    ).build_transaction({"from": self.user_address,
+                                         'nonce': User.w3.eth.get_transaction_count(self.user_address)}) # {'nonce': User.w3.eth.get_transaction_count(self.user_address)} specifies nonce
+        return tx_dict
     def retrieveAllTickets(self):
         # retrieve tickets under the same address
         # tickets array contains an array of tickets each contatins the attributes of the ticket
