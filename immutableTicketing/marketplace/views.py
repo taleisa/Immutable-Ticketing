@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView, FormView
@@ -5,7 +7,7 @@ from django.views import View
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from access.models import Event
-from forms import listForm
+from .forms import listForm
 
 class homePage(LoginRequiredMixin, TemplateView):
     template_name = 'marketplace/marketplacePage.html'
@@ -17,6 +19,14 @@ class eventPage(LoginRequiredMixin, TemplateView):
     
 class ownedTickets(LoginRequiredMixin,FormView):
     template_name  = 'marketplace/myTicket.html'
+    form_class = listForm
+    def form_valid(self, form):
+        contract_address = form.cleaned_data['contract_address']
+        ticket_index = forms.cleaned_data['ticket_index']
+        user = User(self.request.user.web3User.wallet_address)
+        transaction_variables = user.listTicket(ticketIndex, contract_addrress)
+        return render(self.request,'marketplace/myTicket.html',{'form':form,'transaction_variable':transaction_variables})
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = User(self.request.user.web3User.wallet_address) 
@@ -27,20 +37,6 @@ class ownedTickets(LoginRequiredMixin,FormView):
     
     
     
-class listTicket(LoginRequiredMixin,FormView):
-    template_name = market
-    form_class = listForm
-    def form_valid(self, form):
-        contract_address = form.cleaned_data['contract_address']
-        ticket_index = forms.cleaned_data['ticket_index']
-        return super(listTicket, self).form_valid(form)
-    
-    def get(self, request, *args, **kwargs):
-        ticket_address = args['address']
-        ###################################################
-        ####Invoke transaction to list ticket on blockchain
-        ###################################################
-        return HttpResponseRedirect('myTickets')
     
     
 from web3 import Web3
@@ -68,6 +64,9 @@ class User:
                                          'nonce': User.w3.eth.get_transaction_count(self.user_address)}) # {'nonce': User.w3.eth.get_transaction_count(self.user_address)} specifies nonce
         return tx_dict
     def retrieveAllTickets(self):
+        # Dictionary to change from numbers of month to name of month
+        dates = {'01':'Jan','02':'Feb','03':'Mar','04':'Apr','05':'May','06':'Jun',
+              '07':'Jul','08':'Aug','09':'Sep','10':'Oct','11':'Nov','12':'Dec'}
         # retrieve tickets under the same address
         # tickets array contains an array of tickets each contatins the attributes of the ticket
         # contract_addressess = DBMS.getAllcontracts()
@@ -76,7 +75,7 @@ class User:
         tickets = []
         for event in events: # iterate through the contract instances
             # contract instance
-            contract = User.w3.eth.contract(address= event.wallet_address, abi= User.ABI, bytecode = User.Bytecode)
+            contract = User.w3.eth.contract(address= event.address, abi= User.ABI, bytecode = User.Bytecode)
             # number of tickets in the entire contract (each event)
             ticket_counter = contract.functions._tokenIdCounter().call()
             for x in range(ticket_counter): # loops through the
@@ -84,13 +83,22 @@ class User:
                     ticket = {}
                     ticket['name'] = contract.functions.name().call()
                     ticket['location'] = contract.functions._eventLocation().call()
-                    ticket['eventType'] = contract.functions._eventType().call()
-                    ticket['startDate'] = contract.functions._startDate().call()
-                    ticket['endDate'] = contract.functions._endDate().call()
-                    ticket['tokenURI'] = contract.functions.tokenURI(x).call()
+                    ticket['event_type'] = contract.functions._eventType().call()
+                    ticket['start_date_hour'] = datetime.utcfromtimestamp(contract.functions._startDate().call()).strftime('%H:%M:%S')
+                    ticket['end_date_hour'] = datetime.utcfromtimestamp(contract.functions._endDate().call()).strftime('%H:%M:%S')
+                    ticket['start_date_day'] = datetime.utcfromtimestamp(contract.functions._startDate().call()).strftime('%d')
+                    ticket['end_date_day'] = datetime.utcfromtimestamp(contract.functions._endDate().call()).strftime('%d')
+                    ticket['start_date_month'] = dates[datetime.utcfromtimestamp(contract.functions._startDate().call()).strftime('%m')]
+                    ticket['end_date_month'] = dates[datetime.utcfromtimestamp(contract.functions._endDate().call()).strftime('%m')]
+                    ticket['start_date'] = datetime.utcfromtimestamp(contract.functions._startDate().call()).strftime('%Y-%m-%d %H:%M:%S')
+                    ticket['end_date'] = datetime.utcfromtimestamp(contract.functions._endDate().call()).strftime('%Y-%m-%d %H:%M:%S')
+                    ticket['token_URI'] = contract.functions.tokenURI(x).call()
                     ticket['price'] = contract.functions._allTickets(x).call()[0]  
-                    ticket['onSale'] = contract.functions._allTickets(x).call()[1]
-                    ticket['seatNumber'] =  contract.functions._allTickets(x).call()[2]                   
+                    ticket['on_sale'] = contract.functions._allTickets(x).call()[1]
+                    ticket['seat_number'] =  contract.functions._allTickets(x).call()[2]
+                    ticket['contract_address'] = event.address
+                    ticket['ticket_index'] = x      
+                    ticket['abi'] = User.ABI          
                     tickets.append(ticket)                    
         return tickets
     # def retrieveSpecificTickets(self, event_name):

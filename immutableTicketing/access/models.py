@@ -10,4 +10,4 @@ class web3User(models.Model):
 
 
 class Event(models.Model):
-    wallet_address = models.CharField(max_length = 42, unique=True)
+    address = models.CharField(max_length = 42, unique=True)
