@@ -7,10 +7,7 @@
     <title>Immutable Ticketing</title>
     {% load static %}
     <link rel="stylesheet" href={% static 'marketplace/style.css' %}>
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css?family=Cabin|Indie+Flower|Inknut+Antiqua|Lora|Ravi+Prakash"
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap"
@@ -35,12 +32,14 @@ body {
   font-family: 'Cabin', sans-serif;
 }
 
+.myTicketSection {
+  margin-bottom: 1000px;
+}
+
 .myTickets {
 	display: flex;
 	overflow-x: auto;
 }
-
-
 
 .myTickets .item {
 	flex: 0 0 66%;
@@ -161,6 +160,7 @@ body {
 }
     </style>
   </head>
+  {% include 'access/header.html' %}
   <body>
     <section class="myTicketSection">
       <div class="container">
