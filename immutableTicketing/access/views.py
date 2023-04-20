@@ -25,14 +25,14 @@ class login(FormView):
     success_url = reverse_lazy('home')
     form_class = walletForm
     def form_valid(self, form):
-        wallet_address = form.cleaned_data['wallet_address']
+        wallet_address = form.cleaned_data['wallet_address'].lower()
         user = self.request.user
         if user.is_anonymous:
             messages.error(self.request, 'Please login using nafath')
             self.success_url = reverse_lazy('login')
             return super(login, self).form_valid(form)
         try:
-            user_wallet_address = user.web3User.wallet_address
+            user_wallet_address = user.web3User.wallet_address.lower()
         except:
             
             webUser = web3User(user = user)
