@@ -58,15 +58,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script>
         const ethereumButton = document.querySelector('#MetaMaskBtn');
-        ethereumButton.addEventListener('click', () => {
-          //Will Start the metamask extension
-          ethereum.request({ method: 'eth_requestAccounts' });
-          document.getElementById("id_wallet_address").value = ethereum.selectedAddress;
-        });
-        let submitButton = document.getElementById("loginToWebsite");
-        submitButton.addEventListener('click', () => {
-           document.getElementById("id_wallet_address").value = ethereum.selectedAddress;
-         });
+        ethereumButton.addEventListener('click', () =>metamaskListener(), false );
+        async function metamaskListener() {
+            //Will Start the metamask extension
+            accounts=await ethereum.request({ method: 'eth_requestAccounts' });
+            document.getElementById("id_wallet_address").value = accounts[0];
+          }
     </script>
 </body>
 {% include 'access/footer.html' %}

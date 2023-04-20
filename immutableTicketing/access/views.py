@@ -10,6 +10,7 @@ from django.contrib.auth import authenticate, login
 from . models import web3User
 from django.contrib import messages
 from django.db import IntegrityError
+from web3 import Web3
 
 class createAccount(FormView):
     template_name = "access/createAccount.html"
@@ -35,7 +36,7 @@ class login(FormView):
         except:
             
             webUser = web3User(user = user)
-            webUser.wallet_address = wallet_address
+            webUser.wallet_address = Web3.to_checksum_address(wallet_address) 
             try:
                 webUser.save()
             except IntegrityError:
