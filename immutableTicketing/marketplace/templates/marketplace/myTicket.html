@@ -295,6 +295,11 @@ body {
                                 ethereum.request({method: 'eth_sendTransaction', params:[transactionParam]});
                             }
     </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        document.querySelector('.ticket-page').classList.add('active');
+      });
+  </script>
   </body>
   {% include 'access/footer.html' %}
 </html>
