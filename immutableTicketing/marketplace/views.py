@@ -11,21 +11,19 @@ from .forms import listForm
 from django.contrib import messages
 from web3 import Web3
 
+
 class homePage(LoginRequiredMixin, TemplateView):
     template_name = "marketplace/marketplacePage.html"
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         query = QueryBC()
-        context['tickets'] = query.retrieveAllTickets(self.request)
+        context["tickets"] = query.retrieveAllTickets(self.request)
         return context
-    
 
 
 class eventPage(LoginRequiredMixin, TemplateView):
     template_name = "marketplace/eventPage.html"
-    
-    
 
 
 class ownedTickets(LoginRequiredMixin, TemplateView):
@@ -39,24 +37,30 @@ class ownedTickets(LoginRequiredMixin, TemplateView):
         context["tickets"] = all_tickets
         return context
 
-class singleTicket(LoginRequiredMixin,TemplateView):
-    template_name='marketplace/marketPlaceTicketPage.html'
-    
+
+class singleTicket(LoginRequiredMixin, TemplateView):
+    template_name = "marketplace/marketPlaceTicketPage.html"
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        contract_address = kwargs['contract_address']
-        ticket_index = kwargs['ticket_index']
-        context['ticket'] = QueryBC().retrieveSingleTicket(self.request, contract_address, ticket_index, self.request.user.web3User.wallet_address)
+        contract_address = kwargs["contract_address"]
+        ticket_index = kwargs["ticket_index"]
+        context["ticket"] = QueryBC().retrieveSingleTicket(
+            self.request,
+            contract_address,
+            ticket_index,
+            self.request.user.web3User.wallet_address,
+        )
         return context
-    
-    
 
 
 # from dbms import DBMS
 # from eventhost import EventHost
 import json
+
+
 class QueryBC:
-     # connecting the blockchain network in ganache
+    # connecting the blockchain network in ganache
     w3 = Web3(Web3.HTTPProvider("HTTP://127.0.0.1:7545"))
     # retrieving the generated ABI and Byte code from the
     truffleFile = json.load(
@@ -64,25 +68,23 @@ class QueryBC:
     )  # truffle generated file
     ABI = truffleFile["abi"]  # ABI generated in the file
     Bytecode = truffleFile["bytecode"]  # metadata generated in the file
-    def retrieveAllTickets(self,request):
-        # Dictionary to change from numbers of month to name of month
-        dates = {
-            "01": "Jan",
-            "02": "Feb",
-            "03": "Mar",
-            "04": "Apr",
-            "05": "May",
-            "06": "Jun",
-            "07": "Jul",
-            "08": "Aug",
-            "09": "Sep",
-            "10": "Oct",
-            "11": "Nov",
-            "12": "Dec",
-        }
-        # retrieve tickets under the same address
-        # tickets array contains an array of tickets each contatins the attributes of the ticket
-        # contract_addressess = DBMS.getAllcontracts()
+    dates = {# Dictionary to change from numbers of month to name of month
+        "01": "Jan",
+        "02": "Feb",
+        "03": "Mar",
+        "04": "Apr",
+        "05": "May",
+        "06": "Jun",
+        "07": "Jul",
+        "08": "Aug",
+        "09": "Sep",
+        "10": "Oct",
+        "11": "Nov",
+        "12": "Dec",
+    }
+    # Retreieve all tickets that belong to all contracts in DB
+    def retrieveAllTickets(self, request):
+
         events = Event.objects.all()
         # Each ticket is a dictionary, list contains all tickets
         tickets = []
@@ -95,10 +97,14 @@ class QueryBC:
             try:
                 ticket_counter = contract.functions._tokenIdCounter().call()
             except:
-                messages.error(request, 'Blockchain connection error')
+                messages.error(request, "Blockchain connection error")
                 return None
-            for x in range(ticket_counter):  # loops through the
-                if not contract.functions.ticketIndexToOwner(x).call() == request.user.web3User.wallet_address:
+            for index in range(ticket_counter):  # loops through the tickets
+                # If ticket belongs to user do not add it
+                if (
+                    not contract.functions.ticketIndexToOwner(index).call()
+                    == request.user.web3User.wallet_address
+                ):
                     ticket = {}
                     ticket["name"] = contract.functions.name().call()
                     ticket["location"] = contract.functions._eventLocation().call()
@@ -115,12 +121,12 @@ class QueryBC:
                     ticket["end_date_day"] = datetime.utcfromtimestamp(
                         contract.functions._endDate().call()
                     ).strftime("%d")
-                    ticket["start_date_month"] = dates[
+                    ticket["start_date_month"] = self.dates[
                         datetime.utcfromtimestamp(
                             contract.functions._startDate().call()
                         ).strftime("%m")
                     ]
-                    ticket["end_date_month"] = dates[
+                    ticket["end_date_month"] = self.dates[
                         datetime.utcfromtimestamp(
                             contract.functions._endDate().call()
                         ).strftime("%m")
@@ -131,38 +137,26 @@ class QueryBC:
                     ticket["end_date"] = datetime.utcfromtimestamp(
                         contract.functions._endDate().call()
                     ).strftime("%Y-%m-%d %H:%M:%S")
-                    ticket["token_URI"] = contract.functions.tokenURI(x).call()
-                    ticket["price"] = contract.functions._allTickets(x).call()[0]
-                    ticket["on_sale"] = contract.functions._allTickets(x).call()[1]
-                    ticket["seat_number"] = contract.functions._allTickets(x).call()[2]
+                    ticket["token_URI"] = contract.functions.tokenURI(index).call()
+                    ticket["price"] = contract.functions._allTickets(index).call()[0]
+                    ticket["on_sale"] = contract.functions._allTickets(index).call()[1]
+                    ticket["seat_number"] = contract.functions._allTickets(index).call()[2]
                     ticket["contract_address"] = event.address
-                    ticket["ticket_index"] = x
+                    ticket["ticket_index"] = index
                     tickets.append(ticket)
         return tickets
 
-    def retrieveSingleTicket(self,request,contract_address,ticket_index, user_address):
-        # Dictionary to change from numbers of month to name of month
-        dates = {
-            "01": "Jan",
-            "02": "Feb",
-            "03": "Mar",
-            "04": "Apr",
-            "05": "May",
-            "06": "Jun",
-            "07": "Jul",
-            "08": "Aug",
-            "09": "Sep",
-            "10": "Oct",
-            "11": "Nov",
-            "12": "Dec",
-        }
+    def retrieveSingleTicket(
+        self, request, contract_address, ticket_index, user_address
+    ):
+
         # retrieve tickets under the same address
         # tickets array contains an array of tickets each contatins the attributes of the ticket
         # contract_addressess = DBMS.getAllcontracts()
         try:
             event = Event.objects.get(address=contract_address)
         except:
-            messages.error(request, 'Event does not exist')
+            messages.error(request, "Event does not exist")
             return None
         # Each ticket is a dictionary, list contains all tickets
         tickets = []
@@ -174,7 +168,7 @@ class QueryBC:
         try:
             ticket_counter = contract.functions._tokenIdCounter().call()
         except:
-            messages.error(request, 'Blockchain connection error')
+            messages.error(request, "Blockchain connection error")
             return None
 
         ticket = {}
@@ -193,15 +187,15 @@ class QueryBC:
         ticket["end_date_day"] = datetime.utcfromtimestamp(
             contract.functions._endDate().call()
         ).strftime("%d")
-        ticket["start_date_month"] = dates[
-            datetime.utcfromtimestamp(
-                contract.functions._startDate().call()
-            ).strftime("%m")
+        ticket["start_date_month"] = self.dates[
+            datetime.utcfromtimestamp(contract.functions._startDate().call()).strftime(
+                "%m"
+            )
         ]
-        ticket["end_date_month"] = dates[
-            datetime.utcfromtimestamp(
-                contract.functions._endDate().call()
-            ).strftime("%m")
+        ticket["end_date_month"] = self.dates[
+            datetime.utcfromtimestamp(contract.functions._endDate().call()).strftime(
+                "%m"
+            )
         ]
         ticket["start_date_year"] = datetime.utcfromtimestamp(
             contract.functions._startDate().call()
@@ -227,20 +221,20 @@ class QueryBC:
         )
         try:
             tx_dict = contract.functions.buy(
-            ticket_index, contract.encodeABI(fn_name="buy", args= [ticket_index, user_address])
-                                            ).build_transaction({"from": user_address,
-                                                                'value': ticket['price'],
-                                                                'nonce': QueryBC.w3.eth.get_transaction_count(user_address)})
+                ticket_index,
+                contract.encodeABI(fn_name="buy", args=[ticket_index, user_address]),
+            ).build_transaction(
+                {
+                    "from": user_address,
+                    "value": ticket["price"],
+                    "nonce": QueryBC.w3.eth.get_transaction_count(user_address),
+                }
+            )
         except:
-            messages.error(request, 'Ticket not for sale')
+            messages.error(request, "Ticket not for sale")
             return None
-        ticket = {**ticket,**tx_dict}
+        ticket = {**ticket, **tx_dict}
         return ticket
-        
-
-
-
-
 
 
 class User:
@@ -261,7 +255,7 @@ class User:
 
         return tx_dict
 
-    def retrieveAllTickets(self,request):
+    def retrieveAllTickets(self, request):
         # Dictionary to change from numbers of month to name of month
         dates = {
             "01": "Jan",
@@ -292,7 +286,7 @@ class User:
             try:
                 ticket_counter = contract.functions._tokenIdCounter().call()
             except:
-                messages.error(request, 'Blockchain connection error')
+                messages.error(request, "Blockchain connection error")
                 return None
             for x in range(ticket_counter):  # loops through the
                 if contract.functions.ticketIndexToOwner(x).call() == self.user_address:
@@ -339,7 +333,7 @@ class User:
                         address=event.address, abi=User.ABI, bytecode=User.Bytecode
                     )
                     tx_dict = contract.functions.sale(
-                        not ticket["on_sale"] , x
+                        not ticket["on_sale"], x
                     ).build_transaction(
                         {
                             "from": self.user_address,
@@ -348,7 +342,7 @@ class User:
                             ),
                         }
                     )
-                    ticket = {**ticket,**tx_dict}
+                    ticket = {**ticket, **tx_dict}
                     tickets.append(ticket)
         return tickets
 
