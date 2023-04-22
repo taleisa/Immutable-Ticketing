@@ -98,45 +98,46 @@ class QueryBC:
                 messages.error(request, 'Blockchain connection error')
                 return None
             for x in range(ticket_counter):  # loops through the
-                ticket = {}
-                ticket["name"] = contract.functions.name().call()
-                ticket["location"] = contract.functions._eventLocation().call()
-                ticket["event_type"] = contract.functions._eventType().call()
-                ticket["start_date_hour"] = datetime.utcfromtimestamp(
-                    contract.functions._startDate().call()
-                ).strftime("%H:%M:%S")
-                ticket["end_date_hour"] = datetime.utcfromtimestamp(
-                    contract.functions._endDate().call()
-                ).strftime("%H:%M:%S")
-                ticket["start_date_day"] = datetime.utcfromtimestamp(
-                    contract.functions._startDate().call()
-                ).strftime("%d")
-                ticket["end_date_day"] = datetime.utcfromtimestamp(
-                    contract.functions._endDate().call()
-                ).strftime("%d")
-                ticket["start_date_month"] = dates[
-                    datetime.utcfromtimestamp(
+                if not contract.functions.ticketIndexToOwner(x).call() == request.user.web3User.wallet_address:
+                    ticket = {}
+                    ticket["name"] = contract.functions.name().call()
+                    ticket["location"] = contract.functions._eventLocation().call()
+                    ticket["event_type"] = contract.functions._eventType().call()
+                    ticket["start_date_hour"] = datetime.utcfromtimestamp(
                         contract.functions._startDate().call()
-                    ).strftime("%m")
-                ]
-                ticket["end_date_month"] = dates[
-                    datetime.utcfromtimestamp(
+                    ).strftime("%H:%M:%S")
+                    ticket["end_date_hour"] = datetime.utcfromtimestamp(
                         contract.functions._endDate().call()
-                    ).strftime("%m")
-                ]
-                ticket["start_date"] = datetime.utcfromtimestamp(
-                    contract.functions._startDate().call()
-                ).strftime("%Y-%m-%d %H:%M:%S")
-                ticket["end_date"] = datetime.utcfromtimestamp(
-                    contract.functions._endDate().call()
-                ).strftime("%Y-%m-%d %H:%M:%S")
-                ticket["token_URI"] = contract.functions.tokenURI(x).call()
-                ticket["price"] = contract.functions._allTickets(x).call()[0]
-                ticket["on_sale"] = contract.functions._allTickets(x).call()[1]
-                ticket["seat_number"] = contract.functions._allTickets(x).call()[2]
-                ticket["contract_address"] = event.address
-                ticket["ticket_index"] = x
-                tickets.append(ticket)
+                    ).strftime("%H:%M:%S")
+                    ticket["start_date_day"] = datetime.utcfromtimestamp(
+                        contract.functions._startDate().call()
+                    ).strftime("%d")
+                    ticket["end_date_day"] = datetime.utcfromtimestamp(
+                        contract.functions._endDate().call()
+                    ).strftime("%d")
+                    ticket["start_date_month"] = dates[
+                        datetime.utcfromtimestamp(
+                            contract.functions._startDate().call()
+                        ).strftime("%m")
+                    ]
+                    ticket["end_date_month"] = dates[
+                        datetime.utcfromtimestamp(
+                            contract.functions._endDate().call()
+                        ).strftime("%m")
+                    ]
+                    ticket["start_date"] = datetime.utcfromtimestamp(
+                        contract.functions._startDate().call()
+                    ).strftime("%Y-%m-%d %H:%M:%S")
+                    ticket["end_date"] = datetime.utcfromtimestamp(
+                        contract.functions._endDate().call()
+                    ).strftime("%Y-%m-%d %H:%M:%S")
+                    ticket["token_URI"] = contract.functions.tokenURI(x).call()
+                    ticket["price"] = contract.functions._allTickets(x).call()[0]
+                    ticket["on_sale"] = contract.functions._allTickets(x).call()[1]
+                    ticket["seat_number"] = contract.functions._allTickets(x).call()[2]
+                    ticket["contract_address"] = event.address
+                    ticket["ticket_index"] = x
+                    tickets.append(ticket)
         return tickets
 
     def retrieveSingleTicket(self,request,contract_address,ticket_index, user_address):
