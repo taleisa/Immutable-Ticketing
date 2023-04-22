@@ -35,17 +35,26 @@ a {
 }
 
 header {
-  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.5);
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-}
-
-nav {
   display: flex;
+  justify-content: space-between;
+  margin: 10px;
+}
+.header-icon {
+  background-color: #715c9e;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border-top: 2px solid #10b491;
+}
+.header-icon i {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  height: 120px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #e1e1e0;
 }
 
 .menu {
@@ -185,10 +194,18 @@ nav {
   justify-content: space-around;
   align-items: center;
   padding: 1rem 0;
-  background-image: url(https://i.imgur.com/kHFXYWP.png);
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Resize the background image to cover the entire container */
+  /*background-image: url("https://i.imgur.com/kHFXYWP.png"); */
+  /*background-position: center; /* Center the image */
+  /*background-repeat: no-repeat; /* Do not repeat the image */
+  /*background-size: cover; /* Resize the background image to cover the entire container */
+  background-image: linear-gradient(
+    to right,
+    #7311b6,
+    #951cb3,
+    #b12cb1,
+    #c83faf,
+    #dc53af
+  );
   font-size: 1.2rem;
   margin-top: 50px;
   position: sticky;
@@ -198,7 +215,7 @@ nav {
 }
 
 .footer a.active i {
-  background-color: #6e55ba;
+  background-color: #725c9e;
   border-radius: 50%;
   padding: 28px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -456,7 +473,7 @@ nav {
   align-items: center;
   text-align: center;
   color: white;
-  margin-bottom: 200px;
+  margin-bottom: 250px;
 }
 
 #myProfileName {
@@ -511,7 +528,7 @@ nav {
   align-items: center;
   text-align: center;
   color: white;
-  margin-bottom: 200px;
+  margin-bottom: 350px;
 }
 
 #sendBtn {

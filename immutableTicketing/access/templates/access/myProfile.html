@@ -1,61 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    {% load static  %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Immutable Ticketing</title>
     <link rel="stylesheet" href={% static 'access/style.css' %}>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
 
-</head>
-
-<body>
-    <header>
-        
-    </header>
-
+  <body>
+    {% include 'access/header.html' %}
     <section class="myProfileSection">
-        <div class="container">
-            <div class="section-header">
-                <h1>My Profile</h1>
-            </div>
-            <img src="https://secure.gravatar.com/avatar/d5b2344d21c5d3da318657fb100979fa?s=500&d=mm&r=g" style="height:200px; border-radius: 50%; border: 8px solid #FFF;" alt="Profile Picture">
-            <br>
-            <span id="myProfileName">{{name}}</span>
-            <br>
-            <span id="myProfileEmail">{{email}}</span>
-            <br>
-            <br>
-            <br>
-            <br>
-            <span id="labelBalance">Wallet Address</span>
-            <br>
-            <br>
-            <span id="myProfileBalance">{{wallet}}</span>
-            <br>
-            <br>
-            <a href="#" id="addBtnAnchor">
-                <div id="addBtnDiv">
-                  <i class="fa fa-plus" style="font-size:22px; color: #B6016F;"></i>
-                </div>
-              </a>
-            <br>
-            <span id="labelMoney">ADD MONEY</span>
+      <div class="container">
+        <div class="section-header">
+          <h1>My Profile</h1>
         </div>
+        <img
+          src="https://secure.gravatar.com/avatar/d5b2344d21c5d3da318657fb100979fa?s=500&d=mm&r=g"
+          style="height: 200px; border-radius: 50%; border: 8px solid #fff"
+          alt="Profile Picture"
+        />
+        <br />
+        <span id="myProfileName">{{name}}</span>
+        <br />
+        <span id="myProfileEmail">{{email}}</span>
+        <br />
+        <br />
+        <br />
+        <br />
+        <span id="labelBalance">Wallet Address</span>
+        <br />
+        <br />
+        <span id="myProfileBalance">{{wallet}}</span>
+        <br />
+        <br />
+        <a href="#" id="addBtnAnchor">
+          <div id="addBtnDiv">
+            <i class="fa fa-plus" style="font-size: 22px; color: #b6016f"></i>
+          </div>
+        </a>
+        <br />
+        <span id="labelMoney">ADD MONEY</span>
+      </div>
     </section>
     <script src="script.js"></script>
-    
-    {% include 'access/footer.html' %}
-                
-	<script>
-			document.addEventListener("DOMContentLoaded", function() {
-			document.querySelector('.profile-page').classList.add('active');
-		});
-	</script>
-</body>
 
+    {% include 'access/footer.html' %}
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector(".profile-page").classList.add("active");
+      });
+    </script>
+  </body>
 </html>
