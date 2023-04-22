@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import createAccount, nafath, login, profilePage, contactUs
+from .views import createAccount, nafath, login, profilePage, contactUs, logout
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
@@ -9,5 +9,6 @@ urlpatterns = [
     path("login/",login.as_view(),name = 'login'),
     path("profile/",profilePage.as_view(),name = 'profile'),
     path("conatctUs/",contactUs.as_view(),name = 'contactUs'),
+    path("logout/",logout.as_view(),name='logout'),
 ]
 

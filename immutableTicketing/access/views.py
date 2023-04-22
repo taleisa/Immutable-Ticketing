@@ -1,16 +1,18 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, FormView, View
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from . forms import accountForm, loginForm, walletForm
 from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from . models import web3User
 from django.contrib import messages
 from django.db import IntegrityError
 from web3 import Web3
+from django.http import HttpResponseRedirect
+from immutableTicketing import settings
 
 class createAccount(FormView):
     template_name = "access/createAccount.html"
@@ -73,3 +75,7 @@ class profilePage(LoginRequiredMixin,TemplateView):
     
 class contactUs(LoginRequiredMixin,TemplateView):
     template_name = 'access/contactUs.html'
+    
+    
+class logout(LogoutView):
+    pass
