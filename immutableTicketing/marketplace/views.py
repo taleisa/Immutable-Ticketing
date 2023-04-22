@@ -19,6 +19,7 @@ class homePage(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         query = QueryBC()
         context["tickets"] = query.retrieveAllTickets(self.request)
+        context["events"] = query.retreiveAllEvents()
         return context
 
 
@@ -146,9 +147,7 @@ class QueryBC:
                     tickets.append(ticket)
         return tickets
 
-    def retrieveSingleTicket(
-        self, request, contract_address, ticket_index, user_address
-    ):
+    def retrieveSingleTicket(self, request, contract_address, ticket_index, user_address):
 
         # retrieve tickets under the same address
         # tickets array contains an array of tickets each contatins the attributes of the ticket
@@ -236,6 +235,56 @@ class QueryBC:
         ticket = {**ticket, **tx_dict}
         return ticket
 
+    def retreiveAllEvents(self):
+        db_events = Event.objects.all()
+        
+        events = []
+        for db_event in db_events:
+            contract = User.w3.eth.contract(
+            address=db_event.address, abi=User.ABI, bytecode=User.Bytecode
+            )
+            event = {}
+            event["name"] = contract.functions.name().call()
+            event["location"] = contract.functions._eventLocation().call()
+            event["event_type"] = contract.functions._eventType().call()
+            event["start_date_hour"] = datetime.utcfromtimestamp(
+                contract.functions._startDate().call()
+            ).strftime("%H:%M:%S")
+            event["end_date_hour"] = datetime.utcfromtimestamp(
+                contract.functions._endDate().call()
+            ).strftime("%H:%M:%S")
+            event["start_date_day"] = datetime.utcfromtimestamp(
+                contract.functions._startDate().call()
+            ).strftime("%d")
+            event["end_date_day"] = datetime.utcfromtimestamp(
+                contract.functions._endDate().call()
+            ).strftime("%d")
+            event["start_date_month"] = self.dates[
+                datetime.utcfromtimestamp(contract.functions._startDate().call()).strftime(
+                    "%m"
+                )
+            ]
+            event["end_date_month"] = self.dates[
+                datetime.utcfromtimestamp(contract.functions._endDate().call()).strftime(
+                    "%m"
+                )
+            ]
+            event["start_date_year"] = datetime.utcfromtimestamp(
+                contract.functions._startDate().call()
+            ).strftime("%Y")
+            event["end_date_year"] = datetime.utcfromtimestamp(
+                contract.functions._endDate().call()
+            ).strftime("%Y")
+            event["start_date"] = datetime.utcfromtimestamp(
+                contract.functions._startDate().call()
+            ).strftime("%Y-%m-%d %H:%M:%S")
+            event["end_date"] = datetime.utcfromtimestamp(
+                contract.functions._endDate().call()
+            ).strftime("%Y-%m-%d %H:%M:%S")
+            event["token_URI"] = contract.functions.tokenURI(0).call()
+            event["contract_address"] = db_event.address
+            events.append(event)
+        return events
 
 class User:
     # connecting the blockchain network in ganache
