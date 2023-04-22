@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from access.models import Event
 from .forms import listForm
-
+from django.contrib import messages
 
 class homePage(LoginRequiredMixin, TemplateView):
     template_name = "marketplace/marketplacePage.html"
@@ -20,29 +20,14 @@ class eventPage(LoginRequiredMixin, TemplateView):
     login_url = reverse_lazy("events")
 
 
-class ownedTickets(LoginRequiredMixin, FormView):
+class ownedTickets(LoginRequiredMixin, TemplateView):
     template_name = "marketplace/myTicket.html"
-    form_class = listForm
-
-    def form_valid(self, form):
-        print("here")
-        contract_address = form.cleaned_data["contract_address"]
-        ticket_index = form.cleaned_data["ticket_index"]
-        user = User(self.request.user.web3User.wallet_address)
-        transaction_variables = user.listTicket(ticket_index, contract_address)
-        for variable in transaction_variables:
-            variable = str(variable)
-        return render(
-            self.request,
-            "marketplace/myTicket.html",
-            {"form": form, "transaction_variable": transaction_variables},
-        )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = User(self.request.user.web3User.wallet_address)
         # all_tickets = [ticket1,ticket2]
-        all_tickets = user.retrieveAllTickets()
+        all_tickets = user.retrieveAllTickets(self.request)
         context["tickets"] = all_tickets
         return context
 
@@ -72,7 +57,7 @@ class User:
 
         return tx_dict
 
-    def retrieveAllTickets(self):
+    def retrieveAllTickets(self,request):
         # Dictionary to change from numbers of month to name of month
         dates = {
             "01": "Jan",
@@ -100,7 +85,11 @@ class User:
                 address=event.address, abi=User.ABI, bytecode=User.Bytecode
             )
             # number of tickets in the entire contract (each event)
-            ticket_counter = contract.functions._tokenIdCounter().call()
+            try:
+                ticket_counter = contract.functions._tokenIdCounter().call()
+            except:
+                messages.error(request, 'Blockchain connection error')
+                return None
             for x in range(ticket_counter):  # loops through the
                 if contract.functions.ticketIndexToOwner(x).call() == self.user_address:
                     ticket = {}
