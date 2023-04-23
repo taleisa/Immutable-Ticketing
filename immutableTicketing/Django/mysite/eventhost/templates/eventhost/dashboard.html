@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        {% load static %}  
+        <link href={% static 'eventhost/css/style.css' %} rel="stylesheet" type="text/css">  
+</head>
+
+<body>
+    <div class="container dashboard">
+        <h3>Choose Event</h3>
+        <div class="city-bar">
+            <form name="eventsForm" id="id_eventsForm" action="" method="post">
+                {% csrf_token %}
+            <i class="fa-solid fa-location-dot"></i>
+            <select name="events" id="id_events" form="id_eventsForm" onchange="updateSelectedOption()">
+                {% for event in eventlist %}
+                <option value="{{ event.event }}">{{ event.event }}</option>
+                {% endfor %}  
+                <!--<option value="{{name}}">{{name}}</option>
+                <option value="saab">Saab</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>-->
+              </select>
+              {% for event in eventlist %}
+                <input type="text" hidden="True" value="{{event.contract}}" id="{{event.event}}">
+                {% endfor %}
+            </form>
+            <!--<i class="fa-solid fa-location-dot"></i>
+            <input type="text" placeholder="BLVD RUH CITY" readonly>
+            <i class="fa-solid fa-chevron-right"></i>-->
+        </div>
+        
+
+        <div class="ticket-dashboard">
+            <div class="list-ticket">
+                <h5>Listed Tickets</h5>
+                <h4 id="ticketsListed"></h4>
+                <!--{% if selected_option %}
+                <h4>You selected: {{ selected_option }}</h4>
+                {% endif %}
+                <h4>1000</h4>-->
+            </div>
+            <div class="ticket-sold">
+                <h5>Tickets Sold</h5>
+                <h4 id="ticketsSold"></h4>
+            </div>
+            <div class="relist-ticket">
+                <h5>Relisted Tickets</h5>
+                <h4 id="ticketsRelisted"></h4>
+            </div>
+            <div class="ticket-used">
+                <h5>Tickets Used</h5>
+                <h4 id="ticketsUsed"></h4>
+            </div>
+        </div>
+
+        <div class="ticket-bar">
+            <i class="fa-solid fa-ticket-simple"></i>
+            <input type="text" placeholder="Ticket" readonly>
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+        <ul class="ticket-data-table" id="tickets_list">
+            <!--<li class="list-data">
+                <a href="ticket-record.html" class="main-data">
+                    <i class="fa-solid fa-ticket-simple"></i>
+                    <div class="ticket-number">
+                        <p>#1001</p>
+                        <span>SAR 120</span>
+                    </div>
+                    <div class="ticket-details">
+                        <p>BLVD RUH CITY</p>
+                        <span>#1186480321</span>
+                    </div>
+                </a>
+            </li>
+            <li class="list-data">
+                <a href="ticket-record.html" class="main-data">
+                    <i class="fa-solid fa-ticket-simple"></i>
+                    <div class="ticket-number">
+                        <p>#1001</p>
+                        <span>SAR 120</span>
+                    </div>
+                    <div class="ticket-details">
+                        <p>BLVD RUH CITY</p>
+                        <span>#1186480321</span>
+                    </div>
+                </a>
+            </li>
+            <li class="list-data">
+                <a href="ticket-record.html" class="main-data">
+                    <i class="fa-solid fa-ticket-simple"></i>
+                    <div class="ticket-number">
+                        <p>#1001</p>
+                        <span>SAR 120</span>
+                    </div>
+                    <div class="ticket-details">
+                        <p>BLVD RUH CITY</p>
+                        <span>#1186480321</span>
+                    </div>
+                </a>
+            </li>-->
+        </ul>
+
+    </div>
+
+    <footer class="dashboard-footer">
+        <a href={% url 'dashboard' %} class="active">
+            <i class="fa-solid fa-house"></i> <span>Dashboard</span>
+        </a>
+        <a href={% url 'requests' %}><i class="fa-regular fa-envelope"></i></a>
+    </footer>
+
+    <script>
+        /*document.getElementById("id_events").addEventListener("change", function(){
+            document.getElementById("selected_option").innerText = "";
+            $.ajax({
+                type: "POST",
+                url: "{% url 'dashboard' %}",
+                data:{
+                    events: $("#id_events").val(),
+                },
+                dataType: "json",
+                success:function(response){
+                    document.getElementById("selected_option").innerText = "response.selected_option";
+                },
+            });    
+        });*/
+        function updateSelectedOption() {
+            const selectField = document.getElementById('id_events');
+            const selectedOption = selectField.options[selectField.selectedIndex].value;
+            const selectedContract = document.getElementById(selectedOption).value;
+            const csrfToken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '{% url "dashboard" %}');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.setRequestHeader('X-CSRFToken', csrfToken);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    const responseData = JSON.parse(xhr.responseText);
+                    const ticketsListed = document.getElementById('ticketsListed');
+                    const ticketsSold = document.getElementById('ticketsSold');
+                    const ticketsRelisted = document.getElementById('ticketsRelisted');
+                    const ticketsUsed = document.getElementById('ticketsUsed');
+                    ticketsListed.innerHTML = responseData.ticketsListed
+                    ticketsSold.innerHTML = responseData.ticketsSold
+                    ticketsRelisted.innerHTML = responseData.ticketsRelisted
+                    ticketsUsed.innerHTML = responseData.ticketsUsed
+                    tickets = responseData.tickets
+                    // assuming that you have an array of ticket objects called `tickets`
+                    const ticketsList = document.getElementById('tickets_list'); // assuming that you have a div element with id="tickets_list" where you want to display the ticket information
+                    ticketsList.innerHTML = ""
+                    for (let i = 0; i < tickets.length; i++) {
+                    const ticket = tickets[i];
+                    const listItem = document.createElement('li');
+                    listItem.classList.add('list-data');
+
+                    const link = document.createElement('a');
+                    link.classList.add('main-data');
+                    link.href = selectedContract+'/'+i; // redirect to ticket page
+
+                    const icon = document.createElement('i');
+                    icon.classList.add('fa-solid', 'fa-ticket-simple');
+
+                    const ticketNumber = document.createElement('div');
+                    ticketNumber.classList.add('ticket-number');
+
+                    const ticketNumberP = document.createElement('p');
+                    ticketNumberP.innerText = `#${ticket.id}`;
+
+                    const ticketNumberSpan = document.createElement('span');
+                    ticketNumberSpan.innerText = `ETH ${ticket.price}`;
+
+                    ticketNumber.appendChild(ticketNumberP);
+                    ticketNumber.appendChild(ticketNumberSpan);
+
+                    const ticketDetails = document.createElement('div');
+                    ticketDetails.classList.add('ticket-details');
+
+                    const ticketDetailsP = document.createElement('p');
+                    ticketDetailsP.innerText = ticket.event;
+
+                    const ticketDetailsSpan = document.createElement('span');
+                    ticketDetailsSpan.innerText = `#${ticket.owner}`;
+
+                    ticketDetails.appendChild(ticketDetailsP);
+                    ticketDetails.appendChild(ticketDetailsSpan);
+
+                    link.appendChild(icon);
+                    link.appendChild(ticketNumber);
+                    link.appendChild(ticketDetails);
+
+                    listItem.appendChild(link);
+
+                    ticketsList.appendChild(listItem);
+                    }
+                    /*const selectedOption = document.getElementById('listedTickets');
+                    selectedOption.innerHTML = xhr.responseText;*/
+                } else {
+                    console.error(xhr.statusText);
+                }
+            };
+            xhr.onerror = function() {
+                console.error(xhr.statusText);
+            };
+            xhr.send(`events=${selectedOption}&contract=${selectedContract}`);
+        }
+    </script>
+</body>
+
+</html>

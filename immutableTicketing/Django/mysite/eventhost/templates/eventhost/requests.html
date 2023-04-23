@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal Event</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        {% load static %}  
+        <link href={% static 'eventhost/css/style.css' %} rel="stylesheet" type="text/css">  
+</head>
+
+<body>
+    <div class="container request">
+        <h1>Proposal Event</h1>
+        <form action={% url 'requests' %} method="get">
+            <input type="text" placeholder="Event Name">
+            <input type="text" placeholder="Event Location">
+            <input type="text" placeholder="Event Date">
+            <input type="text" placeholder="Event Types">
+            <input type="text" placeholder="Event Prices">
+            <input type="submit" value="Send Proposal">
+        </form>
+    </div>
+
+    <footer class="requests-footer">
+        <a href={% url 'dashboard' %}>
+            <i class="fa-solid fa-house"></i>
+        </a>
+        <a href={% url 'requests' %} class="active"><i class="fa-solid fa-envelope"></i><span>Requests</span></a>
+    </footer>
+
+</body>
+
+</html>

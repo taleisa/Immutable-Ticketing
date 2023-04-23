@@ -29,6 +29,7 @@ contract TicketNFT is ERC721, ERC721Burnable, ERC721URIStorage, Ownable, AccessC
     uint256 _price;// Different categories may have different prices
     bool _forSale;// If true indicates that any verified account can buy the ticket
     uint256 _seatNumber;// Each ticket has a different seat number
+    string _class; // Class name
     } 
     constructor(string memory name, string memory symbol,string memory eventLocation,string memory eventType,
      uint256 startDate, uint256 endDate) ERC721(name, symbol){
@@ -40,15 +41,24 @@ contract TicketNFT is ERC721, ERC721Burnable, ERC721URIStorage, Ownable, AccessC
     } 
 
     event ValueLogged(uint256 value);
+    //Mint: ticket index, to, date
+    //Use: ticket index, from, to , date
+    //buy: ticket index, price, from, to , date
+    //uint currentTimestamp = block.timestamp;
+    event MintEvent(uint256 tokenId, address indexed _to, uint date);
+    event UseEvent(uint256 tokenId, address indexed _from, address indexed _to, uint date);
+    event BuyEvent(uint256 tokenId, uint price, address indexed _from, address indexed _to, uint date);
 
-    function safeMint(address to, string memory uri, uint256 price, uint256 seatNumber) public onlyRole(MINTER_ROLE) {
+    function safeMint(address to, string memory uri, uint256 price, uint256 seatNumber, string memory class) public onlyRole(MINTER_ROLE) {
         require(hasRole(GEA_ACCOUNTS, to), "Cannot mint to account not owned by GEA");
         uint256 tokenId = _tokenIdCounter.current();
-        _allTickets.push(Ticket(price,true,seatNumber));// Add new ticket to array of tickets(true because it is originally with GEA who want to sell immidiatly)
+        _allTickets.push(Ticket(price,true,seatNumber,class));// Add new ticket to array of tickets(true because it is originally with GEA who want to sell immidiatly)
         _tokenIdCounter.increment();//Increment counter
         _safeMint(to, tokenId);// Mint ticket
         ticketIndexToOwner[tokenId] = to;
         _setTokenURI(tokenId, uri);// URI will hold metadata such as image
+        uint currentTimestamp = block.timestamp;
+        emit MintEvent(tokenId, to, currentTimestamp);
     }
     //Function to buy ticket
     function buy(
@@ -58,11 +68,14 @@ contract TicketNFT is ERC721, ERC721Burnable, ERC721URIStorage, Ownable, AccessC
             require(msg.value == _allTickets[tokenId]._price, "Incorrect price");
 
             // Emit an event that logs the value of msg.value
+            
             emit ValueLogged(msg.value);
 
             super._safeTransfer(ownerOf(tokenId),msg.sender,tokenId, data);
             ticketIndexToOwner[tokenId] = msg.sender;//Ticket is now owned by sender
             _allTickets[tokenId]._forSale = false;//Ticket no longer for sale once transfered to new owner
+            uint currentTimestamp = block.timestamp;
+            emit BuyEvent(tokenId,msg.value, ownerOf(tokenId), msg.sender, currentTimestamp);
         }
     //Function to either enable or disable sale of ticket
     function sale(bool option,uint256 tokenId) public {
@@ -73,11 +86,14 @@ contract TicketNFT is ERC721, ERC721Burnable, ERC721URIStorage, Ownable, AccessC
     //Function to use ticket at gate
     function useTicket(address to,
         uint256 tokenId,
-        bytes memory data)public payable onlyRole(VERIFIED_ACCOUNTS){
+        bytes memory data)public onlyRole(VERIFIED_ACCOUNTS){
             require(hasRole(GATE_ACCOUNTS, to), "Cannot use ticket at address other than gate");
             require(_allTickets[tokenId]._forSale == false,"Ticket for sale");
             super._safeTransfer(ownerOf(tokenId),to,tokenId, data);
             ticketIndexToOwner[tokenId] = to;//Ticket is now owned by gate
+            uint currentTimestamp = block.timestamp;
+            emit UseEvent(tokenId, ownerOf(tokenId), to, currentTimestamp);
+            //emit event(tokenId, ownerOf(tokenId), to, date)
         }
 
     function safeTransferFrom(

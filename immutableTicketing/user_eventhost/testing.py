@@ -28,13 +28,14 @@ contract_address = "0x15382Add19aD7DB6D6bD96cf774dafE94A0Fb731"
 #new blockchain code
 #eventhost1 = EventHost(deployer)
 #DBMS.insertValues("Event 9", "E9", "Home", "Testing",str(1676332800),str(1676678400),eventhost1.event_host_address,'0x15382Add19aD7DB6D6bD96cf774dafE94A0Fb731')
-#temp_contract = EventHost.w3.eth.contract('0x15382Add19aD7DB6D6bD96cf774dafE94A0Fb731', abi= EventHost.ABI, bytecode = EventHost.Bytecode)
+#temp_contract = EventHost.w3.eth.contract('0x9C1709056E61660075756C906B70602Df2eb3494', abi= EventHost.ABI, bytecode = EventHost.Bytecode)
 #grant roles for the NFT instance
 #eventhost1.grantGEARole(temp_contract)
 #eventhost1.grantMinterRole(temp_contract)
 
 #gea_e = EventHost(GEA)
-#gea_e.mintTicket(temp_contract, "whfljkwef", 500000000000000, 502)
+#gea_e.mintTicket(temp_contract, "whfljkwef", 500000000000000, 701, "Standard")
+#gea_e.mintTicket(temp_contract, "whfljkwef", 500000000000000, 702, "VIP")
 
 
 #minting tickets
@@ -47,7 +48,7 @@ contract_address = "0x15382Add19aD7DB6D6bD96cf774dafE94A0Fb731"
 
 #retrieving ticket information under gea (minted tickets)
 
-#gea = User(GEA)
+gea = User(GEA)
 #for x in gea.retrieveAllTickets():
 #    print("Event Name: "+ x[0] +"\nEvent Location: "+ x[1] +"\nEvent Type: " + x[2] +
 #    "\nEvent Start Date: "+ str(x[3]) +"\nEvent End Date: "+ str(x[4]) +"\nTicket URI: "+ str(x[5]) +
@@ -55,7 +56,7 @@ contract_address = "0x15382Add19aD7DB6D6bD96cf774dafE94A0Fb731"
 #user buys ticket
 # available tickets are under Event 3 (281,290 under gea \\ 280 under customer 2)
 customer2 = User(cust2)
-#customer2.buyTicket("Event 3")
+#customer2.buyTicket("Event 10")
 #for x in customer2.retrieveAllTickets():
 #    print("Event Name: "+ x[0] +"\nEvent Location: "+ x[1] +"\nEvent Type: " + x[2] +
 #    "\nEvent Start Date: "+ str(x[3]) +"\nEvent End Date: "+ str(x[4]) +"\nTicket URI: "+ str(x[5]) +
@@ -64,10 +65,10 @@ customer2 = User(cust2)
 
 customer1 = User(cust1)
 #customer1.buyTicket("Event 9")
-for x in customer1.retrieveAllTickets():
-    print("Event Name: "+ x[0] +"\nEvent Location: "+ x[1] +"\nEvent Type: " + x[2] +
-    "\nEvent Start Date: "+ str(x[3]) +"\nEvent End Date: "+ str(x[4]) +"\nTicket URI: "+ str(x[5]) +
-    "\nTicket Price: "+ str(x[6]) + "\nTicket Sale: "+ str(x[7]) +"\nTicket Seat Number: "+ str(x[8]))
+#for x in customer1.retrieveAllTickets():
+#    print("Event Name: "+ x[0] +"\nEvent Location: "+ x[1] +"\nEvent Type: " + x[2] +
+#    "\nEvent Start Date: "+ str(x[3]) +"\nEvent End Date: "+ str(x[4]) +"\nTicket URI: "+ str(x[5]) +
+#    "\nTicket Price: "+ str(x[6]) + "\nTicket Sale: "+ str(x[7]) +"\nTicket Seat Number: "+ str(x[8]))
 
 # event host 2 deploys ticket
 

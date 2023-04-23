@@ -56,7 +56,8 @@ class User:
     def retrieveTicketInfo(self, event_name):
         # retrieve ticketID and price form available tickets
         # tickets array contains an array of tickets each contatins the attributes of the ticket
-        contract_address = DBMS.getSpecificContract(event_name)
+        #contract_address = DBMS.getSpecificContract(event_name)
+        contract_address = "0x732B4a8aC80E93Ff9DAD4613601A32f03E23Fdc0"
         ticketInfo = []
         # contract instance
         contract = User.w3.eth.contract(address= contract_address, abi= User.ABI, bytecode = User.Bytecode)
@@ -73,9 +74,11 @@ class User:
     def buyTicket(self, event_name):
         # assumes event_name is unique
         #create contract instance of the event the user wants to buy
-        temp_contract = User.w3.eth.contract(DBMS.getSpecificContract(event_name), abi= User.ABI, bytecode = User.Bytecode)
-        #grant customer verified accounts role if customer exists in database (assumes customer exists)
-        event_host = EventHost(DBMS.getEventHostAddress(event_name))
+        #temp_contract = User.w3.eth.contract(DBMS.getSpecificContract(event_name), abi= User.ABI, bytecode = User.Bytecode)
+        temp_contract = User.w3.eth.contract("0x732B4a8aC80E93Ff9DAD4613601A32f03E23Fdc0", abi= User.ABI, bytecode = User.Bytecode)
+        #grant customer verified accounts role if customer exists in database (assumes customer exists) 0xb7e673a25dd38ecf608aE41d48B18c24ddeAb2fd
+        #event_host = EventHost(DBMS.getEventHostAddress(event_name))
+        event_host = EventHost("0xb7e673a25dd38ecf608aE41d48B18c24ddeAb2fd")
         event_host.grantCustomerRole(self.user_address, temp_contract)
         #retrieve the ticket index
         arr = self.retrieveTicketInfo(event_name)
@@ -87,10 +90,10 @@ class User:
                                               ).build_transaction({"from": self.user_address,
                                                                     'value': ticket_price,
                                                                     'nonce': User.w3.eth.get_transaction_count(self.user_address)}) # {'nonce': User.w3.eth.get_transaction_count(self.user_address)} specifies nonce
-        print(tx_dict)
-        #key = "0x58514bd1f6170c2978b8f5e4aedc9dccf63da236710f9e0e94b7e8296b79c7f4" #for testing purposes only
-        #signed_txn = User.w3.eth.account.sign_transaction(tx_dict,key)
-        #print(User.w3.eth.send_raw_transaction(signed_txn.rawTransaction))
+        #print(tx_dict)
+        key = "0x4559d2a24c26b25843e9f6e5ee09b464a99d02cee2578f72ad675f72579a510b" #for testing purposes only
+        signed_txn = User.w3.eth.account.sign_transaction(tx_dict,key)
+        print(User.w3.eth.send_raw_transaction(signed_txn.rawTransaction))
         #temp_contract.functions.buy().transact({"from": EventHost.GEA})
         #send the transaction to metamask to confirm the transaction
         
