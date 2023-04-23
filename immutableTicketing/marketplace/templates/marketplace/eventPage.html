@@ -16,18 +16,17 @@
 			<div class="container">
 				<div class="section-header">
                     <br>
-                    <img src="https://s3.ticketmx.com/uploads/images/e65ef2b8e01ccff97a6826b38b48dcbf6b73fe92.png?w=1920&h=700&mode=crop&bgcolor=black&format=jpg" alt="Event Picture">
+                    <img src="{{ event.token_URI }}" alt="Event Picture">
                 </div>
                 <div class="event-details">
-                    <h2>Event Title</h2>
+                    <h2>{{ event.name }}</h2>
                     <ul>
-                      <li><i class="fas fa-calendar-alt"></i>Date: 22 October 2022 - 22 December 2022</li>
-                      <li><i class="fas fa-clock"></i>Time: 7:00 PM - 10:00 PM</li>
-                      <li><i class="fas fa-dollar-sign"></i>Price: 20.00 SAR</li>
-                      <li><i class="fas fa-map-marker-alt"></i>Location: 123 Main St, Anytown USA</li>
+                      <li><i class="fas fa-calendar-alt"></i>Date: {{ event.start_date_day }} {{ event.start_date_month }} {{ event.start_date_year }} - {{ event.end_date_day }} {{ event.end_date_month }} {{ event.end_date_year }}</li>
+                      <li><i class="fas fa-clock"></i>Time: {{ event.start_date_hour }} - {{ event.end_date_hour }}</li>
+                      <li><i class="fas fa-map-marker-alt"></i>Location: {{ event.location }} </li>
                     </ul>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel quam ac odio ullamcorper imperdiet. Etiam ut nisl ligula. Donec aliquam, justo in venenatis lacinia, arcu nisi dictum orci, sit amet sagittis nunc sapien eu purus. </p>
-                    <button id="checkoutBtn">Book Now</button>
+                    <a type = "button" id="checkoutBtn" href= {% url 'event_tickets' event.contract_address %}>Book Now</a>
                   </div>
                   <br>
                   <br>

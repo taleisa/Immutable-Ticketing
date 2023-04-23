@@ -36,7 +36,7 @@
                     {% for event in events %}
                         <div class="zone-item">
                             <a href="#">
-                                <a href="event1.html">
+                                <a href={% url 'event' event.contract_address %}>
                                     <img src="{{ event.token_URI }}"
                                          alt="Event 1">
                                 </a>

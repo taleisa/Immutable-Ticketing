@@ -25,7 +25,21 @@ class homePage(LoginRequiredMixin, TemplateView):
 
 class eventPage(LoginRequiredMixin, TemplateView):
     template_name = "marketplace/eventPage.html"
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        contract_address = kwargs['contract_address']
+        context["event"] = QueryBC().retreiveSingleEvent(self.request, contract_address)
+        return context
+    
+class eventTickets(LoginRequiredMixin,TemplateView):
+    template_name = 'marketplace/checkoutPage.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        contract_address = kwargs['contract_address']
+        context["tickets"] = QueryBC().retreiveEventTickets(self.request, contract_address)
+        return context
+    
 
 class ownedTickets(LoginRequiredMixin, TemplateView):
     template_name = "marketplace/myTicket.html"
@@ -214,10 +228,6 @@ class QueryBC:
         ticket["seat_number"] = contract.functions._allTickets(ticket_index).call()[2]
         ticket["contract_address"] = event.address
         ticket["ticket_index"] = ticket_index
-        ticket["abi"] = User.ABI
-        contract = User.w3.eth.contract(
-            address=event.address, abi=User.ABI, bytecode=User.Bytecode
-        )
         try:
             tx_dict = contract.functions.buy(
                 ticket_index,
@@ -229,8 +239,8 @@ class QueryBC:
                     "nonce": QueryBC.w3.eth.get_transaction_count(user_address),
                 }
             )
-        except:
-            messages.error(request, "Ticket not for sale")
+        except Exception as e:
+            messages.error(request, "Ticket not for sale/ You don't have the proper role"+str(e))
             return None
         ticket = {**ticket, **tx_dict}
         return ticket
@@ -285,6 +295,140 @@ class QueryBC:
             event["contract_address"] = db_event.address
             events.append(event)
         return events
+
+    def retreiveSingleEvent(self,request,contract_address):
+        try:
+            db_event = Event.objects.get(address=contract_address)
+        except:
+            messages.error(request, "Event does not exist")
+            return None
+        contract = User.w3.eth.contract(
+        address=db_event.address, abi=User.ABI, bytecode=User.Bytecode
+        )
+        event = {}
+        event["name"] = contract.functions.name().call()
+        event["location"] = contract.functions._eventLocation().call()
+        event["event_type"] = contract.functions._eventType().call()
+        event["start_date_hour"] = datetime.utcfromtimestamp(
+            contract.functions._startDate().call()
+        ).strftime("%H:%M:%S")
+        event["end_date_hour"] = datetime.utcfromtimestamp(
+            contract.functions._endDate().call()
+        ).strftime("%H:%M:%S")
+        event["start_date_day"] = datetime.utcfromtimestamp(
+            contract.functions._startDate().call()
+        ).strftime("%d")
+        event["end_date_day"] = datetime.utcfromtimestamp(
+            contract.functions._endDate().call()
+        ).strftime("%d")
+        event["start_date_month"] = self.dates[
+            datetime.utcfromtimestamp(contract.functions._startDate().call()).strftime(
+                "%m"
+            )
+        ]
+        event["end_date_month"] = self.dates[
+            datetime.utcfromtimestamp(contract.functions._endDate().call()).strftime(
+                "%m"
+            )
+        ]
+        event["start_date_year"] = datetime.utcfromtimestamp(
+            contract.functions._startDate().call()
+        ).strftime("%Y")
+        event["end_date_year"] = datetime.utcfromtimestamp(
+            contract.functions._endDate().call()
+        ).strftime("%Y")
+        event["start_date"] = datetime.utcfromtimestamp(
+            contract.functions._startDate().call()
+        ).strftime("%Y-%m-%d %H:%M:%S")
+        event["end_date"] = datetime.utcfromtimestamp(
+            contract.functions._endDate().call()
+        ).strftime("%Y-%m-%d %H:%M:%S")
+        event["token_URI"] = contract.functions.tokenURI(0).call()
+        event["contract_address"] = db_event.address
+        return event
+
+    def retreiveEventTickets(self,request,contract_address):
+        
+        try:
+            db_event = Event.objects.get(address=contract_address)
+        except:
+            messages.error(request, "Event does not exist")
+            return None
+        # contract instance
+        contract = QueryBC.w3.eth.contract(
+            address=contract_address, abi=QueryBC.ABI, bytecode=QueryBC.Bytecode
+        )
+        try:
+            ticket_counter = contract.functions._tokenIdCounter().call()
+        except:
+            messages.error(request, "Blockchain connection error")
+            return None
+        
+        # Each ticket is a dictionary, list contains all tickets
+        tickets = []
+        for index in range(ticket_counter):  # loops through the tickets
+                # If ticket belongs to user do not add it
+                if (
+                    not contract.functions.ticketIndexToOwner(index).call()
+                    == request.user.web3User.wallet_address
+                ):
+            # number of tickets in the entire contract (each event)
+                    ticket = {}
+                    ticket["name"] = contract.functions.name().call()
+                    ticket["location"] = contract.functions._eventLocation().call()
+                    ticket["event_type"] = contract.functions._eventType().call()
+                    ticket["start_date_hour"] = datetime.utcfromtimestamp(
+                        contract.functions._startDate().call()
+                    ).strftime("%H:%M:%S")
+                    ticket["end_date_hour"] = datetime.utcfromtimestamp(
+                        contract.functions._endDate().call()
+                    ).strftime("%H:%M:%S")
+                    ticket["start_date_day"] = datetime.utcfromtimestamp(
+                        contract.functions._startDate().call()
+                    ).strftime("%d")
+                    ticket["end_date_day"] = datetime.utcfromtimestamp(
+                        contract.functions._endDate().call()
+                    ).strftime("%d")
+                    ticket["start_date_month"] = self.dates[
+                        datetime.utcfromtimestamp(
+                            contract.functions._startDate().call()
+                        ).strftime("%m")
+                    ]
+                    ticket["end_date_month"] = self.dates[
+                        datetime.utcfromtimestamp(
+                            contract.functions._endDate().call()
+                        ).strftime("%m")
+                    ]
+                    ticket["start_date"] = datetime.utcfromtimestamp(
+                        contract.functions._startDate().call()
+                    ).strftime("%Y-%m-%d %H:%M:%S")
+                    ticket["end_date"] = datetime.utcfromtimestamp(
+                        contract.functions._endDate().call()
+                    ).strftime("%Y-%m-%d %H:%M:%S")
+                    ticket["token_URI"] = contract.functions.tokenURI(index).call()
+                    ticket["price"] = contract.functions._allTickets(index).call()[0]
+                    ticket["on_sale"] = contract.functions._allTickets(index).call()[1]
+                    ticket["seat_number"] = contract.functions._allTickets(index).call()[2]
+                    ticket["contract_address"] = contract_address
+                    ticket["ticket_index"] = index
+                    try:
+                        tx_dict = contract.functions.buy(
+                            index,
+                            contract.encodeABI(fn_name="buy", args=[index, request.user.web3User.wallet_address]),
+                        ).build_transaction(
+                            {
+                                "from": request.user.web3User.wallet_address,
+                                "value": ticket["price"],
+                                "nonce": QueryBC.w3.eth.get_transaction_count(request.user.web3User.wallet_address),
+                            }
+                        )
+                    except:
+                        pass
+                    else:
+                        ticket = {**ticket, **tx_dict}
+                        tickets.append(ticket)
+        return tickets
+        
 
 class User:
     # connecting the blockchain network in ganache
