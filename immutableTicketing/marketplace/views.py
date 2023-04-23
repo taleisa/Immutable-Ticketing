@@ -255,8 +255,8 @@ class QueryBC:
                     "nonce": QueryBC.w3.eth.get_transaction_count(user_address),
                 }
             )
-        except Exception as e:
-            messages.error(request, "Ticket not for sale/ You don't have the proper role"+str(e))
+        except:
+            messages.error(request, "Ticket not for sale/ You don't have the proper role")
             return None
         ticket = {**ticket, **tx_dict}
         return ticket

@@ -7,8 +7,8 @@
 		<title>Immutable Ticketing</title>
 		{% load static %}
 		<link rel="stylesheet" href={% static 'marketplace/style.css' %}>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
 	</head>
 	{% include 'access/header.html' %}
 	<body>
@@ -25,7 +25,7 @@
                       <li><i class="fas fa-clock"></i>Time: {{ event.start_date_hour }} - {{ event.end_date_hour }}</li>
                       <li><i class="fas fa-map-marker-alt"></i>Location: {{ event.location }} </li>
                     </ul>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel quam ac odio ullamcorper imperdiet. Etiam ut nisl ligula. Donec aliquam, justo in venenatis lacinia, arcu nisi dictum orci, sit amet sagittis nunc sapien eu purus. </p>
+					<br>
                     <a type = "button" id="checkoutBtn" href= {% url 'event_tickets' event.contract_address %}>Book Now</a>
                   </div>
                   <br>

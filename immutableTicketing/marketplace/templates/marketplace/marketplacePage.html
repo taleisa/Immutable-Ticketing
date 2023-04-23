@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Immutable Ticketing</title>
         {% load static %}
-        <link rel="stylesheet" href={% static 'access/style.css' %}>
+        <link rel="stylesheet" href={% static 'marketplace/style.css' %}>
         <link rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap"
@@ -19,7 +19,6 @@
                 <div class="section-header">
                     <h1>Choose Ticket</h1>
                 </div>
-
                 <div class="section-header">
                     <h2>Events</h2>
                 </div>
@@ -28,8 +27,7 @@
                         <div class="zone-item">
                             <a href="#">
                                 <a href={% url 'marketplace' event.contract_address %}>
-                                    <img src="{{ event.token_URI }}"
-                                         alt="Event 1">
+                                    <img src="{{ event.token_URI }}" alt="Event 1">
                                 </a>
                             </a>
                         </div>
