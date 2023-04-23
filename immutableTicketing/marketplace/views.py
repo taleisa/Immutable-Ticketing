@@ -13,12 +13,28 @@ from web3 import Web3
 
 
 class homePage(LoginRequiredMixin, TemplateView):
-    template_name = "marketplace/marketplacePage.html"
+    template_name = "marketplace/homePage.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         query = QueryBC()
         context["tickets"] = query.retrieveAllTickets(self.request)
+        context["events"] = query.retreiveAllEvents()
+        return context
+
+class marketplace(LoginRequiredMixin, TemplateView):
+    template_name = "marketplace/marketplacePage.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        query = QueryBC()
+        try:# Check if parameter has been passed through url
+            contract_address = kwargs['contract_address']
+        except:# If no parameters have beem passed throughg the url pass the entire page
+            context["tickets"] = query.retrieveAllTickets(self.request)
+        else:# If parameters were passed through url query tickets belonging to that contract(event)
+            context["tickets"] = query.retreiveEventTickets(self.request, contract_address)
+
         context["events"] = query.retreiveAllEvents()
         return context
 
