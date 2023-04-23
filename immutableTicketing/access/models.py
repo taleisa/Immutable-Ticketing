@@ -11,3 +11,6 @@ class web3User(models.Model):
 
 class Event(models.Model):
     address = models.CharField(max_length = 42, unique=True)
+    
+class Gate(models.Model):
+    address = models.CharField(max_length = 42, unique=True)

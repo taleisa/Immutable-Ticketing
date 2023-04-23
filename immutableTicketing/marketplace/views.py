@@ -1,4 +1,5 @@
 from datetime import datetime
+import json
 
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -6,7 +7,7 @@ from django.views.generic import TemplateView, ListView, FormView
 from django.views import View
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
-from access.models import Event
+from access.models import Event, Gate
 from .forms import listForm
 from django.contrib import messages
 from web3 import Web3
@@ -63,7 +64,6 @@ class ownedTickets(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = User(self.request.user.web3User.wallet_address)
-        # all_tickets = [ticket1,ticket2]
         all_tickets = user.retrieveAllTickets(self.request)
         context["tickets"] = all_tickets
         return context
@@ -85,9 +85,7 @@ class singleTicket(LoginRequiredMixin, TemplateView):
         return context
 
 
-# from dbms import DBMS
-# from eventhost import EventHost
-import json
+
 
 
 class QueryBC:
@@ -480,10 +478,14 @@ class User:
             "11": "Nov",
             "12": "Dec",
         }
-        # retrieve tickets under the same address
-        # tickets array contains an array of tickets each contatins the attributes of the ticket
-        # contract_addressess = DBMS.getAllcontracts()
+
         events = Event.objects.all()
+        try:
+            gate = Gate.objects.first()
+        except:
+            messages.error(request, "No gates available")
+            gate = False
+
         # Each ticket is a dictionary, list contains all tickets
         tickets = []
         for event in events:  # iterate through the contract instances
@@ -552,6 +554,18 @@ class User:
                         }
                     )
                     ticket = {**ticket, **tx_dict}
+                    if not ticket["on_sale"] and gate:
+                        tx_dict = contract.functions.useTicket(
+                            gate.address, x,contract.encodeABI(fn_name="useTicket", args=[gate.address,x, self.user_address]),
+                        ).build_transaction(
+                            {
+                                "from": self.user_address,
+                                "nonce": User.w3.eth.get_transaction_count(
+                                    self.user_address
+                                ),
+                            }
+                        )
+                        ticket["use_ticket_data"] = tx_dict["data"]
                     tickets.append(ticket)
         return tickets
 
