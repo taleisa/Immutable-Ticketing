@@ -5,113 +5,38 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>Immutable Ticketing</title>
-		<link rel="stylesheet" href="style.css">
+		{% load static %}
+		<link rel="stylesheet" href={% static 'marketplace/style.css' %}>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
 	</head>
 	<body>
+		{% include "access/header.html" %}
 		<section class="home">
 			<div class="container">
 				<div class="section-header">
 					<h1>Choose Event</h1>
 				</div>
-				<div class="location">
-					<img src="https://www.pngfind.com/pngs/b/73-732203_location-marker-location-icon-png-grey-transparent-png.png" alt="Location Icon">
-					<select name="city" id="city">
-						<option value="" selected disabled>Choose City</option>
-						<option value="Riyadh">Riyadh</option>
-						<option value="Jeddah">Jeddah</option>
-						<option value="Dammam">Dammam</option>
-					</select>
-				</div>
-				<div class="section-header">
-					<h2>Zones</h2>
-				</div>
-				<div class="zones">
-					<div class="zone-item">
-						<a href="#">
-							<img src="https://www.sayidaty.net/sites/default/files/inline-images/blvd-ruh-city.jpg" alt="Zone 1">
-						</a>
-					</div>
-					<div class="zone-item">
-						<a href="#">
-							<img src="https://www.sayidaty.net/sites/default/files/styles/900_scale/public/2021-10/front.jpg" alt="Zone 2">
-						</a>
-					</div>
-					<div class="zone-item">
-						<a href="#">
-							<img src="https://www.sayidaty.net/sites/default/files/inline-images/winter.jpg" alt="Zone 3">
-						</a>
-					</div>
-					<div class="zone-item">
-						<a href="#">
-							<img src="https://www.sayidaty.net/sites/default/files/inline-images/murabaa.jpg" alt="Zone 4">
-						</a>
-					</div>
-					<div class="zone-item">
-						<a href="#">
-							<img src="https://www.sayidaty.net/sites/default/files/inline-images/safari.jpg" alt="Zone 5">
-						</a>
-					</div>
-					<div class="zone-item">
-						<a href="#">
-							<img src="https://www.sayidaty.net/sites/default/files/inline-images/athriyah.jpg" alt="Zone 6">
-						</a>
-					</div>
-					<div class="zone-item">
-						<a href="#">
-							<img src="https://www.sayidaty.net/sites/default/files/inline-images/via.jpg" alt="Zone 7">
-						</a>
-					</div>
-					<div class="zone-item">
-						<a href="#">
-							<img src="https://www.sayidaty.net/sites/default/files/inline-images/oasis.jpg" alt="Zone 8">
-						</a>
-					</div>
-					<div class="zone-item">
-						<a href="#">
-							<img src="https://www.sayidaty.net/sites/default/files/inline-images/groves.jpg" alt="Zone 9">
-						</a>
-					</div>
-					<div class="zone-item">
-						<a href="#">
-							<img src="https://www.sayidaty.net/sites/default/files/inline-images/nabd.jpg" alt="Zone 10">
-						</a>
-					</div>
-				</div>
+
 				<div class="section-header">
 					<h2>Events</h2>
 				</div>
 				<div class="events">
+					{% for event in events %}
 					<div class="event-item">
-						<a href="event1.html"><img src="https://s3.ticketmx.com/uploads/images/159f0b87d467294ff3926abf78e0e8be27f1a287.png?w=750&h=750&mode=crop&bgcolor=black&format=jpg" alt="Event 1"></a>
+						
+							<a href={% url 'event' event.contract_address %}>
+								<img src="{{ event.token_URI }}"
+									 alt="Event 1">
+							
+						</a>
 					</div>
-					<div class="event-item">
-						<a href="event2.html"><img src="https://s3.ticketmx.com/uploads/images/e3da194301ef622a717cf9d91cbc1b1966663b9a.png?w=750&h=750&mode=crop&bgcolor=black&format=jpg" alt="Event 2"></a>
-					</div>
-					<div class="event-item">
-						<a href="event3.html"><img src="https://s3.ticketmx.com/uploads/images/a694542df083f277ffba58ee0e1f6b49ae48c575.png?w=750&h=750&mode=crop&bgcolor=black&format=jpg" alt="Event 3"></a>
-					</div>
-					<div class="event-item">
-						<a href="event4.html"><img src="https://s3.ticketmx.com/uploads/images/00089d0117589ccef69cb78357a5325afb94af51.jpg?w=750&h=750&mode=crop&bgcolor=black&format=jpg" alt="Event 4"></a>
-					</div>
-					<div class="event-item">
-						<a href="event5.html"><img src="https://s3.ticketmx.com/uploads/images/a0e5007b08eb6ad9ad3dcd9de9618db7ee9620e9.png?w=750&h=750&mode=crop&bgcolor=black&format=jpg" alt="Event 5"></a>
-					</div>
-					<div class="event-item">
-						<a href="event6.html"><img src="https://s3.ticketmx.com/uploads/images/b4a6bfea903e981342a51d24a9b91a79f2cf0296.png?w=750&h=750&mode=crop&bgcolor=black&format=jpg" alt="Event 6"></a>
-					</div>
-					<div class="event-item">
-						<a href="event7.html"><img src="https://s3.ticketmx.com/uploads/images/38829e964501a342b13b2dd26e096d3de14352ab.png?w=750&h=750&mode=crop&bgcolor=black&format=jpg" alt="Event 7"></a>
-					</div>
-					<div class="event-item">
-						<a href="event8.html"><img src="https://s3.ticketmx.com/uploads/images/7451400cd65f08356e1e7638d8450d22000b9d32.png?w=750&h=750&mode=crop&bgcolor=black&format=jpg" alt="Event 8"></a>
-					</div>
+				{% endfor %}
 				</div>				
                 </div>
             </section>
-			{% extends "footer.html" %}
-			<script src="script.js"></script>
+			{% include "access/footer.html" %}
+			<script src={% static "marketplace/script.js" %}></script>
 			<script> // add cicle to current page navbar
 				document.addEventListener("DOMContentLoaded", function() {
 					document.querySelector('.home-page').classList.add('active');
