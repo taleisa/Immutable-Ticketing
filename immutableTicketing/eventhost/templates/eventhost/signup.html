@@ -16,7 +16,7 @@
 
 <body>
     <header>
-        <a href={% url 'login' %} class="header-icon"><i class="fa-solid fa-arrow-down"></i></a>
+        <a href={% url 'eventhostlogin' %} class="header-icon"><i class="fa-solid fa-arrow-down"></i></a>
     </header>
     <div class="container signUp">
         <h1>Request Account</h1>
@@ -24,7 +24,7 @@
             <button id="Metamask-Connect">Connect Metamask</button>
         </div>
         <br>
-        <form action={% url 'signup' %} method="post">
+        <form action={% url 'eventhostsignup' %} method="post">
             {% csrf_token %}
             {{form.companyName}}
             {{form.companyEmail}}

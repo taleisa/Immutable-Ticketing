@@ -13,7 +13,7 @@
 <body>
     <div class="container login">
         <h1>Login as Event Host</h1>
-        <form action={% url 'login' %} method="post">
+        <form action={% url 'eventhostlogin' %} method="post">
             {% csrf_token %}
             {{form.username}}
             {{form.password}}
@@ -34,7 +34,7 @@
             {% endfor %}
         {% endif %} 
     <footer>
-        <div class="login-footer">Don't have an account? <a href={% url 'signup' %} class="login-signUp">Request Account</a></div>
+        <div class="login-footer">Don't have an account? <a href={% url 'eventhostsignup' %} class="login-signUp">Request Account</a></div>
     </footer>
 </body>
 

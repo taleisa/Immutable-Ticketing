@@ -1,5 +1,5 @@
 from django.shortcuts import redirect
-from django.http import JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, FormView, View
@@ -11,7 +11,7 @@ import pytz
 from eventhost.forms import loginForm, signupForm, eventrequestForm, TicketForm, requestManagementForm
 from access.models import Event, web3User, SignUpRequest, EventRequest
 from web3 import Web3
-from immutableTicketing.settings import TRUFFLE_PATH, WEB3_ADDRESS
+from immutableTicketing.settings import TRUFFLE_PATH, WEB3_ADDRESS, LOGIN_REDIRECT_URL
 import json
 from datetime import datetime
 from operator import itemgetter
@@ -20,9 +20,13 @@ from operator import itemgetter
 class loginView(FormView):
     template_name = 'eventhost/index.html'
     success_url = reverse_lazy('dashboard')
+    #next_page = reverse_lazy('dashboard')
+    #authentication_form = loginForm
     form_class = loginForm
     
+    
     def form_valid(self, form):
+            print("form valid")
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             if user is not None:
             # A backend authenticated the credentials
@@ -35,6 +39,9 @@ class loginView(FormView):
                 else:    
                     if web3user.is_event_host == True or web3user.is_GEA == True:
                         login(self.request, user)
+                        print('After login')
+                        #redirect_to = login_redirect(self.request.GET.get(REDIRECT_FIELD_NAME), user)
+                        #return HttpResponseRedirect(redirect_to)
                         return super(loginView, self).form_valid(form)
                     else: #add another else for GEA to access GEA page
                         messages.error(self.request, 'Access Denied')

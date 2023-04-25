@@ -41,7 +41,7 @@
       <a href="#" class="header-icon" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa-solid fa-ellipsis-vertical"></i></a>
     </header>
     <div>
-      <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none;">
+      <form id="logout-form" action="{% url 'eventhostlogout' %}" method="POST" style="display: none;">
         {% csrf_token %}
     </form>
     <div>
