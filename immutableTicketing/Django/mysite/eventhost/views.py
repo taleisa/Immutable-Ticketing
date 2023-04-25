@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.contrib import messages
 from django.db import IntegrityError
@@ -8,9 +8,11 @@ from django.views.generic import TemplateView, FormView, View
 from django.views.generic.edit import CreateView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.core.mail import EmailMessage
 import pytz
-from .forms import loginForm, signupForm
+from .forms import loginForm, signupForm, eventrequestForm, TicketForm, requestManagementForm
 from .models import Event, web3User, SignUpRequest, EventRequest
 from web3 import Web3
 import json
@@ -32,7 +34,7 @@ class loginView(FormView):
                     self.success_url = reverse_lazy('login')
                     return super(loginView, self).form_valid(form)    
                 else:    
-                    if web3user.is_event_host == True:
+                    if web3user.is_event_host == True or web3user.is_GEA == True:
                         login(self.request, user)
                         return super(loginView, self).form_valid(form)
                     else: #add another else for GEA to access GEA page
@@ -53,43 +55,34 @@ class signUp(FormView):
     
     def form_valid(self, form):
         if (form.cleaned_data['password1'] == form.cleaned_data['password2']):# errors for form: password does not match
-            sign = SignUpRequest(companyName=form.cleaned_data['companyName'],
-                                companyEmail=form.cleaned_data['companyEmail'],
-                                password1=form.cleaned_data['password1'],
-                                password2=form.cleaned_data['password2'],
-                                wallet_address=form.cleaned_data['walletAddress'],)
-            try: # errors for saving: company name, email, or wallet already exists 
-                sign.save()
-            except:
-                messages.error(self.request, 'Company has already requested account')
-                self.success_url = reverse_lazy('signup')
-                return super(signUp, self).form_valid(form)
+            userCondition = True
+            for user in User.objects.all():
+                if user.username == form.cleaned_data['companyName']:
+                    userCondition = False
+            if(userCondition):         
+                sign = SignUpRequest(companyName=form.cleaned_data['companyName'],
+                                    companyEmail=form.cleaned_data['companyEmail'],
+                                    password1=form.cleaned_data['password1'],
+                                    password2=form.cleaned_data['password2'],
+                                    wallet_address=form.cleaned_data['walletAddress'],)
+                try: # errors for saving: company name, email, or wallet already exists 
+                    sign.save()
+                except:
+                    messages.error(self.request, 'Company has already requested account')
+                    self.success_url = reverse_lazy('signup')
+                    return super(signUp, self).form_valid(form)
+                else:
+                    messages.success(self.request, 'Company has succefully requested account')
+                    self.success_url = reverse_lazy('login')
+                    return super(signUp, self).form_valid(form)
             else:
-                self.success_url = reverse_lazy('login')
-                return super(signUp, self).form_valid(form)
+                messages.error(self.request, 'User already exists')
+                self.success_url = reverse_lazy('signup')
+                return super(signUp, self).form_valid(form)     
         else:
             messages.error(self.request, 'Password does not match')
             self.success_url = reverse_lazy('signup')
-            return super(signUp, self).form_valid(form) 
-
-    #def form_invalid(self, form):
-    #    if (form.cleaned_data['wallet_address'] is None):
-    #        messages.error(self.request, 'Did not connect Metamask')
-    #        return super(signUp, self).form_invalid(form)      
-              
-
-#class signUp(View):
-#    def get(self, request, *args, **kwargs):
-#        context = {'form': signupForm()}
-#        return render(request, 'eventhost/signup.html', context)
-#
-#    def post(self, request, *args, **kwargs):
-#        form = signupForm(request.POST)
-#        if form.is_valid():
-#            book = form.save()
-#            book.save()
-#            return HttpResponseRedirect(reverse_lazy('login'))
-#        return render(request, 'eventhost/signup.html', {'form': form})                
+            return super(signUp, self).form_valid(form)             
     
 class dashboard(LoginRequiredMixin, TemplateView):
     template_name = 'eventhost/dashboard.html'
@@ -98,34 +91,44 @@ class dashboard(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         user = self.request.user
         #retrieve a list of events under the same event host address
-        eventHost = web3User.objects.get(user = user)
-        eventlist = []
-        eventinfo = {} 
-        #add if statement if eventhost does not have events add none to eventlist eventlist.append('none')
-        eventinfo['event'] = '-'
-        eventinfo['contract'] = None
-        eventlist.append(eventinfo)
-        if(len(eventHost.event_set.all()) != 0):
-            for event in eventHost.event_set.all():
-                eventinfo = {}
-                contract = EventHost.w3.eth.contract(address= event.contract_address, abi= EventHost.ABI, bytecode = EventHost.Bytecode)
-                eventinfo['event'] = contract.functions.name().call()
-                eventinfo['contract'] = event.contract_address
-                eventlist.append(eventinfo)
-            #display info   eventlist[0]['contract'] 
-        #else:
-        #    eventinfo = {} 
-        #    eventinfo['event'] = '-'
-        #    eventinfo['contract'] = '-'
-        #    eventlist.append(eventinfo)
-            #display info for -                       
+        web3user = web3User.objects.get(user = user)
+        if(web3user.is_event_host == True):
+            condition = True #display request page
+            eventlist = []
+            eventinfo = {} 
+            #if eventhost does not have events
+            eventinfo['event'] = '-'
+            eventinfo['contract'] = None
+            eventlist.append(eventinfo)
+            if(len(web3user.event_set.all()) != 0):
+                for event in web3user.event_set.all():
+                    eventinfo = {}
+                    contract = EventHost.w3.eth.contract(address= event.address, abi= EventHost.ABI, bytecode = EventHost.Bytecode)
+                    eventinfo['event'] = contract.functions.name().call()
+                    eventinfo['contract'] = event.address
+                    eventlist.append(eventinfo)
+        else:
+            condition = False
+            eventlist = []
+            eventinfo = {} 
+            #if there are no events registered
+            eventinfo['event'] = '-'
+            eventinfo['contract'] = None
+            eventlist.append(eventinfo)
+            if(len(Event.objects.all()) != 0):
+                for event in Event.objects.all():
+                    eventinfo = {}
+                    contract = EventHost.w3.eth.contract(address= event.address, abi= EventHost.ABI, bytecode = EventHost.Bytecode)
+                    eventinfo['event'] = contract.functions.name().call()
+                    eventinfo['contract'] = event.address
+                    eventlist.append(eventinfo)                                
         context = {
             'eventlist':eventlist,
+            'condition': condition,
         }
         return context  
     
     def post(self, request, *args, **kwargs):
-        #selected_event = request.POST.get('event')
         selected_contract = request.POST.get('contract')
         if(selected_contract != "None"):
             contract = EventHost.w3.eth.contract(address= selected_contract, abi= EventHost.ABI, bytecode = EventHost.Bytecode)
@@ -167,21 +170,19 @@ class dashboard(LoginRequiredMixin, TemplateView):
         }
         return JsonResponse(response_data)
   
-class tickets(TemplateView):
-    template_name = 'eventhost/ticket-record.html'  
-    # event_filter = w3.eth.filter({"address": contract_address})
-    # for event in event_filter.get_new_entries():     
+class tickets(LoginRequiredMixin, TemplateView):
+    template_name = 'eventhost/ticket-record.html'      
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         contract_address = self.kwargs.get('contract', None)
         id = self.kwargs.get('id', None)
         # define your local time zone
-        local_tz = pytz.timezone('Etc/GMT+3')
+        local_tz = pytz.timezone('Etc/GMT-3')
         
         # get the contract instance
         contract = EventHost.w3.eth.contract(address=contract_address, abi=EventHost.ABI)
-        #ticket information context contract.functions._allTickets(x).call()[1] 
+        # retrieve ticket information
         utc_start_date = datetime.utcfromtimestamp(contract.functions._startDate().call())
         local_start_date = pytz.utc.localize(utc_start_date).astimezone(local_tz)       
         ticketStartDate = local_start_date.strftime('%Y/%m/%d %H:%M')
@@ -206,7 +207,6 @@ class tickets(TemplateView):
         # loop through the logs and print the data
         for log in mintlogs:
             decoded_log = contract.events.MintEvent().process_log(log)
-            #print(decoded_log)
             tokenId = decoded_log['args']['tokenId']
             if(tokenId == id):
                 eventinfo = {}
@@ -219,7 +219,6 @@ class tickets(TemplateView):
                 local_date = pytz.utc.localize(utc_date).astimezone(local_tz)
                 eventinfo['date'] = local_date.strftime('%Y-%m-%d %H:%M:%S')
                 events.append(eventinfo)
-            #print(f"Token ID: {tokenId}, To: {to}, Date: {date_str}")
 
         # get the event filter object
         buyEvent_filter = contract.events.BuyEvent.create_filter(fromBlock=0)
@@ -230,7 +229,6 @@ class tickets(TemplateView):
         # loop through the logs and print the data
         for log in buylogs:
             decoded_log = contract.events.BuyEvent().process_log(log)
-            #print(decoded_log)
             tokenId = decoded_log['args']['tokenId']
             if(tokenId == id):
                 eventinfo = {}
@@ -253,7 +251,6 @@ class tickets(TemplateView):
         # loop through the logs and print the data
         for log in uselogs:
             decoded_log = contract.events.UseEvent().process_log(log)
-            #print(decoded_log)
             tokenId = decoded_log['args']['tokenId']
             if(tokenId == id):
                 eventinfo = {}
@@ -281,72 +278,245 @@ class tickets(TemplateView):
         }
         return context  
      
-class requests(TemplateView):
+class requests(LoginRequiredMixin, FormView):
     template_name = 'eventhost/requests.html'
+    success_url = reverse_lazy('requests')
+    form_class = eventrequestForm
+    
+    def form_valid(self, form):
+        requestEventNameCondition = True
+        for event in Event.objects.all():
+            contract = EventHost.w3.eth.contract(address= event.address, abi= EventHost.ABI, bytecode = EventHost.Bytecode)
+            if(contract.functions.name().call() == form.cleaned_data['eventName']):
+                        requestEventNameCondition = False
+        if(requestEventNameCondition):                 
+            eventRequest = EventRequest(event_host= web3User.objects.get(user = self.request.user),
+                                eventName=form.cleaned_data['eventName'],
+                                eventSymbol=form.cleaned_data['eventSymbol'],
+                                eventLocation=form.cleaned_data['eventLocation'],
+                                eventType=form.cleaned_data['eventType'],
+                                eventStartDate=form.cleaned_data['eventStartDate'],
+                                eventEndDate=form.cleaned_data['eventEndDate'],)
+            try: # errors for saving: already exist 
+                eventRequest.save()
+            except:
+                messages.error(self.request, 'Event name already requested')
+                self.success_url = reverse_lazy('requests')
+                return super(requests, self).form_valid(form)
+            else:
+                messages.success(self.request, 'Company has succefully requested event')
+                self.success_url = reverse_lazy('requests')
+                return super(requests, self).form_valid(form)
+        else:
+            messages.error(self.request, 'Event already exist')
+            self.success_url = reverse_lazy('requests')
+            return super(requests, self).form_valid(form)    
+        
+class eventRequestManegement(LoginRequiredMixin, FormView):
+    template_name = "eventhost/eventRequestManagement.html"
+    success_url = reverse_lazy('eventRequestManegement')
+    form_class = requestManagementForm
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        form = requestManagementForm()
+        eventRequestList = []
+        if(len(EventRequest.objects.all()) != 0):
+            for event in EventRequest.objects.all():
+                eventRequestInfo = {}
+                eventRequestInfo['requestId'] = event.id
+                eventRequestInfo['eventName'] = event.eventName
+                eventRequestInfo['eventSymbol'] = event.eventSymbol
+                eventRequestInfo['eventLocation'] = event.eventLocation
+                eventRequestInfo['eventStartDate'] = event.eventStartDate
+                eventRequestInfo['eventEndDate'] = event.eventEndDate
+                eventRequestInfo['eventType'] = event.eventType
+                eventRequestInfo['eventHostWallet'] = event.event_host.wallet_address
+                eventRequestList.append(eventRequestInfo)                             
+        context = {
+            'form': form,
+            'eventRequestList': eventRequestList,
+        }
+        return context  
 
-class User:
-    # connecting the blockchain network in ganache
-    w3 = Web3(Web3.HTTPProvider('HTTP://127.0.0.1:7545'))
-    #retrieving the generated ABI and Byte code from the 
-    truffleFile = json.load(open('/Users/Faisal/desktop/capstone/Immutable-Ticketing/truffle/build/contracts/TicketNFT.json')) # truffle generated file
-    ABI = truffleFile['abi'] # ABI generated in the file
-    Bytecode = truffleFile['bytecode'] # metadata generated in the file
+    def form_valid(self, form):
+        if(form.cleaned_data['status'] == 'Accept'):
+            request = EventRequest.objects.get(id = form.cleaned_data['requestId'])
+            #retrieve GEA address and create eventhost object with it
+            for user in web3User.objects.all():
+                if(user.is_GEA == True):
+                    geaUser = user
+            gea = EventHost(geaUser.wallet_address)
+            # define your local time zone
+            local_tz = pytz.timezone('Etc/GMT-3')
 
-    GEA = "0x11D5575b8EE64B048b46dDc7942176444e3D8b70"
+            # Make the datetime object timezone-naive
+            naive_eventStartDate = request.eventStartDate.replace(tzinfo=None)
+            naive_eventEndDate = request.eventEndDate.replace(tzinfo=None)
 
-    def __init__(self, user_address):
-        self.user_address = user_address
+            # Convert the date to UTC time
+            startDate_utc_time = local_tz.localize(naive_eventStartDate).astimezone(pytz.utc)
+            endDate_utc_time = local_tz.localize(naive_eventEndDate).astimezone(pytz.utc)
 
-    #retrieve alltickets and retrieve specific tickets methods should be entered here
+            # Convert the UTC time to a Linux timestamp
+            startDate_unix_timestamp = int(startDate_utc_time.timestamp())
+            endDate_unix_timestamp = int(endDate_utc_time.timestamp())
+            try:
+                #deploy event
+                contract = gea.deployNFT(geaUser.wallet_address, request.eventName, request.eventSymbol, 
+                                         request.eventLocation, request.eventType, startDate_unix_timestamp, 
+                                         endDate_unix_timestamp)
+            except:
+                #handle error
+                messages.error(self.request, 'Error occured in deploying event')
+                return super().form_valid(form)
+            else:
+                #handle success
+                #create entry in event
+                try:
+                    event = Event(event_host = request.event_host, address = contract)
+                except:
+                    messages.error(self.request, 'Error occured in inserting event into database') 
+                    return super().form_valid(form)
+                else:
+                    event.save()
+                    name = request.eventName
+                    # Create and send the email
+                    subject = 'New Event Created'
+                    message = str(name) + ' has been successfully created.'
+                    from_email = 'ImmutableTicketing@gmail.com'
+                    recipient_list = [request.event_host.user.email]
+                    email = EmailMessage(subject, message, from_email, recipient_list)
+                    email.send()
+                    request.delete()        
+                    messages.success(self.request, str(name) + ' Event Successfully Created')       
+                    return super().form_valid(form)
+        else:
+            #delete request
+            request = EventRequest.objects.get(id = form.cleaned_data['requestId'])
+            name = request.eventName
+            request.delete()        
+            messages.success(self.request, str(name) + ' Event Successfully Deleted') 
+            return super().form_valid(form)
+    
+class signUpRequestManegement(LoginRequiredMixin, FormView):
+    template_name = "eventhost/signUpRequestManagement.html"
+    success_url = reverse_lazy('signUpRequestManegement')
+    form_class = requestManagementForm
 
-    #should be static?
-    def retrieveTicketInfo(self, event):
-        # retrieve ticketID and price form available tickets
-        # tickets array contains an array of tickets each contatins the attributes of the ticket
-        ticketInfo = {}
-        # contract instance
-        contract = User.w3.eth.contract(address= event.contract_address, abi= User.ABI, bytecode = User.Bytecode)
-        # number of tickets in the entire contract (each event)
-        ticket_counter = contract.functions._tokenIdCounter().call()
-        for x in range(ticket_counter): # loops through the tickets
-            if contract.functions.ticketIndexToOwner(x).call() == User.GEA:
-                ticketInfo['index'] = x
-                ticketInfo['price'] = contract.functions._allTickets(x).call()[0]
-                break # retrieve the ticketId and price of the first available ticket
-        return ticketInfo    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        form = requestManagementForm()
+        signupRequestList = []
+        if(len(SignUpRequest.objects.all()) != 0):
+            for request in SignUpRequest.objects.all():
+                signupRequestInfo = {}
+                signupRequestInfo['requestId'] = request.id
+                signupRequestInfo['companyName'] = request.companyName
+                signupRequestInfo['companyEmail'] = request.companyEmail
+                signupRequestInfo['wallet_address'] = request.wallet_address
+                signupRequestList.append(signupRequestInfo)                                
+        context = {
+            'form': form,
+            'signupRequestList': signupRequestList,
+        }
+        return context
+    
+    def form_valid(self, form):
+        if(form.cleaned_data['status'] == 'Accept'):
+            request = SignUpRequest.objects.get(id = form.cleaned_data['requestId'])
+            try:
+                user = User.objects.create_user(
+                    username=request.companyName,
+                    email=request.companyEmail,
+                    password=request.password1
+                )
+            except:
+                messages.error(self.request, 'Error occured in creating User Account')
+                return super().form_valid(form)
+            else:
+                try:
+                    web3User.objects.create(user = user, wallet_address = request.wallet_address ,is_event_host =  True, is_GEA =  False)
+                except:
+                    messages.error(self.request, 'Error occured in creating Web3User Account')
+                    return super().form_valid(form)
+                else:
+                    name = request.companyName
+                    # Create and send the email
+                    subject = 'New Account Created'
+                    message = 'Your Event Host Account has been successfully created.'
+                    from_email = 'ImmutableTicketing@gmail.com'
+                    recipient_list = [request.companyEmail]
+                    email = EmailMessage(subject, message, from_email, recipient_list)
+                    email.send()
+                    request.delete()        
+                    messages.success(self.request, str(name) + ' Account Successfully Created')       
+                    return super().form_valid(form)
+        else:
+            request = SignUpRequest.objects.get(id = form.cleaned_data['requestId'])
+            name = request.companyName
+            request.delete()        
+            messages.success(self.request, str(name) + ' Request Successfully Deleted') 
+            return super().form_valid(form)               
 
-    def testing(self, event_name):
-        event = Event.objects.get(id='1')
-        return event.event_host.wallet_address
-            
-    def createTxDict(self, event_name):
-        # assumes event_name is unique
-        #create contract instance of the event the user wants to buy
-        events = Event.objects.all()
-        for e in events: # iterate through the contract instances
-            if (User.w3.eth.contract(address= e.contract_address, abi= User.ABI, bytecode = User.Bytecode).functions.name().call() == event_name):
-                event = Event.objects.get(contract_address=e.contract_address)
-        temp_contract = User.w3.eth.contract(event.contract_address, abi= User.ABI, bytecode = User.Bytecode)
-        #grant customer verified accounts role if customer exists in database (assumes customer exists) 
-        event_host = EventHost(Web3.to_checksum_address(event.event_host.wallet_address))
-        event_host.grantCustomerRole(self.user_address, temp_contract)
-        #retrieve the ticket index
-        arr = self.retrieveTicketInfo(event)
-        ticket_index = arr['index']
-        ticket_price = arr['price']
-        #call the buy function to excute transaction
-        tx_dict = temp_contract.functions.buy(
-            ticket_index, temp_contract.encodeABI(fn_name="buy", args= [ticket_index, self.user_address])
-                                              ).build_transaction({"from": self.user_address,
-                                                                    'value': ticket_price,
-                                                                    'nonce': User.w3.eth.get_transaction_count(self.user_address)}) # {'nonce': User.w3.eth.get_transaction_count(self.user_address)} specifies nonce
-        return tx_dict
-        #key = "0x58514bd1f6170c2978b8f5e4aedc9dccf63da236710f9e0e94b7e8296b79c7f4" #for testing purposes only
-        #signed_txn = User.w3.eth.account.sign_transaction(tx_dict,key)
-        #print(User.w3.eth.send_raw_transaction(signed_txn.rawTransaction))
-        #temp_contract.functions.buy().transact({"from": EventHost.GEA})
-        #send the transaction to metamask to confirm the transaction
+class TicketRequest(LoginRequiredMixin, FormView):
+    template_name = 'eventhost/ticketRequest.html'
+    success_url = reverse_lazy('ticketrequest')
+    form_class = TicketForm
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        form = TicketForm()
+        user = self.request.user
+        #retrieve a list of events under the same event host address
+        web3user = web3User.objects.get(user = user)
+        eventlist = []
+        eventinfo = {} 
+        #if eventhost does not have events
+        eventinfo['event'] = '-'
+        eventinfo['contract'] = None
+        eventlist.append(eventinfo)
+        if(len(web3user.event_set.all()) != 0):
+            for event in web3user.event_set.all():
+                eventinfo = {}
+                contract = EventHost.w3.eth.contract(address= event.address, abi= EventHost.ABI, bytecode = EventHost.Bytecode)
+                eventinfo['event'] = contract.functions.name().call()
+                eventinfo['contract'] = event.address
+                eventlist.append(eventinfo)                                
+        context = {
+            "form": form,
+            'eventlist':eventlist,
+        }
+        #return render(self.request, 'eventhost/ticketRequest.html', context)
+        return context
+    
+    def form_valid(self, form):
+        #retrieve GEA address and create eventhost object with it
+        for user in web3User.objects.all():
+            if(user.is_GEA == True):
+                geaUser = user
+        gea = EventHost(geaUser.wallet_address)
+        #create contract instance
+        contract = EventHost.w3.eth.contract(address= form.cleaned_data['contractAddress'], abi= EventHost.ABI, bytecode = EventHost.Bytecode)
+        seat_number = form.cleaned_data['seatNumberStart']
+        price = EventHost.w3.to_wei(form.cleaned_data['price'], 'ether')
+        #then mint the tickets based on the input from the form
+        try:
+            for _ in range(form.cleaned_data['quantity']):
+                gea.mintTicket(contract, form.cleaned_data['uri'], price, seat_number, form.cleaned_data['name'], geaUser.wallet_address)
+                seat_number = seat_number + 1
+        except:
+            messages.error(self.request, 'Error occured in minting Ticket')
+            return super(TicketRequest, self).form_valid(form)
+        else:            
+            messages.success(self.request, 'Tickets Successfully Minted')
+            return super(TicketRequest, self).form_valid(form)  
+
+class LogoutView(View):
+    def post(self, request, *args, **kwargs):
+        logout(request)
+        #reverse_lazy('login')
+        return redirect('login')                
         
 class EventHost:
     # Defining the address of the GEA and the minter
@@ -362,16 +532,16 @@ class EventHost:
     def __init__(self, event_host_address):
         self.event_host_address = event_host_address
 
-    def grantMinterRole(self, contract):  
+    def grantMinterRole(self, geaAddress,contract):  
         # Send transaction
-        send_tx = contract.functions.grantRole(Web3.solidity_keccak(["bytes32"],[str.encode("MINTER_ROLE")]) ,EventHost.GEA).transact({"from": self.event_host_address})
+        send_tx = contract.functions.grantRole(Web3.solidity_keccak(["bytes32"],[str.encode("MINTER_ROLE")]) ,geaAddress).transact({"from": self.event_host_address})
         # Wait for transaction receipt
         tx_receipt = EventHost.w3.eth.wait_for_transaction_receipt(send_tx)
         return tx_receipt # Optional
 
-    def grantGEARole(self, contract):
+    def grantGEARole(self, geaAddress,contract):
         # Send transaction
-        send_tx = contract.functions.grantRole(Web3.solidity_keccak(["bytes32"],[str.encode("GEA_ACCOUNTS")]) ,EventHost.GEA).transact({"from": self.event_host_address})
+        send_tx = contract.functions.grantRole(Web3.solidity_keccak(["bytes32"],[str.encode("GEA_ACCOUNTS")]) ,geaAddress).transact({"from": self.event_host_address})
 
         # Wait for transaction receipt
         tx_receipt = EventHost.w3.eth.wait_for_transaction_receipt(send_tx)
@@ -385,21 +555,20 @@ class EventHost:
         tx_receipt = EventHost.w3.eth.wait_for_transaction_receipt(send_tx)
         return tx_receipt # Optional   
 
-    def deployNFT(self, event_name, event_symbol, event_location, event_type, event_start_date, event_end_date): # event_host address is the address of the event host deploying the ticket
+    def deployNFT(self, geaAddress,event_name, event_symbol, event_location, event_type, event_start_date, event_end_date): # event_host address is the address of the event host deploying the ticket
         contract = EventHost.w3.eth.contract(abi=EventHost.ABI, bytecode=EventHost.Bytecode)
         tx_hash = contract.constructor(event_name,event_symbol,event_location,event_type, event_start_date ,event_end_date).transact({"from": self.event_host_address})
         tx_receipt = EventHost.w3.eth.wait_for_transaction_receipt(tx_hash)
         # Insert values into the event table
         #if tx_receipt.status == 1: # check if the transaction is successfull
             #DBMS.insertValues(event_name,event_symbol,event_location,event_type,str(event_start_date),str(event_end_date),self.event_host_address,tx_receipt.contractAddress)
+            #Event.objects.create()
         temp_contract = EventHost.w3.eth.contract(tx_receipt.contractAddress, abi= EventHost.ABI, bytecode = EventHost.Bytecode)
         #grant roles for the NFT instance
-        self.grantGEARole(temp_contract)
-        self.grantMinterRole(temp_contract) 
-        # if possible include the minting here or in the main method
-        # self.mintTicket(tempcontract, other information)
-        return temp_contract    
+        self.grantGEARole(geaAddress,temp_contract)
+        self.grantMinterRole(geaAddress,temp_contract) 
+        return tx_receipt.contractAddress    
 
-    def mintTicket(self, nft_contract, ticket_URI, ticket_price, ticket_seat_number):
+    def mintTicket(self, nft_contract, ticket_URI, ticket_price, ticket_seat_number, ticket_class, geaAddress):
         #create nft_contract by querying the database and retreiving the contract address
-        nft_contract.functions.safeMint(EventHost.GEA,ticket_URI,ticket_price,ticket_seat_number).transact({"from": EventHost.GEA})    
+        nft_contract.functions.safeMint(geaAddress,ticket_URI,ticket_price,ticket_seat_number, ticket_class).transact({"from": geaAddress})    

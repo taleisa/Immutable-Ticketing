@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Ticket Minting</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
@@ -16,15 +16,17 @@
 
 <body>
     <header>
-        <a href="#"></a>
+        <a href={% url 'dashboard' %} class="header-icon"><i class="fa-solid fa-arrow-left"></i></a>
         <a href="#" class="header-icon" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa-solid fa-ellipsis-vertical"></i></a>
       </header>
       <div>
         <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none;">
           {% csrf_token %}
       </form>
-    <div class="container dashboard">
+    <div class="container request">
+        <h1>Ticket Minting</h1>
         <h3>Choose Event</h3>
+        <br>
         <div class="city-bar">
             <form name="eventsForm" id="id_eventsForm" action="" method="post">
                 {% csrf_token %}
@@ -43,118 +45,51 @@
                 {% endfor %}
             </form>
         </div>
-        
-
-        <div class="ticket-dashboard">
-            <div class="list-ticket">
-                <h5>Listed Tickets</h5>
-                <h4 id="ticketsListed"></h4>
-                <!--{% if selected_option %}
-                <h4>You selected: {{ selected_option }}</h4>
-                {% endif %}
-                <h4>1000</h4>-->
-            </div>
-            <div class="ticket-sold">
-                <h5>Tickets Sold</h5>
-                <h4 id="ticketsSold"></h4>
-            </div>
-            <div class="relist-ticket">
-                <h5>Relisted Tickets</h5>
-                <h4 id="ticketsRelisted"></h4>
-            </div>
-            <div class="ticket-used">
-                <h5>Tickets Used</h5>
-                <h4 id="ticketsUsed"></h4>
-            </div>
-        </div>
-        {% if condition %}
-        <!--<div class="ticket-bar">
-            <i class="fa-solid fa-ticket-simple"></i>
-            <input type="text" placeholder="Ticket" readonly>
-            <i class="fa-solid fa-chevron-right"></i>
-        </div>-->
-        {% endif %}
-        
-
-        <ul class="ticket-data-table" id="tickets_list">
-            <!--<li class="list-data">
-                <a href="ticket-record.html" class="main-data">
-                    <i class="fa-solid fa-ticket-simple"></i>
-                    <div class="ticket-number">
-                        <p>#1001</p>
-                        <span>SAR 120</span>
-                    </div>
-                    <div class="ticket-details">
-                        <p>BLVD RUH CITY</p>
-                        <span>#1186480321</span>
-                    </div>
-                </a>
-            </li>
-            <li class="list-data">
-                <a href="ticket-record.html" class="main-data">
-                    <i class="fa-solid fa-ticket-simple"></i>
-                    <div class="ticket-number">
-                        <p>#1001</p>
-                        <span>SAR 120</span>
-                    </div>
-                    <div class="ticket-details">
-                        <p>BLVD RUH CITY</p>
-                        <span>#1186480321</span>
-                    </div>
-                </a>
-            </li>
-            <li class="list-data">
-                <a href="ticket-record.html" class="main-data">
-                    <i class="fa-solid fa-ticket-simple"></i>
-                    <div class="ticket-number">
-                        <p>#1001</p>
-                        <span>SAR 120</span>
-                    </div>
-                    <div class="ticket-details">
-                        <p>BLVD RUH CITY</p>
-                        <span>#1186480321</span>
-                    </div>
-                </a>
-            </li>-->
-        </ul>
-
+        <br>
+        <form action={% url 'ticketrequest' %} method="post">
+            {% csrf_token %}
+            {{form.name}}
+            {{form.uri}}
+            {{form.seatNumberStart}}
+            {{form.price}}
+            {{form.quantity}}
+            {{form.contractAddress}}
+            <input type="submit" value="Mint Ticket">
+        </form>
+        <br>
+        {% for message in messages %}
+        <h4>{{ message }}</h4>
+        {% endfor %}      
+        {% if form.errors %}
+            {% for field, error_list in form.errors.items %}
+                {% for error in error_list %}
+                    <h4>{{ error }}</h4>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}  
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
 
-    <footer class="dashboard-footer">
-        <a href={% url 'dashboard' %} class="active">
-            <i class="fa-solid fa-house"></i> <span>Dashboard</span>
+    <footer class="requests-footer">
+        <a href={% url 'dashboard' %}>
+            <i class="fa-solid fa-house"></i>
         </a>
-        {% if condition %}
             <a href={% url 'requests' %}><i class="fa-regular fa-envelope"></i></a>
             <a href={% url 'ticketrequest' %}><i class="fa-regular fa-ticket"></i></a>
-        {% else %}
-        <a href={% url 'eventRequestManegement' %}><i class="fa-regular fa-envelope"></i></a>
-        <a href={% url 'signUpRequestManegement' %}><i class="fa-regular fa-envelope"></i></a>
-        {% endif %}
-       
     </footer>
 
     <script>
-        /*document.getElementById("id_events").addEventListener("change", function(){
-            document.getElementById("selected_option").innerText = "";
-            $.ajax({
-                type: "POST",
-                url: "{% url 'dashboard' %}",
-                data:{
-                    events: $("#id_events").val(),
-                },
-                dataType: "json",
-                success:function(response){
-                    document.getElementById("selected_option").innerText = "response.selected_option";
-                },
-            });    
-        });*/
         function updateSelectedOption() {
             const selectField = document.getElementById('id_events');
             const selectedOption = selectField.options[selectField.selectedIndex].value;
             const selectedContract = document.getElementById(selectedOption).value;
-            const csrfToken = document.getElementsByName('csrfmiddlewaretoken')[0].value;
-
+            const formContract = document.getElementById("id_contractAddress");
+            formContract.value = selectedContract 
+        }
+            /*
             const xhr = new XMLHttpRequest();
             xhr.open('POST', '{% url "dashboard" %}');
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
@@ -219,7 +154,7 @@
                     ticketsList.appendChild(listItem);
                     }
                     /*const selectedOption = document.getElementById('listedTickets');
-                    selectedOption.innerHTML = xhr.responseText;*/
+                    selectedOption.innerHTML = xhr.responseText;
                 } else {
                     console.error(xhr.statusText);
                 }
@@ -228,8 +163,9 @@
                 console.error(xhr.statusText);
             };
             xhr.send(`events=${selectedOption}&contract=${selectedContract}`);
-        }
+        }*/
     </script>
+
 </body>
 
 </html>

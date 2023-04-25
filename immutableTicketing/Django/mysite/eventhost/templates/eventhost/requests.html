@@ -15,23 +15,49 @@
 </head>
 
 <body>
+    <header>
+        <a href={% url 'dashboard' %} class="header-icon"><i class="fa-solid fa-arrow-left"></i></a>
+        <a href="#" class="header-icon" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+      </header>
+      <div>
+        <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none;">
+          {% csrf_token %}
+      </form>
     <div class="container request">
         <h1>Proposal Event</h1>
-        <form action={% url 'requests' %} method="get">
-            <input type="text" placeholder="Event Name">
-            <input type="text" placeholder="Event Location">
-            <input type="text" placeholder="Event Date">
-            <input type="text" placeholder="Event Types">
-            <input type="text" placeholder="Event Prices">
+        {% for message in messages %}
+        <h4>{{ message }}</h4>
+        {% endfor %}      
+        {% if form.errors %}
+            {% for field, error_list in form.errors.items %}
+                {% for error in error_list %}
+                    <h4>{{ error }}</h4>
+                {% endfor %}
+            {% endfor %}
+        {% endif %} 
+        <form action={% url 'requests' %} method="post">
+            {% csrf_token %}
+            {{form.eventName}}
+            {{form.eventSymbol}}
+            {{form.eventLocation}}
+            {{form.eventType}}
+            {{form.eventStartDate}}
+            {{form.eventEndDate}}
             <input type="submit" value="Send Proposal">
         </form>
+        <br> 
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
 
     <footer class="requests-footer">
         <a href={% url 'dashboard' %}>
             <i class="fa-solid fa-house"></i>
         </a>
-        <a href={% url 'requests' %} class="active"><i class="fa-solid fa-envelope"></i><span>Requests</span></a>
+            <a href={% url 'requests' %}><i class="fa-regular fa-envelope"></i></a>
+            <a href={% url 'ticketrequest' %}><i class="fa-regular fa-ticket"></i></a>
     </footer>
 
 </body>

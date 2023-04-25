@@ -10,7 +10,7 @@ class web3User(models.Model):
 
 class Event(models.Model):
     event_host = models.ForeignKey(web3User, on_delete=models.CASCADE)
-    contract_address = models.CharField(max_length=42, unique=True)
+    address = models.CharField(max_length=42, unique=True)
 
 class SignUpRequest(models.Model):
     companyName = models.CharField(max_length=150, unique=True)
@@ -21,10 +21,10 @@ class SignUpRequest(models.Model):
 
 class EventRequest(models.Model):
     event_host = models.ForeignKey(web3User, on_delete=models.CASCADE)
-    eventName = models.CharField(max_length=30)
-    eventSymbol = models.CharField(max_length=30)
+    eventName = models.CharField(max_length=30, unique=True)
+    eventSymbol = models.CharField(max_length=8)
     eventLocation = models.CharField(max_length=30)
-    eventStartDate = models.DateField()
-    eventEndDate = models.DateField()
+    eventStartDate = models.DateTimeField()
+    eventEndDate = models.DateTimeField()
     eventType = models.CharField(max_length=30)       
     
