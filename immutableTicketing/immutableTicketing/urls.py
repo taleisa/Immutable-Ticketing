@@ -22,5 +22,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("access.urls")),
     path("", include("marketplace.urls")),
+    path('eventhost/',include('eventhost.urls')),
 ]
 

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup Request Management</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    {% load static %} 
+    <link href={% static 'eventhost/css/style.css' %} rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .table {
+        border-spacing: 0 15px;
+      }
+      i {
+        font-size: 1rem !important;
+      }
+      .table tr {
+        border-radius: 25px;
+      }
+      tr td:nth-child(n + 4),
+      tr th:nth-child(n + 4) {
+        border-radius: 0 1rem 1rem 0;
+      }
+      tr td:nth-child(1),
+      tr th:nth-child(1) {
+        border-radius: 0.8rem 0 0 0.8rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href={% url 'dashboard' %} class="header-icon"><i class="fa-solid fa-arrow-left"></i></a>
+      <a href="#" class="header-icon" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+    </header>
+    <div>
+      <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none;">
+        {% csrf_token %}
+    </form>
+    <div>
+        <!-- Signup -->
+
+        <div class="ticket-record-table mx-3">
+            <h4>Signup Request</h4>
+            <div class="flex items-center justify-center">
+                <div class="col-span-12">
+                    <div class="overflow-auto lg:overflow-visible">
+                        <table class="table text-neutral-400 border-separate space-y-6 text-sm">
+                            <thead class="bg-neutral-800 text-white">
+                                <tr>
+                                    <th class="p-3">Company Name</th>
+                                    <th class="p-3 text-left">Company Email</th>
+                                    <th class="p-3 text-left">Company Wallet Address</th>
+                                    <th class="p-3 text-left">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for request in signupRequestList %}
+
+                                <tr class="bg-zinc-800">
+                                    <td class="p-3">{{request.companyName}}</td>
+                                    <td class="p-3">{{request.companyEmail}}</td>
+                                    <td class="p-3">{{request.wallet_address}}</td>
+                                    <td>
+                                    <button class="accept-button" onclick="submitRequest('{{ request.requestId }}','Accept')">Accept</button>
+                                    <button class="reject-button" onclick="submitRequest('{{ request.requestId }}','Reject')">Reject</button>
+                                    </td>
+                                </tr>
+
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form id="requestSubmissionForm" action={% url 'signUpRequestManegement' %} method="post">
+            {% csrf_token %}
+            {{form}}
+        </form>
+        {% for message in messages %}
+        <h4>{{ message }}</h4>
+        {% endfor %}
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <footer class="dashboard-footer">
+        <a href={% url 'dashboard' %} class="active">
+            <i class="fa-solid fa-house"></i> <span>Dashboard</span>
+        </a>
+            <a href={% url 'eventRequestManegement' %}><i class="fa-regular fa-envelope"></i></a>
+            <a href={% url 'signUpRequestManegement' %}><i class="fa-regular fa-envelope"></i></a>
+       
+    </footer>
+    <script>    
+    function submitRequest(requestId, status) {
+            const formStatus = document.getElementById('id_status');
+            const formRequestId = document.getElementById('id_requestId');
+            const form = document.getElementById('requestSubmissionForm');
+            formStatus.value = status;
+            formRequestId.value = requestId;
+            form.submit()
+        }
+    </script>
+
+  </body>
+
+     

@@ -8,6 +8,7 @@ from django.views import View
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from access.models import Event, Gate
+from immutableTicketing.settings import TRUFFLE_PATH, WEB3_ADDRESS
 from .forms import listForm
 from django.contrib import messages
 from web3 import Web3
@@ -90,10 +91,10 @@ class singleTicket(LoginRequiredMixin, TemplateView):
 
 class QueryBC:
     # connecting the blockchain network in ganache
-    w3 = Web3(Web3.HTTPProvider("HTTP://127.0.0.1:7545"))
+    w3 = Web3(Web3.HTTPProvider(WEB3_ADDRESS))
     # retrieving the generated ABI and Byte code from the
     truffleFile = json.load(
-        open("marketplace/static/marketplace/TicketNFT.json")
+        open(TRUFFLE_PATH)
     )  # truffle generated file
     ABI = truffleFile["abi"]  # ABI generated in the file
     Bytecode = truffleFile["bytecode"]  # metadata generated in the file
@@ -446,10 +447,10 @@ class QueryBC:
 
 class User:
     # connecting the blockchain network in ganache
-    w3 = Web3(Web3.HTTPProvider("HTTP://127.0.0.1:7545"))
+    w3 = Web3(Web3.HTTPProvider(WEB3_ADDRESS))
     # retrieving the generated ABI and Byte code from the
     truffleFile = json.load(
-        open("marketplace/static/marketplace/TicketNFT.json")
+        open(TRUFFLE_PATH)
     )  # truffle generated file
     ABI = truffleFile["abi"]  # ABI generated in the file
     Bytecode = truffleFile["bytecode"]  # metadata generated in the file

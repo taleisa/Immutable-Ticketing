@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Account</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        {% load static %}  
+        <link href={% static 'eventhost/css/style.css' %} rel="stylesheet" type="text/css">  
+</head>
+
+<body>
+    <header>
+        <a href={% url 'login' %} class="header-icon"><i class="fa-solid fa-arrow-down"></i></a>
+    </header>
+    <div class="container signUp">
+        <h1>Request Account</h1>
+        <div id="MetamaskContainer">
+            <button id="Metamask-Connect">Connect Metamask</button>
+        </div>
+        <br>
+        <form action={% url 'signup' %} method="post">
+            {% csrf_token %}
+            {{form.companyName}}
+            {{form.companyEmail}}
+            {{form.password1}}
+            {{form.password2}}
+            {{form.walletAddress}}
+            <!--<input type="text" placeholder="Company Name">
+            <input type="email" placeholder="Company Email" required>
+            <input type="password" placeholder="Password" required>-->
+            <input type="submit" value="Send Request">
+        </form>
+        <br>
+        {% for message in messages %}
+        <h4>{{ message }}</h4>
+        {% endfor %}      
+        {% if form.errors %}
+            {% for field, error_list in form.errors.items %}
+                {% for error in error_list %}
+                    <h4>{{ error }}</h4>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}  
+    </div>
+</body>
+<script>
+    let account;
+        document.getElementById('Metamask-Connect').addEventListener('click', event => {
+            /* retreives user account address*/
+        ethereum.request({method: 'eth_requestAccounts'}).then(accounts => {
+            account = accounts[0];
+            document.getElementById('id_walletAddress').value = account; //gets the account from metamask and saves it to to form.account
+            //document.getElementById("Metamask-Connect").innerText = account;
+        });
+        });
+</script>
+
+</html>

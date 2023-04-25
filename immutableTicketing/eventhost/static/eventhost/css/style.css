@@ -1,0 +1,396 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Times New Roman", Times, serif;
+}
+
+body {
+	background-color: #1d1d1d;
+	color: #e1e1e0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+
+a {
+	text-decoration: none;
+	color: #fff;
+}
+
+ul,
+ol {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+table,
+tr,
+td,
+th {
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	width: 100vw;
+	height: auto;
+	margin: 0 auto;
+}
+form {
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+	flex-direction: column;
+	gap: 1rem;
+}
+input {
+	background-color: #2b2b2b;
+	color: #e1e1e0;
+	padding: 1rem 2rem;
+	font-size: 1.2rem;
+	font-weight: 600;
+	width: 80%;
+	border: 0;
+	outline: 0;
+	margin: 0 auto;
+	border-radius: 10px;
+}
+input::placeholder {
+	color: #535454;
+}
+input[type="submit"] {
+	background-color: #fff;
+	color: #000;
+}
+
+header {
+	display: flex;
+	justify-content: space-between;
+	margin: 10px;
+}
+.header-icon {
+	background-color: #2b2b2b;
+	height: 40px;
+	width: 40px;
+	border-radius: 50%;
+	border-top: 2px solid #10b491;
+}
+.header-icon i {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: #e1e1e0;
+}
+footer {
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+}
+
+/* Login and Sign Up Style Start  */
+
+.login,
+.signUp {
+	padding-top: 3rem;
+}
+
+.login h1,
+.signUp h1 {
+	font-size: 28px;
+	margin-bottom: 1.2rem;
+	font-weight: 700;
+}
+
+.login-footer {
+	display: flex;
+	justify-content: center;
+	font-size: 1rem;
+	color: #535454;
+	margin-bottom: 0.5rem;
+}
+
+.login-signUp {
+	color: #e1e1e0;
+	font-weight: 800;
+	margin-left: 0.3em;
+}
+
+/* Added by faisal for signup page */
+#MetamaskContainer{
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+#Metamask-Connect {
+	padding: 1rem 2rem;
+	font-size: 1.2rem;
+	font-weight: 600;
+	width: 80%;
+	border: 0;
+	outline: 0;
+	margin: 0 auto;
+	border-radius: 10px;
+	background-color: #ff8000;
+	color: #fff;
+}
+
+/* Dashboard Style Start  */
+
+.dashboard h3 {
+	text-align: center;
+	color: #fff;
+	font-weight: 600;
+	font-size: 26px;
+	margin: 1rem 0 2rem;
+}
+
+.ticket-bar,
+.city-bar {
+	position: relative;
+	background-color: #2b2b2b;
+	width: 90%;
+	margin: 0 auto;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+.city-bar i,
+.ticket-bar i {
+	position: absolute;
+	color: #b8b5d2;
+	font-size: 1.5rem;
+	top: 0;
+	bottom: 0;
+	cursor: pointer;
+	padding: 5px;
+	margin-top: 8px;
+}
+.city-bar i.fa-location-dot,
+.ticket-bar i.fa-ticket-simple {
+	left: 0;
+}
+.city-bar i.fa-chevron-right,
+.ticket-bar i.fa-chevron-right {
+	right: 0;
+}
+/* added by faisal */
+
+#id_events{
+	background-color: #2b2b2b;
+	color: #e1e1e0;
+	padding: 1rem 2rem;
+	font-size: 1.2rem;
+	font-weight: 600;
+	width: 95%;
+	border: 0;
+	outline: 0;
+	margin: 0 auto;
+	border-radius: 10px;
+	margin-left: 10px;
+	font-size: 1rem;
+}
+
+
+/* finish added by faisal*/
+.city-bar input,
+.ticket-bar input {
+	margin-left: 10px;
+	font-size: 1rem;
+}
+.city-bar input::placeholder,
+.ticket-bar input::placeholder {
+	color: #c7c7c7;
+}
+
+.ticket-dashboard {
+	margin: 30px 0;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 30px;
+}
+
+.ticket-dashboard h5 {
+	font-size: 18px;
+	color: #c7c7c7;
+}
+.ticket-dashboard h4 {
+	font-size: 22px;
+	color: #fff;
+	margin-top: 5px;
+}
+
+.ticket-data-table {
+	background-color: #2b2b2b;
+	margin: 50px 0;
+	width: 100%;
+	height: auto;
+	border-radius: 15px;
+}
+.list-data {
+	padding: 20px 0;
+}
+
+.main-data {
+	display: grid;
+	grid-template-columns: 0.5fr 3fr 2fr;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #696870;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	margin: 10px 20px;
+	cursor: pointer;
+}
+
+.main-data i {
+	color: #fff;
+	font-size: 1.1rem;
+	height: 35px;
+	width: 35px;
+	border-radius: 50%;
+	background-color: #696870;
+	padding: 9px 7px;
+	transform: translateY(-25%);
+}
+
+.ticket-number {
+	margin-left: 10px;
+}
+.ticket-number p,
+.ticket-details p {
+	font-size: 1rem;
+	font-weight: 600;
+	color: #fff;
+}
+.ticket-number span,
+.ticket-details span {
+	font-size: 0.85rem;
+	font-weight: 400;
+	color: #b8b5d2;
+	margin-top: 5px;
+}
+
+.ticket-details p,
+.ticket-details span {
+	display: block;
+	float: right;
+}
+
+.dashboard-footer,
+.requests-footer {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	padding: 1rem 0;
+	background-color: #111;
+	font-size: 1.2rem;
+	margin-top: 50px;
+}
+
+.dashboard-footer .active,
+.requests-footer .active {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 5px;
+}
+
+.dashboard-footer .active span,
+.requests-footer .active span {
+	font-size: 0.8rem;
+}
+
+/* Request Style Start */
+
+.request h1 {
+	font-size: 28px;
+	margin-bottom: 1.2rem;
+	font-weight: 700;
+	margin: 20px 0 50px;
+}
+
+/* Ticket Record Style Start */
+
+.ticket-record-info {
+	margin: 20px 30px;
+}
+.ticket-record-info h3 {
+	font-size: 2rem;
+	font-family: sans-serif;
+}
+.ticket-record-list {
+	margin: 10px 0;
+}
+
+.ticket-record-list li {
+	margin: 20px 0;
+}
+
+.ticket-record-list li i {
+	font-size: 1.5em;
+	color: #e1e1e0;
+	width: 10%;
+}
+.ticket-record-list li span {
+	font-size: 1.5em;
+	color: #c7c7c7;
+}
+/* added by faisal */
+
+#span-address
+{
+	font-size: 0.8em;
+	color: #c7c7c7;
+}
+
+/* finished added by faisal */
+
+.ticket-record hr {
+	height: 5px;
+	background-color: #000;
+	border: 0;
+}
+
+
+.ticket-record-table h4 {
+	font-size: 1.5rem;
+	font-weight: 500;
+	text-align: left;
+	margin-top: 30px;
+}
+.ticket-record-table h4 i {
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+
+
+
+/* Responsive Style  */
+
+@media (min-width: 768px) {
+	.login,
+	.signUp,
+	.dashboard,
+	.ticket-record,
+	.request {
+		width: 50%;
+		margin: 0 auto;
+	}
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Record</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        {% load static %}  
+        <link href={% static 'eventhost/css/style.css' %} rel="stylesheet" type="text/css">  
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <style>
+        .table {
+            border-spacing: 0 15px;
+        }
+
+        i {
+            font-size: 1rem !important;
+        }
+
+        .table tr {
+            border-radius: 25px;
+        }
+
+        tr td:nth-child(n + 5),
+        tr th:nth-child(n + 5) {
+            border-radius: 0 1rem 1rem 0;
+        }
+
+        tr td:nth-child(1),
+        tr th:nth-child(1) {
+            border-radius: 0.8rem 0 0 0.8rem;
+        }
+    </style>
+
+
+    <header>
+        <a href={% url 'dashboard' %} class="header-icon"><i class="fa-solid fa-arrow-left"></i></a>
+        <a href="#" class="header-icon" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+      </header>
+      <div>
+        <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none;">
+          {% csrf_token %}
+      </form>
+
+    <div class="ticket-record">
+        <div class="ticket-record-info">
+            <h3>#{{ticketId}}</h3>
+            <ul class="ticket-record-list">
+                <li><i class="fa-solid fa-calendar-week"></i> <span>{{ticketStartDate}}</span></li>
+                <li><i class="fa-solid fa-calendar-week"></i> <span>{{ticketEndDate}}</span></li>
+                <li><i class="fa-solid fa-wallet"></i> <span>{{ticketPrice}} ETH</span></li>
+                <li><i class="fa-solid fa-ticket"></i> <span>{{ticketClass}}</span></li>
+                <li><i class="fa-solid fa-chair"></i> <span>{{ticketSeat}}</span></li>
+                <li><i class="fa-solid fa-money-bills"></i> <span>{{ticketSale}}</span></li>
+                <li><i class="fa-solid fa-location-dot"></i> <span>{{ticketLocation}}</span></li>
+                <li><i class="fa-solid fa-server"></i> <span id="span-address">{{ticketOwner}}</span></li>
+            </ul>
+            <!--
+            <h3>#1001</h3>
+            <ul class="ticket-record-list">
+                <li><i class="fa-solid fa-calendar-week"></i> <span>22 April 2023</span></li>
+                <li><i class="fa-solid fa-clock"></i> <span>04:00 PM to 02:00 AM</span></li>
+                <li><i class="fa-solid fa-wallet"></i> <span>120.00 SAR</span></li>
+                <li><i class="fa-solid fa-ticket"></i> <span>VIP</span></li>
+                <li><i class="fa-solid fa-location-dot"></i> <span>BLVD RUH CITY</span></li>
+                <li><i class="fa-solid fa-server"></i> <span>#1186480321</span></li>
+            </ul>-->
+        </div>
+        <hr>
+        <div class="ticket-record-table mx-3">
+            <h4><i class="fa-solid fa-arrow-down-up-across-line"></i> Ticket Transaction</h4>
+
+            <div class="flex items-center justify-center">
+                <div class="col-span-12">
+                    <div class="overflow-auto lg:overflow-visible">
+                        <table class="table text-neutral-400 border-separate space-y-6 text-sm">
+                            <thead class="bg-neutral-800 text-white">
+                                <tr>
+                                    <th class="p-3">Event</th>
+                                    <th class="p-3 text-left">Price</th>
+                                    <th class="p-3 text-left">From</th>
+                                    <th class="p-3 text-left">To</th>
+                                    <th class="p-3 text-left">Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for event in events%}
+
+                                <tr class="bg-zinc-800">
+                                    <td class="p-3 font-medium capitalize">{{event.event}}</td>
+                                    <td class="p-3">{{event.price}}</td>
+                                    <td class="p-3">{{event.from}}</td>
+                                    <td class="p-3">{{event.to}}</td>
+                                    <td class="p-3">{{event.date}}</td>
+                                </tr>
+
+                                {% endfor %}
+
+                                <!--
+                                <tr class="bg-zinc-800">
+                                    <td class="p-3 font-medium capitalize">Use</td>
+                                    <td class="p-3"></td>
+                                    <td class="p-3">#1186480321</td>
+                                    <td class="p-3"></td>
+                                    <td class="p-3">2 Hours Ago</td>
+                                </tr>
+                                <tr class="bg-zinc-800">
+                                    <td class="p-3">Sale</td>
+                                    <td class="p-3">120.00</td>
+                                    <td class="p-3">#1186480321</td>
+                                    <td class="p-3">#1186480432</td>
+                                    <td class="p-3">4 Hours Ago</td>
+                                </tr>
+                                <tr class="bg-zinc-800">
+                                    <td class="p-3">Sale</td>
+                                    <td class="p-3">130.00</td>
+                                    <td class="p-3">#03BDBE</td>
+                                    <td class="p-3">#1186480321</td>
+                                    <td class="p-3">8 Hours Ago</td>
+                                </tr>
+                                <tr class="bg-zinc-800">
+                                    <td class="p-3">Minted</td>
+                                    <td class="p-3"></td>
+                                    <td class="p-3">Null</td>
+                                    <td class="p-3">#03BDBE</td>
+                                    <td class="p-3">9 Hours Ago</td>
+                                </tr>
+                                -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -14,6 +14,7 @@ from pathlib import Path
 from django.conf import settings
 from django.urls import reverse_lazy
 from django.contrib.messages import constants as messages
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     # Custom apps
     "access",
     "marketplace",
+    "eventhost",
 ]
 
 MIDDLEWARE = [
@@ -138,3 +140,18 @@ MESSAGE_TAGS = {
         messages.WARNING: 'alert-warning',
         messages.ERROR: 'alert-danger',
  }
+
+#truffle file
+TRUFFLE_PATH = os.path.join(os.path.dirname(__file__), "truffle/build/contracts/TicketNFT.json")
+
+#web3 ganache https
+WEB3_ADDRESS = 'HTTP://127.0.0.1:7545'
+
+# Email Information
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'ImmutableTicketing@gmail.com'
+EMAIL_HOST_PASSWORD = 'dlazbnquntzbbsgm'
