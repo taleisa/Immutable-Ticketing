@@ -33,7 +33,7 @@ class signupForm(forms.Form):
 class TicketForm(forms.Form):
     name = forms.CharField(max_length=30, widget= forms.TextInput
                            (attrs={'placeholder':'Ticket Class'}))
-    uri = forms.CharField(max_length=50, widget= forms.TextInput
+    uri = forms.CharField(max_length=500, widget= forms.TextInput
                            (attrs={'placeholder':'Ticket Uri'}))
     seatNumberStart = forms.IntegerField(widget= forms.NumberInput
                            (attrs={'placeholder':'Ticket Seat Number (From)'}))
