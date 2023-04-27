@@ -1,3 +1,9 @@
+import json
+from datetime import datetime
+from operator import itemgetter
+import pytz
+from web3 import Web3
+
 from django.shortcuts import redirect
 from django.http import HttpResponseRedirect, JsonResponse
 from django.contrib import messages
@@ -7,14 +13,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
-import pytz
 from eventhost.forms import loginForm, signupForm, eventrequestForm, TicketForm, requestManagementForm
 from access.models import Event, web3User, SignUpRequest, EventRequest
-from web3 import Web3
 from immutableTicketing.settings import TRUFFLE_PATH, WEB3_ADDRESS, LOGIN_REDIRECT_URL
-import json
-from datetime import datetime
-from operator import itemgetter
+
 
 
 class loginView(FormView):
@@ -566,7 +568,15 @@ class EventHost:
         temp_contract = EventHost.w3.eth.contract(tx_receipt.contractAddress, abi= EventHost.ABI, bytecode = EventHost.Bytecode)
         #grant roles for the NFT instance
         self.grantGEARole(geaAddress,temp_contract)
-        self.grantMinterRole(geaAddress,temp_contract) 
+        self.grantMinterRole(geaAddress,temp_contract)
+        ################################################################
+        ################################################################
+        #########Only for convenience not how it should actually be
+        ################################################################
+        ################################################################
+        users = web3User.objects.all()
+        for user in users:
+            self.grantCustomerRole(user.wallet_address, temp_contract)
         return tx_receipt.contractAddress    
 
     def mintTicket(self, nft_contract, ticket_URI, ticket_price, ticket_seat_number, ticket_class, geaAddress):
