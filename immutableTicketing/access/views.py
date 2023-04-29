@@ -29,19 +29,22 @@ class login(FormView):
     def form_valid(self, form):
         wallet_address = form.cleaned_data['wallet_address'].lower()
         user = self.request.user
-        if user.is_anonymous:
+        if user.is_anonymous:# If non authenticated user
             messages.error(self.request, 'Please login using nafath')
             self.success_url = reverse_lazy('login')
             return super(login, self).form_valid(form)
-        try:
+        elif user.web3User.is_GEA or user.web3User.is_event_host:
+            messages.error(self.request, 'Please use event host portal')
+            self.success_url = reverse_lazy('login')
+            return super(login, self).form_valid(form)
+        try:# If user does not have aregistered wallet address will throw error
             user_wallet_address = user.web3User.wallet_address.lower()
-        except:
-            
+        except:# User does not have wallet address
             webUser = web3User(user = user)
             webUser.wallet_address = Web3.to_checksum_address(wallet_address) 
-            try:
+            try:# Save user wallet
                 webUser.save()
-            except IntegrityError:
+            except IntegrityError:# Other user has wallet address
                 messages.error(self.request, 'Wallet registered to other user, please use your wallet')
             else:
                 messages.success(self.request, 'Wallet has been saved')
