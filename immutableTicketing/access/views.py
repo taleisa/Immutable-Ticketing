@@ -33,10 +33,13 @@ class login(FormView):
             messages.error(self.request, 'Please login using nafath')
             self.success_url = reverse_lazy('login')
             return super(login, self).form_valid(form)
-        elif user.web3User.is_GEA or user.web3User.is_event_host:
-            messages.error(self.request, 'Please use event host portal')
-            self.success_url = reverse_lazy('login')
-            return super(login, self).form_valid(form)
+        try:
+            if user.web3User.is_GEA or user.web3User.is_event_host:
+                messages.error(self.request, 'Please use event host portal')
+                self.success_url = reverse_lazy('login')
+                return super(login, self).form_valid(form)
+        except:
+            pass
         try:# If user does not have aregistered wallet address will throw error
             user_wallet_address = user.web3User.wallet_address.lower()
         except:# User does not have wallet address

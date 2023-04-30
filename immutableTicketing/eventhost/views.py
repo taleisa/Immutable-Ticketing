@@ -14,7 +14,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from eventhost.forms import loginForm, signupForm, eventrequestForm, TicketForm, requestManagementForm
-from access.models import Event, web3User, SignUpRequest, EventRequest
+from access.models import Event, web3User, SignUpRequest, EventRequest, Gate
 from immutableTicketing.settings import TRUFFLE_PATH, WEB3_ADDRESS, LOGIN_REDIRECT_URL
 
 
@@ -560,6 +560,14 @@ class EventHost:
         # Wait for transaction receipt
         tx_receipt = EventHost.w3.eth.wait_for_transaction_receipt(send_tx)
         return tx_receipt # Optional   
+    
+    def grantGateRole(self, cust_add, contract):
+        # Send transaction
+        send_tx = contract.functions.grantRole(Web3.solidity_keccak(["bytes32"],[str.encode("GATE_ACCOUNTS")]) ,cust_add).transact({"from": self.event_host_address})
+
+        # Wait for transaction receipt
+        tx_receipt = EventHost.w3.eth.wait_for_transaction_receipt(send_tx)
+        return tx_receipt # Optional   
 
     def deployNFT(self, geaAddress,event_name, event_symbol, event_location, event_type, event_start_date, event_end_date): # event_host address is the address of the event host deploying the ticket
         contract = EventHost.w3.eth.contract(abi=EventHost.ABI, bytecode=EventHost.Bytecode)
@@ -569,14 +577,17 @@ class EventHost:
         #grant roles for the NFT instance
         self.grantGEARole(geaAddress,temp_contract)
         self.grantMinterRole(geaAddress,temp_contract)
-        ################################################################
-        ################################################################
-        #########Only for convenience not how it should actually be
-        ################################################################
-        ################################################################
+        ##########################################################################################
+        ##########################################################################################
+        #########Only for convenience not how it should actually be(customer role and gate roles)
+        ##########################################################################################
+        ##########################################################################################
         users = web3User.objects.all()
+        gates = Gate.objects.all()
         for user in users:
             self.grantCustomerRole(user.wallet_address, temp_contract)
+        for gate in gates:
+            self.grantGateRole(gate.address, temp_contract)
         return tx_receipt.contractAddress    
 
     def mintTicket(self, nft_contract, ticket_URI, ticket_price, ticket_seat_number, ticket_class, geaAddress):

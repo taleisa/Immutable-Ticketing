@@ -168,7 +168,7 @@ class QueryBC:
                         contract.functions._endDate().call()
                     ).strftime("%Y-%m-%d %H:%M:%S")
                     ticket["token_URI"] = contract.functions.tokenURI(index).call()
-                    ticket["price"] = contract.functions._allTickets(index).call()[0]
+                    ticket["price"] = QueryBC.w3.from_wei(contract.functions._allTickets(index).call()[0], 'ether')
                     ticket["on_sale"] = contract.functions._allTickets(index).call()[1]
                     ticket["seat_number"] = contract.functions._allTickets(index).call()[2]
                     ticket["contract_address"] = event.address
@@ -238,7 +238,7 @@ class QueryBC:
             contract.functions._endDate().call()
         ).strftime("%Y-%m-%d %H:%M:%S")
         ticket["token_URI"] = contract.functions.tokenURI(ticket_index).call()
-        ticket["price"] = contract.functions._allTickets(ticket_index).call()[0]
+        ticket["price"] = QueryBC.w3.from_wei(contract.functions._allTickets(ticket_index).call()[0], 'ether')
         ticket["on_sale"] = contract.functions._allTickets(ticket_index).call()[1]
         ticket["seat_number"] = contract.functions._allTickets(ticket_index).call()[2]
         ticket["contract_address"] = event.address
@@ -250,7 +250,7 @@ class QueryBC:
             ).build_transaction(
                 {
                     "from": user_address,
-                    "value": ticket["price"],
+                    "value": hex(contract.functions._allTickets(ticket_index).call()[0]),
                     "nonce": QueryBC.w3.eth.get_transaction_count(user_address),
                 }
             )
@@ -421,7 +421,7 @@ class QueryBC:
                         contract.functions._endDate().call()
                     ).strftime("%Y-%m-%d %H:%M:%S")
                     ticket["token_URI"] = contract.functions.tokenURI(index).call()
-                    ticket["price"] = contract.functions._allTickets(index).call()[0]
+                    ticket["price"] = QueryBC.w3.from_wei(contract.functions._allTickets(index).call()[0], 'ether')
                     ticket["on_sale"] = contract.functions._allTickets(index).call()[1]
                     ticket["seat_number"] = contract.functions._allTickets(index).call()[2]
                     ticket["contract_address"] = contract_address
@@ -433,7 +433,7 @@ class QueryBC:
                         ).build_transaction(
                             {
                                 "from": request.user.web3User.wallet_address,
-                                "value": ticket["price"],
+                                "value": hex(contract.functions._allTickets(index).call()[0]),
                                 "nonce": QueryBC.w3.eth.get_transaction_count(request.user.web3User.wallet_address),
                             }
                         )
@@ -535,7 +535,7 @@ class User:
                         contract.functions._endDate().call()
                     ).strftime("%Y-%m-%d %H:%M:%S")
                     ticket["token_URI"] = contract.functions.tokenURI(x).call()
-                    ticket["price"] = contract.functions._allTickets(x).call()[0]
+                    ticket["price"] = User.w3.from_wei(contract.functions._allTickets(x).call()[0], 'ether')
                     ticket["on_sale"] = contract.functions._allTickets(x).call()[1]
                     ticket["seat_number"] = contract.functions._allTickets(x).call()[2]
                     ticket["contract_address"] = event.address
