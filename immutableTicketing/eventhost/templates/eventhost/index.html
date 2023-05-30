@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login as Event Host</title>
+    {% load static %}  
+    <link href={% static 'eventhost/css/style.css' %} rel="stylesheet" type="text/css">  
+</head>
+
+<body>
+    <div class="container login">
+        <h1>Login as Event Host</h1>
+        <form action={% url 'eventhostlogin' %} method="post">
+            {% csrf_token %}
+            {{form.username}}
+            {{form.password}}
+            <!--<input type="email" placeholder="Email" required>
+            <input type="password" placeholder="Password" required>-->
+            <input type="submit" value="Log in">
+        </form>
+    </div>
+    <br>
+    {% for message in messages %}
+        <h4>{{ message }}</h4>
+        {% endfor %}      
+        {% if form.errors %}
+            {% for field, error_list in form.errors.items %}
+                {% for error in error_list %}
+                    <h4>{{ error }}</h4>
+                {% endfor %}
+            {% endfor %}
+        {% endif %} 
+    <footer>
+        <div class="login-footer">Don't have an account? <a href={% url 'eventhostsignup' %} class="login-signUp">Request Account</a></div>
+    </footer>
+</body>
+
+</html>

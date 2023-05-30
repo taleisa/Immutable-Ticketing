@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposal Event</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        {% load static %}  
+        <link href={% static 'eventhost/css/style.css' %} rel="stylesheet" type="text/css">  
+</head>
+
+<body>
+    <header>
+        <a href={% url 'dashboard' %} class="header-icon"><i class="fa-solid fa-arrow-left"></i></a>
+        <a href="#" class="header-icon" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+      </header>
+      <div>
+        <form id="logout-form" action="{% url 'eventhostlogout' %}" method="POST" style="display: none;">
+          {% csrf_token %}
+      </form>
+    <div class="container request">
+        <h1>Proposal Event</h1> 
+        <form action={% url 'requests' %} method="post">
+            {% csrf_token %}
+            {{form.eventName}}
+            {{form.eventSymbol}}
+            {{form.eventLocation}}
+            {{form.eventType}}
+            {{form.eventStartDate}}
+            {{form.eventEndDate}}
+            <input type="submit" value="Send Proposal">
+        </form>
+        <br> 
+    </div>
+    <br>
+    {% for message in messages %}
+        <h4>{{ message }}</h4>
+        {% endfor %}      
+        {% if form.errors %}
+            {% for field, error_list in form.errors.items %}
+                {% for error in error_list %}
+                    <h4>{{ error }}</h4>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <footer class="requests-footer">
+        <a href={% url 'dashboard' %}>
+            <i class="fa-solid fa-house"></i>
+        </a>
+            <a href={% url 'requests' %}><i class="fa-regular fa-envelope"></i></a>
+            <a href={% url 'ticketrequest' %}><i class="fa-regular fa-ticket"></i></a>
+    </footer>
+
+</body>
+
+</html>

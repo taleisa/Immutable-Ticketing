@@ -8,6 +8,7 @@ from django.views import View
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from access.models import Event, Gate
+from immutableTicketing.settings import TRUFFLE_PATH, WEB3_ADDRESS
 from .forms import listForm
 from django.contrib import messages
 from web3 import Web3
@@ -90,10 +91,10 @@ class singleTicket(LoginRequiredMixin, TemplateView):
 
 class QueryBC:
     # connecting the blockchain network in ganache
-    w3 = Web3(Web3.HTTPProvider("HTTP://127.0.0.1:7545"))
+    w3 = Web3(Web3.HTTPProvider(WEB3_ADDRESS))
     # retrieving the generated ABI and Byte code from the
     truffleFile = json.load(
-        open("marketplace/static/marketplace/TicketNFT.json")
+        open(TRUFFLE_PATH)
     )  # truffle generated file
     ABI = truffleFile["abi"]  # ABI generated in the file
     Bytecode = truffleFile["bytecode"]  # metadata generated in the file
@@ -167,7 +168,7 @@ class QueryBC:
                         contract.functions._endDate().call()
                     ).strftime("%Y-%m-%d %H:%M:%S")
                     ticket["token_URI"] = contract.functions.tokenURI(index).call()
-                    ticket["price"] = contract.functions._allTickets(index).call()[0]
+                    ticket["price"] = QueryBC.w3.from_wei(contract.functions._allTickets(index).call()[0], 'ether')
                     ticket["on_sale"] = contract.functions._allTickets(index).call()[1]
                     ticket["seat_number"] = contract.functions._allTickets(index).call()[2]
                     ticket["contract_address"] = event.address
@@ -237,7 +238,7 @@ class QueryBC:
             contract.functions._endDate().call()
         ).strftime("%Y-%m-%d %H:%M:%S")
         ticket["token_URI"] = contract.functions.tokenURI(ticket_index).call()
-        ticket["price"] = contract.functions._allTickets(ticket_index).call()[0]
+        ticket["price"] = QueryBC.w3.from_wei(contract.functions._allTickets(ticket_index).call()[0], 'ether')
         ticket["on_sale"] = contract.functions._allTickets(ticket_index).call()[1]
         ticket["seat_number"] = contract.functions._allTickets(ticket_index).call()[2]
         ticket["contract_address"] = event.address
@@ -249,7 +250,7 @@ class QueryBC:
             ).build_transaction(
                 {
                     "from": user_address,
-                    "value": ticket["price"],
+                    "value": hex(contract.functions._allTickets(ticket_index).call()[0]),
                     "nonce": QueryBC.w3.eth.get_transaction_count(user_address),
                 }
             )
@@ -420,7 +421,7 @@ class QueryBC:
                         contract.functions._endDate().call()
                     ).strftime("%Y-%m-%d %H:%M:%S")
                     ticket["token_URI"] = contract.functions.tokenURI(index).call()
-                    ticket["price"] = contract.functions._allTickets(index).call()[0]
+                    ticket["price"] = QueryBC.w3.from_wei(contract.functions._allTickets(index).call()[0], 'ether')
                     ticket["on_sale"] = contract.functions._allTickets(index).call()[1]
                     ticket["seat_number"] = contract.functions._allTickets(index).call()[2]
                     ticket["contract_address"] = contract_address
@@ -432,7 +433,7 @@ class QueryBC:
                         ).build_transaction(
                             {
                                 "from": request.user.web3User.wallet_address,
-                                "value": ticket["price"],
+                                "value": hex(contract.functions._allTickets(index).call()[0]),
                                 "nonce": QueryBC.w3.eth.get_transaction_count(request.user.web3User.wallet_address),
                             }
                         )
@@ -446,10 +447,10 @@ class QueryBC:
 
 class User:
     # connecting the blockchain network in ganache
-    w3 = Web3(Web3.HTTPProvider("HTTP://127.0.0.1:7545"))
+    w3 = Web3(Web3.HTTPProvider(WEB3_ADDRESS))
     # retrieving the generated ABI and Byte code from the
     truffleFile = json.load(
-        open("marketplace/static/marketplace/TicketNFT.json")
+        open(TRUFFLE_PATH)
     )  # truffle generated file
     ABI = truffleFile["abi"]  # ABI generated in the file
     Bytecode = truffleFile["bytecode"]  # metadata generated in the file
@@ -534,7 +535,7 @@ class User:
                         contract.functions._endDate().call()
                     ).strftime("%Y-%m-%d %H:%M:%S")
                     ticket["token_URI"] = contract.functions.tokenURI(x).call()
-                    ticket["price"] = contract.functions._allTickets(x).call()[0]
+                    ticket["price"] = User.w3.from_wei(contract.functions._allTickets(x).call()[0], 'ether')
                     ticket["on_sale"] = contract.functions._allTickets(x).call()[1]
                     ticket["seat_number"] = contract.functions._allTickets(x).call()[2]
                     ticket["contract_address"] = event.address
