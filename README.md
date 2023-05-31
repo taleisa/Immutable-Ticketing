@@ -70,7 +70,7 @@ varint==1.0.2
 web3==6.2.0
 websockets==11.0.2
 yarl==1.9.2
- - install ganache v2.7
+ - install ganache v2.7 at :https://trufflesuite.com/ganache/
  - open ganache ,create a new workspace , and add a new truffle project(choose the truffleconfig.js file found at immutableTicketing/immutableTicketing/truffle)
  - install metamask as a browser extension
  - after launching ganache a list of accounts will be displayed(Refer to the following link for the  next 3 steps: https://www.geeksforgeeks.org/how-to-set-up-ganche-with-metamask/ excluding Steps to Deploy the Smart Contract and all that comes after )
