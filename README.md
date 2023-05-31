@@ -76,7 +76,7 @@ yarl==1.9.2
  - after launching ganache a list of accounts will be displayed(Refer to the following link for the  next 3 steps: https://www.geeksforgeeks.org/how-to-set-up-ganche-with-metamask/ excluding Steps to Deploy the Smart Contract and all that comes after )
  - click the key icon and copy the private key
  - click on metamask extension and add the ganache blockchain you just launched as a network new RPC URL: HTTP://127.0.0.1:7545, with the chain id as 1337. If the address and port number are different on ganache change them to the previous example
- - add minimum two accounts in the metamask extension by using private keys from the ganache blockchain(One for the user and one for the eventhost)
+ - add minimum three accounts in the metamask extension by using private keys from the ganache blockchain(One for the user , one for the eventhost and one for the GEA)
  - Find the manage.py file
  - run python manage.py makemigrations
  - run python manage.py migrate
@@ -89,7 +89,11 @@ yarl==1.9.2
  - Login with the newly accepted account(Eventhost) to request an event and log back in as the GEA(superuser) to accept the event proposal
  - Log in again with the event host account to mint the tickets(At this stage the tickets are on the market)
  - In the url visit /admin, which will direct you to the admin page(Example: 127.0.0.1:8000/admin/)
- - Login with the super user you created and add a new user then logout
+ - Login with the super user you created 
+ - Click on users and select the superuser you created
+ - Check the "is GEA checkbox"
+ - In the "Wallet address" checkbox get the address of the account you imported for the GEA and paste it here(Account address not private key starts with ) this can be found either in metamask or ganache. Hit save
+ - Add a new user then logout(This will be the customer)
  - Navigate back to the main login page(The normal URL example: 127.0.0.1:8000) and click on login with nafath and enter the credentials of the new user you just added in the admin page
  - click on connect with metamask(if it does not popup click the extension) and choose the account you imported for the customer(Not the one used to signup the eventhost) and click login. This will tie the metamask account to this user
  - Click on connect to metamask again and login
